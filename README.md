@@ -61,7 +61,7 @@ Open the `server` and `client` in separate VSCode workspaces or open the combine
 
 ### Purpose
 
-The web application acts as a hub that connects people who are interested in joining a specific activity with other users of the website. After a registration process, the user is able to join or create a group for a particular activity, and consequently decide the time and location with others who share the same interests by using a chat box.
+The web application acts as a hub that connects people who are interested in joining a specific activity with other users of the website. After a registration process, the user is able to join or create a group for a particular activity, and consequently decide the time and location with others who share the same interests by using a chat box. Users are able to review groups and activities based on the experiences with them.
 
 ### Pages
 
@@ -75,7 +75,7 @@ The web application acts as a hub that connects people who are interested in joi
 * When the user clicks to join or create a group, they will be prompted to log in or register, if the user is already logged in, the user will not see this popup. Then they’ll get redirected to the specific group's webpage. Consequently, they enter the respective chat box of the group and also have access to any related information.
 
 **Login/signup**
-* Depending on whether the user has an account, they can select either to authenticate themselves by logging in the service or register a new account. 
+* Depending on whether the user has an account, they can select either to authenticate themselves by logging in the service or register a new account.
 
 
 ### Entity-Relationship (ER) Diagram
