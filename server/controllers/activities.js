@@ -169,26 +169,50 @@ router.patch('/api/activities/:id', function(req, res, next) {
         });
 });
 
-*/
 
 
 
+-----------------------------------
 router.patch('/api/activities/:id', function(req, res, next) {
     var id = req.params.id;
-    Activity.findById(id, function (err, activities){
+    activitySchema.findById(id, function (err, activities){
         if (err) { return next(err); }
         if (activities == null) {
             return res.status(404).json(
                 {'message': 'User not found'});
         }
-        activities.name = (req.body.name || user.name);
-        activities.activity_type = (req.body.activity_type || user.activity_type);
-        // TODO: Validation in order to only allow admins to change user's
-        activities.admin = (String(req.body.admin) || activities.admin);
-        console.log(req.body.admin);
-        user.save();
-        res.json(activity);
+        activities.username = (req.body.username || activities.username);
+        activities.password = (req.body.password || activities.password);
+        // TODO: Validation in order to only allow admins to change user's permissions
+
+        activities.admin = (String(req.body.admin) || user.admin);
+        activities.save();
+        res.json(activities);
     });
 });
+
+
+*/
+
+router.patch('/api/activities/:id', function(req, res, next) {
+    var id = req.params.id;
+    var name = req.body ||  activities.username ;
+    var type = req.body ||  activities.activity_type ;
+    Activity.find(ac)
+    var newValues ={$set: {
+        name: name,
+        activity_type : type
+      }
+    };
+
+    Activity.update(id,newValues);
+
+
+      res.json(newValues);
+});
+
+
+
+
 
 module.exports = router;

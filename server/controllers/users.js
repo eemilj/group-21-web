@@ -1,4 +1,3 @@
-/*
 var express = require('express');
 var router = express.Router();
 
@@ -62,10 +61,13 @@ router.patch('/api/users/:id', function(req, res, next) {
         user.username = (req.body.username || user.username);
         user.password = (req.body.password || user.password);
         // TODO: Validation in order to only allow admins to change user's permissions
-
-        user.admin = (String(req.body.admin) || user.admin);
+        if(req.body.admin != undefined){
+            user.admin = (String(req.body.admin) || user.admin);
+        }
         user.save();
+
         res.json(user);
+
     });
 });
 
@@ -82,4 +84,3 @@ router.delete('/api/users/:id', function(req, res, next) {
 });
 
 module.exports = router;
-*/
