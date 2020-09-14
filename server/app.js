@@ -13,7 +13,8 @@ var history = require('connect-history-api-fallback');
 
 
 
-var activityControllers = require('./controllers/activities');
+var activityControllers = require('./controllers/activity');
+var userControllers = require('./controllers/users');
 
 // Variables
 var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/ss';
