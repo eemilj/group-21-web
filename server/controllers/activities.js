@@ -1,0 +1,194 @@
+var express = require('express');
+var router = express.Router();
+
+var Activity = require('../models/activities');
+var Type = require('../models/types');
+
+router.post('/api/activities', function(req, res, next) {
+    var activities = new Activity(req.body);
+
+    activities.save(function(err, activities) {
+        if (err) {
+            return next(err);
+        }
+        res.status(201).json(activities);
+    });
+});
+
+
+// filter the groups by type
+router.get('/api/activities', function(req, res, next){
+    var filter = req.query.activity_type;
+
+    Activity.find(function(err, activities){
+        if(err){
+            return next(err);
+        }
+        if(filter){
+            res.json(activities.filter (function (e) {
+                return filter === e.activity_type;
+            }));
+        } else {
+            res.status(201).res.json(activities);
+        }
+    });
+});
+
+
+
+// create the body of a sub resource
+router.post('/api/activities/types', function(req, res, next){
+    var activities = new Type(req.body);
+
+    activities.save(function(err, activities) {
+        if (err) {
+            return next(err);
+        }
+        res.status(201).json(activities);
+    });
+});
+
+
+// return the sub resource
+router.get('/api/activities/types', function(req, res, next){
+    Type.find(function(err, activities){
+        if(err){
+            return next(err);
+        }
+        res.json({
+            'activities/types': activities
+        });
+    });
+});
+
+router.get('/api/activities/:id', function(req, res, next){
+    var id = req.params.id;
+    Activity.findById(id, function (err, activities){
+        if(err){
+            return next(err);
+        }
+        if (activities === null){
+            return res.status(404).json({'message': 'Activity not found '});
+        }
+        res.json(activities);
+    });
+});
+
+
+router.delete('/api/activities/:id', function(req, res, next) {
+    var id = req.params.id;
+    Activity.findOneAndDelete(id, function(err, activities){
+        if (err) {
+            return next(err);
+        }
+        if (activities === null) {
+            return res.status(404).json({'message': 'activities not found'});
+        }
+        console.log('Successfully deleted the document');
+        res.json();
+    });
+});
+
+router.delete('/api/activities/', function(req, res, next) {
+    Activity.deleteMany(function(err, activities){
+        if (err) {
+            return next(err);
+        }
+        if (activities === null) {
+            return res.status(404).json({'message': 'activities not found'});
+        }
+        console.log('Successfully deleted all documents');
+        res.json();
+    });
+});
+
+router.put('/api/activities/:id', function(req, res, next) {
+    var id = req.params.id;
+    var newValues ={$set: {
+        name:req.body.name,
+        activity_type :req.body.activity_type }};
+
+    // we dont specify the id again as an argument
+    Activity.updateOne( newValues,
+        function(err, activities){
+            if (err) {
+                return next(err);
+            }
+            if (activities === null) {
+                return res.status(404).json({'message': 'activities not found'});
+            }
+
+            res.json(activities);
+
+        });
+});
+
+
+router.put('/api/activities/:id', function(req, res, next) {
+    var newValues ={$set: {
+        name:req.body.name,
+        activity_type :req.body.activity_type }};
+
+    // we dont specify the id again as an argument
+    Activity.updateOne( newValues,
+        function(err, activities){
+            if (err) {
+                return next(err);
+            }
+            if (activities === null) {
+                return res.status(404).json({'message': 'activities not found'});
+            }
+
+            res.json(activities);
+
+        });
+});
+
+/*
+// updates the whole file not part of it
+router.patch('/api/activities/:id', function(req, res, next) {
+    var id = req.params.id;
+    var activities = req.body;
+    var originalActivity = activities.findById(id);
+
+    var newValues ={$set: {
+        name: (req.body.name || originalActivity.name),
+        activity_type : (req.body.activity_type || originalActivity.activity_type)}
+    };
+    Activity.update(id, newValues,
+        function(err, activities){
+            if (err) {
+                return next(err);
+            }
+            if (activities === null) {
+                return res.status(404).json({'message': 'activities not found'});
+            }
+            activities[id] = newValues;
+            res.json(newValues);
+
+        });
+});
+
+*/
+
+
+
+router.patch('/api/users/:id', function(req, res, next) {
+    var id = req.params.id;
+    Activity.findById(id, function (err, activities){
+        if (err) { return next(err); }
+        if (activities == null) {
+            return res.status(404).json(
+                {'message': 'User not found'});
+        }
+        activities.name = (req.body.name || user.name);
+        activities.activity_type = (req.body.activity_type || user.activity_type);
+        // TODO: Validation in order to only allow admins to change user's
+        activities.admin = (String(req.body.admin) || activities.admin);
+        console.log(req.body.admin);
+        user.save();
+        res.json(activity);
+    });
+});
+
+module.exports = router;
