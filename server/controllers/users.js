@@ -22,7 +22,6 @@ router.get('/api/users', function(req, res, next) {
 });
 
 router.get('/api/users/:id', function(req, res, next) {
-    var id = req.params.id;
     UserSchema.findById(req.params.id, function(err, user) {
         if (err) { return next(err); }
         if (user == null) {
@@ -62,7 +61,11 @@ router.patch('/api/users/:id', function(req, res, next) {
         user.password = (req.body.password || user.password);
         // TODO: Validation in order to only allow admins to change user's permissions
 
-        user.admin = (String(req.body.admin) || user.admin);
+        // In case the admin permissions weren't changed by the patch request the following
+        // if statement surpasses the validation error occurring due to the undefined value
+        if (req.body.admin != undefined){
+            user.admin = (String(req.body.admin) || user.admin);
+        }
         user.save();
         res.json(user);
     });
