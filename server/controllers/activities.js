@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var Activity = require('../models/activities');
-var Type = require('../models/types');
+var Users = require('../models/users');
 
 router.post('/api/activities', function(req, res, next) {
     var activities = new Activity(req.body);
@@ -29,7 +29,7 @@ router.get('/api/activities', function(req, res, next){
                 return filter === e.activity_type;
             }));
         } else {
-            res.status(201).res.json(activities);
+            res.json(activities);
         }
     });
 });
@@ -37,8 +37,8 @@ router.get('/api/activities', function(req, res, next){
 
 
 // create the body of a sub resource
-router.post('/api/activities/types', function(req, res, next){
-    var activities = new Type(req.body);
+router.post('/api/activities/users', function(req, res, next){
+    var activities = new Users(req.body);
 
     activities.save(function(err, activities) {
         if (err) {
@@ -50,13 +50,13 @@ router.post('/api/activities/types', function(req, res, next){
 
 
 // return the sub resource
-router.get('/api/activities/types', function(req, res, next){
-    Type.find(function(err, activities){
+router.get('/api/activities/users', function(req, res, next){
+    Users.find(function(err, activities){
         if(err){
             return next(err);
         }
         res.json({
-            'activities/types': activities
+            'activities/users': activities
         });
     });
 });
@@ -173,7 +173,7 @@ router.patch('/api/activities/:id', function(req, res, next) {
 
 
 
-router.patch('/api/users/:id', function(req, res, next) {
+router.patch('/api/activities/:id', function(req, res, next) {
     var id = req.params.id;
     Activity.findById(id, function (err, activities){
         if (err) { return next(err); }
