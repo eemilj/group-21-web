@@ -5,7 +5,7 @@ var sportsSschema = new Schema({
     name: {
         type: String,
         required: true,
-        unique: false
+        unique: true
     }
 });
 

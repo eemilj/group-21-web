@@ -11,7 +11,7 @@ var activitySchema = new Schema({
     activity_type: {
         type: String,
         required: true,
-        unique: true
+        unique: false
     }
     /*,
 

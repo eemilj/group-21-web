@@ -144,17 +144,17 @@ router.put('/api/activity/:id', function(req, res, next) {
         });
 });
 
+/*
 // updates the whole file not part of it
 router.patch('/api/activity/:id', function(req, res, next) {
     var id = req.params.id;
     var activity = req.body;
+    var originalActivity = activity.findById(id);
 
-    var originalActivity = activity[id];
     var newValues ={$set: {
         name: (req.body.name || originalActivity.name),
         activity_type : (req.body.activity_type || originalActivity.activity_type)}
     };
-
     Activity.update(id, newValues,
         function(err, activity){
             if (err) {
@@ -168,5 +168,27 @@ router.patch('/api/activity/:id', function(req, res, next) {
 
         });
 });
+
+*/
+
+
+
+router.patch('/api/users/:id', function(req, res, next) {
+    var id = req.params.id;
+    Activity.findById(id, function (err, activity){
+        if (err) { return next(err); }
+        if (activity == null) {
+            return res.status(404).json(
+                {"message": "User not found"});
+        }
+        activity.name = (req.body.name || user.name);
+        activity.activity_type = (req.body.activity_type || user.activity_type);
+        // TODO: Validation in order to only allow admins to change user's
+        activity.admin = (String(req.body.admin) || activity.admin);
+                console.log(req.body.admin);
+                user.save();
+                res.json(activity);
+            });
+        });
 
 module.exports = router;
