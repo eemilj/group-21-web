@@ -43,6 +43,7 @@ router.put('/api/groups/:id', function (req, res, next) {
         group.activity = req.body.activity;
         group.startDate = req.body.startDate;
         group.endDate = req.body.endDate;
+        group.thumbnail = req.body.thumbnail;
         group.save();
         res.json(group);
     });
@@ -61,6 +62,7 @@ router.patch('/api/groups/:id', function(req, res, next) {
         group.activity = (req.body.activity || group.activity);
         group.startDate = (req.body.startDate || group.startDate);
         group.endDate = (req.body.endDate || group.endDate);
+        group.thumbnail = (req.body.thumbnail || group.thumbnail);
         group.save();
         res.json(group);
     });

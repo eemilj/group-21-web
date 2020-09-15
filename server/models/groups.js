@@ -20,7 +20,14 @@ var groupSchema = new Schema({
         required: true
     },
 
-    //regMembers: { type: [Number], required: true },
+    regMembers: {
+        type: [
+                {
+                    userID: String
+                }
+            ],
+        required: true
+    },
 
     startDate: {
         type: Date,
@@ -30,9 +37,12 @@ var groupSchema = new Schema({
     endDate: {
         type: Date,
         required: true
-    }
+    },
 
-    // thumbnail
+    thumbnail: {
+        type: Buffer,
+        contentType: String
+    }
 
 
 });
