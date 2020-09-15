@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var Activity = require('../models/activities');
-var Users = require('../models/users');
+//var Users = require('../models/users');
 
 // create a new document
 router.post('/api/activities', function(req, res) {

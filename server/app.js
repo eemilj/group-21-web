@@ -14,8 +14,8 @@ var history = require('connect-history-api-fallback');
 
 
 var activityControllers = require('./controllers/activities');
-var userControllers = require('./controllers/users');
-var reviewControllers = require('./controllers/reviews');
+//var userControllers = require('./controllers/users');
+//var reviewControllers = require('./controllers/reviews');
 
 // Variables
 var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/activities';
@@ -48,8 +48,8 @@ app.get('/api', function(req, res) {
 
 
 app.use(activityControllers);
-app.use(userControllers);
-app.use(reviewControllers);
+//app.use(userControllers);
+//app.use(reviewControllers);
 
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
