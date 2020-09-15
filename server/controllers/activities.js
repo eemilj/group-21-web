@@ -4,19 +4,31 @@ var router = express.Router();
 var Activity = require('../models/activities');
 var Users = require('../models/users');
 
-router.post('/api/activities', function(req, res, next) {
-    var activities = new Activity(req.body);
-
-    activities.save(function(err, activities) {
-        if (err) {
-            return next(err);
-        }
-        res.status(201).json(activities);
+// create a new document
+router.post('/api/activities', function(req, res) {
+    var activities = new Activity({
+        name: req.body.name,
+        activity_type : req.body.activity_type
     });
+    activities.save()
+        .then(result => {
+            console.log(result);
+            res.status(201).json({
+                message: 'Handling post request to activities',
+                createdActivity : result
+            });
+        })
+        .catch(err=>{
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
 });
 
 
-// filter the groups by type
+
+// filter the groups by type, if it exists if not return all
 router.get('/api/activities', function(req, res, next){
     var filter = req.query.activity_type;
 
@@ -33,6 +45,7 @@ router.get('/api/activities', function(req, res, next){
         }
     });
 });
+
 
 
 
@@ -61,34 +74,46 @@ router.get('/api/activities/users', function(req, res, next){
     });
 });
 
-router.get('/api/activities/:id', function(req, res, next){
+// return the document
+router.get('/api/activities/:id', function(req, res){
     var id = req.params.id;
-    Activity.findById(id, function (err, activities){
-        if(err){
-            return next(err);
-        }
-        if (activities === null){
-            return res.status(404).json({'message': 'Activity not found '});
-        }
-        res.json(activities);
-    });
+    Activity.findById(id)
+        .exec()
+        .then(doc=>{
+            console.log('From the database', doc);
+            if (doc){
+                res.status(200).json(doc);
+            } else{
+                res.status(404).json({message: ' no valid entry found for provided ID'});
+            }
+            res.status(200).json(doc);
+        })
+        .catch(err=>{
+            console.log(err);
+            res.status(500).json({error:err});
+        });
 });
 
 
-router.delete('/api/activities/:id', function(req, res, next) {
-    var id = req.params.id;
-    Activity.findOneAndDelete(id, function(err, activities){
-        if (err) {
-            return next(err);
-        }
-        if (activities === null) {
-            return res.status(404).json({'message': 'activities not found'});
-        }
-        console.log('Successfully deleted the document');
-        res.json();
-    });
+// delete one documents
+router.delete('/api/activities/:id', (req, res) => {
+    const id = req.params.id;
+    Activity.findOneAndDelete(id)
+        .exec()
+        .then(result => {
+            res.status(200).json(result);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error : err
+            });
+        });
 });
 
+
+
+// delete all documents
 router.delete('/api/activities/', function(req, res, next) {
     Activity.deleteMany(function(err, activities){
         if (err) {
@@ -102,115 +127,37 @@ router.delete('/api/activities/', function(req, res, next) {
     });
 });
 
-router.put('/api/activities/:id', function(req, res, next) {
+
+router.put('/api/activities/:id', function (req, res, next) {
     var id = req.params.id;
-    var newValues ={$set: {
-        name:req.body.name,
-        activity_type :req.body.activity_type }};
-
-    // we dont specify the id again as an argument
-    Activity.updateOne( newValues,
-        function(err, activities){
-            if (err) {
-                return next(err);
-            }
-            if (activities === null) {
-                return res.status(404).json({'message': 'activities not found'});
-            }
-
-            res.json(activities);
-
-        });
-});
-
-
-router.put('/api/activities/:id', function(req, res, next) {
-    var newValues ={$set: {
-        name:req.body.name,
-        activity_type :req.body.activity_type }};
-
-    // we dont specify the id again as an argument
-    Activity.updateOne( newValues,
-        function(err, activities){
-            if (err) {
-                return next(err);
-            }
-            if (activities === null) {
-                return res.status(404).json({'message': 'activities not found'});
-            }
-
-            res.json(activities);
-
-        });
-});
-
-/*
-// updates the whole file not part of it
-router.patch('/api/activities/:id', function(req, res, next) {
-    var id = req.params.id;
-    var activities = req.body;
-    var originalActivity = activities.findById(id);
-
-    var newValues ={$set: {
-        name: (req.body.name || originalActivity.name),
-        activity_type : (req.body.activity_type || originalActivity.activity_type)}
-    };
-    Activity.update(id, newValues,
-        function(err, activities){
-            if (err) {
-                return next(err);
-            }
-            if (activities === null) {
-                return res.status(404).json({'message': 'activities not found'});
-            }
-            activities[id] = newValues;
-            res.json(newValues);
-
-        });
-});
-
-
-
-
------------------------------------
-router.patch('/api/activities/:id', function(req, res, next) {
-    var id = req.params.id;
-    activitySchema.findById(id, function (err, activities){
+    Activity.findById(id, function (err, activities){
         if (err) { return next(err); }
         if (activities == null) {
-            return res.status(404).json(
-                {'message': 'User not found'});
+            return res.status(404).json({'message': 'Review not found'});
         }
-        activities.username = (req.body.username || activities.username);
-        activities.password = (req.body.password || activities.password);
-        // TODO: Validation in order to only allow admins to change user's permissions
-
-        activities.admin = (String(req.body.admin) || user.admin);
+        activities.name = req.body.name;
+        activities.activity_type = req.body.activity_type;
         activities.save();
         res.json(activities);
     });
 });
 
-
-*/
-
 router.patch('/api/activities/:id', function(req, res, next) {
     var id = req.params.id;
-    var name = req.body ||  activities.username ;
-    var type = req.body ||  activities.activity_type ;
-    Activity.find(ac)
-    var newValues ={$set: {
-        name: name,
-        activity_type : type
-      }
-    };
-
-    Activity.update(id,newValues);
+    Activity.findById(id, function (err, activities){
+        if (err) { return next(err); }
+        if (activities == null) {
+            return res.status(404).json(
+                {'message': 'Review not found'});
+        }
+        activities.name =(req.body.name || activities.name);
+        activities.activity_type = (req.body.rating || activities.activity_type);
 
 
-      res.json(newValues);
+        activities.save();
+        res.json(activities);
+    });
 });
-
 
 
 

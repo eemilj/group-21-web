@@ -1,12 +1,15 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+//var userSchemaImported = require('/users');
 
 // Define Mongoose user schema
 var reviewSchema = new Schema({
-    author: {
+      author: {
         type: String,
         required: [true, "Author is required."],
     },
+
+    //usersKey: userSchemaImported,
 
     reviewee: {
         type: String,
