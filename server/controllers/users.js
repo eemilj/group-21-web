@@ -2,15 +2,11 @@ var User = require('../models/users');
 
 
 const createUser = (req, res) => {
-
-    var registration_date = Date.now();
-    var adminPermissions = (req.body.admin || false);
-
     var user = new User({
         username: req.body.username,
         password: req.body.password,
-        admin: adminPermissions,
-        registrationDate: registration_date
+        admin: (req.body.admin || false),
+        registrationDate: Date.now()
     });
     user.save()
         .then(result => {
@@ -85,7 +81,7 @@ const patchUserById = (req, res, next) => {
 
         // In case the admin permissions weren't changed by the patch request the following
         // if statement surpasses the validation error occurring due to the undefined value
-        if (req.body.admin != undefined){
+        if (req.body.admin !== undefined){
             user.admin = (String(req.body.admin) || user.admin);
         }
         user.save();

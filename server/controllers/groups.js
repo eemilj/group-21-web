@@ -1,42 +1,53 @@
-var express = require('express');
-var router = express.Router();
+var Group = require('../models/groups');
 
-var GroupSchema = require('../models/groups');
+const createGroup = (req, res) => {
+    const group = new Group(req.body);
 
-router.post('/api/groups', function(req, res, next) {
-    var group = new GroupSchema(req.body);
+    group.save()
+        .then(result => {
+            console.log(result);
+            res.status(201).json({
+                message: 'Handling post request to groups.',
+                createdGroup: result
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+};
 
-    group.save(function(err) {
-        if (err) { return next(err); } // pass error to next middleware
-        res.status(201).json(group);
-    });
-});
-
-router.get('/api/groups', function(req, res, next) {
-    GroupSchema.find(function (err, groups) {
-        if (err) { return next(err); }
+const getAllGroups = (req, res, next) => {
+    Group.find(function (err, groups) {
+        if (err) {
+            return next(err);
+        }
         res.json({"groups": groups});
     });
-});
+};
 
-router.get('/api/groups/:id', function(req, res, next) {
-    GroupSchema.findById(req.params.id, function(err, group) {
-        if (err) { return next(err); }
+const  getGroupById = (req, res, next) => {
+    Group.findById(req.params.id, function(err, group) {
+        if (err) {
+            return next(err);
+        }
         if (group == null) {
             return res.status(404).json(
-                {"message": "Group not found"}
+                {"message": "Group not found."}
             );
         }
         res.json(group);
     });
-});
+};
 
-router.put('/api/groups/:id', function (req, res, next) {
+const updateGroupById = (req, res, next) => {
     var id = req.params.id;
-    GroupSchema.findById(id, function (err, group){
+    Group.findById(id, function (err, group){
         if (err) { return next(err); }
         if (group == null) {
-            return res.status(404).json({"message": "Group not found"});
+            return res.status(404).json({"message": "Group not found."});
         }
         group.name = req.body.name;
         group.location = req.body.location;
@@ -47,15 +58,17 @@ router.put('/api/groups/:id', function (req, res, next) {
         group.save();
         res.json(group);
     });
-});
+};
 
-router.patch('/api/groups/:id', function(req, res, next) {
+const patchGroupById = (req, res, next) => {
     var id = req.params.id;
-    GroupSchema.findById(id, function (err, group){
-        if (err) { return next(err); }
+    Group.findById(id, function (err, group){
+        if (err) {
+            return next(err);
+        }
         if (group == null) {
             return res.status(404).json(
-                {"message": "Group not found"});
+                {"message": "Group not found."});
         }
         group.name = (req.body.name || group.name);
         group.location = (req.body.location || group.location);
@@ -66,18 +79,27 @@ router.patch('/api/groups/:id', function(req, res, next) {
         group.save();
         res.json(group);
     });
-});
+};
 
-router.delete('/api/groups/:id', function(req, res, next) {
+const deleteGroupById = (req, res, next) => {
     var id = req.params.id;
-    GroupSchema.findOneAndDelete({_id: id}, function(err, group){
-        if (err) { return next(err); }
+    Group.findOneAndDelete({_id: id}, function(err, group){
+        if (err) {
+            return next(err);
+        }
         if (group == null) {
             return res.status(404).json(
-                {"message": "Group not found"});
+                {"message": "Group not found."});
         }
         res.json(group);
     });
-});
+};
 
-module.exports = router;
+module.exports = {
+    createGroup,
+    getAllGroups,
+    getGroupById,
+    updateGroupById,
+    patchGroupById,
+    deleteGroupById
+};

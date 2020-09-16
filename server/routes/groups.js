@@ -3,6 +3,12 @@ const router = express.Router();
 
 const groupController = require('../controllers/groups');
 
-router.get('/:groups', groupController().getGroups);
+router.post('/', groupController.createGroup);
+router.get('/', groupController.getAllGroups);
+router.get('/:id', groupController.getGroupById);
+router.put('/:id', groupController.updateGroupById);
+router.patch('/:id', groupController.patchGroupById);
+router.delete('/:id', groupController.deleteGroupById);
+
 
 module.exports = router;
