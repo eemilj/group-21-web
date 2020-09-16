@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f7ee95b5-9cb9-442f-a6a9-42de46138872",
+		"_postman_id": "138f824f-eec2-44c0-8ed4-797d5fd2830d",
 		"name": "server",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,7 +11,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "b58d92ec-5214-450c-adb0-28e068aa71b9",
+						"id": "4674a2ca-e7da-40ed-b3ca-67ca381c126b",
 						"exec": [
 							""
 						],
@@ -39,13 +39,539 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "activity DELETE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1cac167f-b95e-4d06-8bb9-9e2736038dfd",
+						"exec": [
+							"pm.test(\"Correct status code\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/activities",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"activities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "activity DELETE ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "90ecddac-c846-469c-b16b-5812c493103c",
+						"exec": [
+							"pm.test(\"Correct status code\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"\r",
+							"pm.test(\"Correct camel response\", function(){\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"Junior Summer Soccer Teams1213\"); \r",
+							"    pm.expect(jsonData.activity_type).to.eql(\"Footballs313\"); \r",
+							"    }); "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/activities/{{activity_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"activities",
+						"{{activity_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "activity PUT ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ce51f970-f0a3-4f12-bf70-a7d992b6dfa4",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\" : \"Junior Summer Soccer 2022\", \"activity_type\" : \"Soccer1\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/activities/{{activity_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"activities",
+						"{{activity_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "activity PATCH ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d01cd3e0-df99-493f-b5f0-1d2958ca826f",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\" : \"hi hi\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/activities/{{activity_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"activities",
+						"{{activity_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "activity GET",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0df1dcb3-75eb-482a-905f-9360677f8005",
+						"exec": [
+							"pm.test(\"Correct status code\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/activities",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"activities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "activity GET Sub resource",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "56f021d2-5c2f-4b81-ae60-b76c4b56ed68",
+						"exec": [
+							"pm.test(\"Correct status code\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Correct filter response\", function(){\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"Junior Summer Soccer 2022\"); \r",
+							"    pm.expect(jsonData.activity_type).to.eql(\"Soccer1\"); \r",
+							"    }); "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/activities/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"activities",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "activity GET Filter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bd147cab-8c44-4578-9ac8-356290c7d5a3",
+						"exec": [
+							"pm.test(\"Correct status code\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/activities?activity_type=Soccer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"activities"
+					],
+					"query": [
+						{
+							"key": "activity_type",
+							"value": "Soccer"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "activity GET ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0ab72058-8ab5-4ad1-a347-fc762396cd83",
+						"exec": [
+							"pm.test(\"Correct status code\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"\r",
+							"pm.test(\"Correct camel response\", function(){\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"Junior Summer Soccer 2022\"); \r",
+							"    pm.expect(jsonData.activity_type).to.eql(\"Soccer1\"); \r",
+							"    }); "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/activities/{{activity_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"activities",
+						"{{activity_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "non existant activity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3963cb8a-436a-46f2-870c-f7ae62d64984",
+						"exec": [
+							"pm.test(\"Correct status code\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"})\r",
+							"\r",
+							"// assert certain error message "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/activities/{{activity_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"activities",
+						"{{activity_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Activity POST",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d41a1cea-81fa-44fe-90dc-f6bb37c04956",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\" : \"Junior Summer Soccer Teams2\", \"activity_type\":\"Soccer\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/activities",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"activities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Activity POST Sub resource",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "638171fa-6ab5-4f40-9340-c82e63d7e0e8",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\" : \"John\", \"password\":\"123456\", \"admin\": true, \"registrationData\":\"23-1-22\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/activities/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"activities",
+						"users"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "05864cff-5cba-4070-bac3-a59328954ebf",
+				"id": "e3080fd7-21f9-4021-8b67-1288e88ae6c6",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -55,7 +581,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "e9c319be-3306-4fc5-ba34-fcf64391213a",
+				"id": "40ac9be4-2374-42f1-9860-e3fdc6957d22",
 				"type": "text/javascript",
 				"exec": [
 					""
