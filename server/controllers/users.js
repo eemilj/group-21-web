@@ -1,65 +1,87 @@
-var express = require('express');
-var router = express.Router();
+var User = require('../models/users');
 
-var UserSchema = require('../models/users');
 
-router.post('/api/users', function(req, res, next) {
-    var user = new UserSchema(req.body);
+const createUser = (req, res) => {
 
-    user.registration_date = Date.now();
-    user.admin = (req.body.admin || false);
-    user.save(function(err) {
-        if (err) { return next(err); } // pass error to next middleware
-        res.status(201).json(user);
+    var registration_date = Date.now();
+    var adminPermissions = (req.body.admin || false);
+
+    var user = new User({
+        username: req.body.username,
+        password: req.body.password,
+        admin: adminPermissions,
+        registrationDate: registration_date
     });
-});
+    user.save()
+        .then(result => {
+            console.log(result);
+            res.status(201).json({
+                message: 'Handling post request to users.',
+                createdUser : result
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+};
 
-router.get('/api/users', function(req, res, next) {
-    UserSchema.find(function (err, users) {
-        if (err) { return next(err); }
-        res.json({"users": users});
+const getAllUsers = (req, res, next) => {
+    User.find(function (err, users) {
+        if (err) {
+            return next(err);
+        }
+        res.json(
+            {"users": users}
+        );
     });
-});
+}
 
-router.get('/api/users/:id', function(req, res, next) {
-    UserSchema.findById(req.params.id, function(err, user) {
-        if (err) { return next(err); }
+const getUserById = (req, res, next) => {
+    var id = req.params.id;
+    User.findById(id, function(err, user) {
+        if (err) {
+            return next(err);
+        }
         if (user == null) {
             return res.status(404).json(
-                {"message": "User not found"}
+                {message: "User not found."}
             );
         }
         res.json(user);
     });
-});
+};
 
-router.put('/api/users/:id', function (req, res, next) {
+const updateUserById = (req, res, next) => {
     var id = req.params.id;
-    UserSchema.findById(id, function (err, user){
+    User.findById(id, function (err, user){
         if (err) { return next(err); }
         if (user == null) {
-            return res.status(404).json({"message": "User not found"});
+            return res.status(404).json(
+                {"message": "User not found."});
         }
         user.username = req.body.username;
         user.password = req.body.password;
-        // TODO: Validation in order to only allow admins to change user's permissions
         user.admin = req.body.admin;
         user.save();
         res.json(user);
     });
-});
+};
 
-router.patch('/api/users/:id', function(req, res, next) {
+const patchUserById = (req, res, next) => {
     var id = req.params.id;
-    UserSchema.findById(id, function (err, user){
-        if (err) { return next(err); }
+    User.findById(id, function (err, user){
+        if (err) {
+            return next(err);
+        }
         if (user == null) {
             return res.status(404).json(
-                {"message": "User not found"});
+                {"message": "User not found."});
         }
         user.username = (req.body.username || user.username);
         user.password = (req.body.password || user.password);
-        // TODO: Validation in order to only allow admins to change user's permissions
 
         // In case the admin permissions weren't changed by the patch request the following
         // if statement surpasses the validation error occurring due to the undefined value
@@ -69,18 +91,27 @@ router.patch('/api/users/:id', function(req, res, next) {
         user.save();
         res.json(user);
     });
-});
+};
 
-router.delete('/api/users/:id', function(req, res, next) {
+const deleteUserById = (req, res, next) => {
     var id = req.params.id;
-    UserSchema.findOneAndDelete({_id: id}, function(err, user){
-        if (err) { return next(err); }
+    User.findOneAndDelete({_id: id}, function(err, user){
+        if (err) {
+            return next(err);
+        }
         if (user == null) {
             return res.status(404).json(
-                {"message": "User not found"});
+                {"message": "User not found."});
         }
         res.json(user);
     });
-});
+};
 
-module.exports = router;
+module.exports = {
+    createUser,
+    getAllUsers,
+    getUserById,
+    updateUserById,
+    patchUserById,
+    deleteUserById
+};
