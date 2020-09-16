@@ -1,5 +1,5 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 var activitySchema = new Schema({
     name: {
@@ -23,4 +23,4 @@ var activitySchema = new Schema({
 */
 });
 
-module.exports = mongoose.model('activities', activitySchema);
+module.exports = mongoose.model('Activity', activitySchema);
