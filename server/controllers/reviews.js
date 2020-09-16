@@ -62,8 +62,6 @@ router.patch('/api/reviews/:id', function(req, res, next) {
         review.subject = (req.body.subject || review.subject);
         review.reviewee = (req.body.reviewee || review.reviewee);
 
-        // TODO: Validation in order to only allow admins to change user's permissions
-
         review.save();
         res.json(review);
     });
