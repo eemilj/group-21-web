@@ -6,82 +6,6 @@
 	},
 	"item": [
 		{
-			"name": "GET /api",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "4674a2ca-e7da-40ed-b3ca-67ca381c126b",
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{host}}/api",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"api"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "activity DELETE",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "1cac167f-b95e-4d06-8bb9-9e2736038dfd",
-						"exec": [
-							"pm.test(\"Correct status code\", function(){\r",
-							"    pm.response.to.have.status(200);\r",
-							"})\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Accept",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:3000/api/activities",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"activities"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "activity DELETE ID",
 			"event": [
 				{
@@ -91,14 +15,7 @@
 						"exec": [
 							"pm.test(\"Correct status code\", function(){\r",
 							"    pm.response.to.have.status(200);\r",
-							"})\r",
-							"\r",
-							"\r",
-							"pm.test(\"Correct camel response\", function(){\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.name).to.eql(\"Junior Summer Soccer Teams1213\"); \r",
-							"    pm.expect(jsonData.activity_type).to.eql(\"Footballs313\"); \r",
-							"    }); "
+							"})"
 						],
 						"type": "text/javascript"
 					}
@@ -277,53 +194,6 @@
 			"response": []
 		},
 		{
-			"name": "activity GET Sub resource",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "56f021d2-5c2f-4b81-ae60-b76c4b56ed68",
-						"exec": [
-							"pm.test(\"Correct status code\", function(){\r",
-							"    pm.response.to.have.status(200);\r",
-							"})\r",
-							"\r",
-							"pm.test(\"Correct filter response\", function(){\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.name).to.eql(\"Junior Summer Soccer 2022\"); \r",
-							"    pm.expect(jsonData.activity_type).to.eql(\"Soccer1\"); \r",
-							"    }); "
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:3000/api/activities/users",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"activities",
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "activity GET Filter",
 			"event": [
 				{
@@ -334,7 +204,10 @@
 							"pm.test(\"Correct status code\", function(){\r",
 							"    pm.response.to.have.status(200);\r",
 							"})\r",
-							""
+							"pm.test(\"Correct activity response\", function(){\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.activity_type).to.eql(pm.environment.get(\"activity_type\")); \r",
+							"    }); "
 						],
 						"type": "text/javascript"
 					}
@@ -383,10 +256,9 @@
 							"})\r",
 							"\r",
 							"\r",
-							"pm.test(\"Correct camel response\", function(){\r",
+							"pm.test(\"Correct activity response\", function(){\r",
 							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.name).to.eql(\"Junior Summer Soccer 2022\"); \r",
-							"    pm.expect(jsonData.activity_type).to.eql(\"Soccer1\"); \r",
+							"\r",
 							"    }); "
 						],
 						"type": "text/javascript"
@@ -469,7 +341,17 @@
 					"script": {
 						"id": "d41a1cea-81fa-44fe-90dc-f6bb37c04956",
 						"exec": [
-							""
+							"\r",
+							"pm.test(\"Correct status code\", function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"})\r",
+							"\r",
+							"var schema = {\"name\" : \"String\", \"activity_type\":\"String\"}\r",
+							"var json = pm.response.json()\r",
+							"\r",
+							"    pm.test('schema is valid', function(){\r",
+							"                pm.expect(tv4.validate(json, schema)).to.be.true;\r",
+							"    })"
 						],
 						"type": "text/javascript"
 					}
@@ -491,7 +373,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"name\" : \"Junior Summer Soccer Teams2\", \"activity_type\":\"Soccer\"}",
+					"raw": "{\"name\" : \"Junior Summer Soccer Teams21\", \"activity_type\":\"Soccer\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -508,59 +390,6 @@
 					"path": [
 						"api",
 						"activities"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Activity POST Sub resource",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "638171fa-6ab5-4f40-9340-c82e63d7e0e8",
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"type": "text",
-						"value": "application/json"
-					},
-					{
-						"key": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"username\" : \"John\", \"password\":\"123456\", \"admin\": true, \"registrationData\":\"23-1-22\"}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/activities/users",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"activities",
-						"users"
 					]
 				}
 			},
