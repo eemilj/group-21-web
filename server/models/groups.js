@@ -16,8 +16,8 @@ var groupSchema = new Schema({
     },
 
     activity: {
-        type: String,
-        required: true
+        type: Schema.Types.ObjectId,
+        ref: 'Activity'
     },
 
     regMembers: [
