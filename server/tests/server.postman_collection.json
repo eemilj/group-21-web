@@ -1,17 +1,52 @@
 {
 	"info": {
-		"_postman_id": "db5f4f8c-655b-43bb-b2e0-2a9b8761bbd3",
-		"name": "server",
+		"_postman_id": "959e65b6-40bb-4836-8dce-e04b74455019",
+		"name": "server Copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "GET /api",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7a3ade17-7c52-452e-ba45-aad00c11ffaf",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api"
+					]
+				}
+			},
+			"response": []
+		},
 		{
 			"name": "Post review",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "a2aeb4b3-1b0d-442c-ae37-6a982c5bea9a",
+						"id": "7e308e4e-142b-493d-8db3-897c9c644b1c",
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
 							"postman.setEnvironmentVariable(\"review_id\", jsonData._id);\r",
@@ -56,12 +91,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3001/api/reviews/",
+					"raw": "http://localhost:3000/api/reviews/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3001",
+					"port": "3000",
 					"path": [
 						"api",
 						"reviews",
@@ -78,7 +113,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "31cf22c8-cb57-43e8-89c0-3e3a7aaf7585",
+						"id": "fc75ab6d-5f1b-410e-b94c-5db5cfc78e90",
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
 							"\r",
@@ -125,12 +160,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3001/api/reviews/{{review_id}}",
+					"raw": "http://localhost:3000/api/reviews/{{review_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3001",
+					"port": "3000",
 					"path": [
 						"api",
 						"reviews",
@@ -147,7 +182,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "ec1efa63-5435-48c8-a296-ba756f5c6532",
+						"id": "5f29adba-9fd8-4d8e-9d94-cf7b8c9a98a2",
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
 							"\r",
@@ -190,12 +225,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3001/api/reviews/",
+					"raw": "http://localhost:3000/api/reviews/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3001",
+					"port": "3000",
 					"path": [
 						"api",
 						"reviews",
@@ -212,7 +247,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "dd23bcca-d7fa-441c-b872-67a50b075327",
+						"id": "5169ff55-c0d6-43fe-8d06-fd7410f7a788",
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
 							"\r",
@@ -253,12 +288,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3001/api/reviews/{{review_id}}",
+					"raw": "http://localhost:3000/api/reviews/{{review_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3001",
+					"port": "3000",
 					"path": [
 						"api",
 						"reviews",
@@ -274,7 +309,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "cf2ce8a4-c98f-43f7-bc69-f98e60d6b10f",
+						"id": "4fef6977-490e-49f8-9f6f-eef7577fa97d",
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
 							"\r",
@@ -314,12 +349,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3001/api/reviews/{{review_id}}",
+					"raw": "http://localhost:3000/api/reviews/{{review_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3001",
+					"port": "3000",
 					"path": [
 						"api",
 						"reviews",
@@ -336,7 +371,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "ad1d8d12-92a9-4173-bf35-ec94a7626a9a",
+						"id": "3b1a8b6e-029e-428c-95d2-6887f25e61a5",
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
 							"\r",
@@ -379,12 +414,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3001/api/reviews/{{review_id}}",
+					"raw": "http://localhost:3000/api/reviews/{{review_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3001",
+					"port": "3000",
 					"path": [
 						"api",
 						"reviews",
@@ -400,7 +435,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "0384505c-f342-4d0f-85ee-69349a946a11",
+						"id": "a0fd6b3d-2201-4d7f-8619-c50124289917",
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
 							"\r",
@@ -437,12 +472,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3001/api/reviews/{{review_id}}",
+					"raw": "http://localhost:3000/api/reviews/{{review_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3001",
+					"port": "3000",
 					"path": [
 						"api",
 						"reviews",
@@ -458,7 +493,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a218b8dd-95c6-4c0c-9d53-a253b279b3aa",
+						"id": "5ec635ab-e1ac-46cb-b170-63a3f3d85b59",
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
 							"\r",
@@ -495,12 +530,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3001/api/reviews/{{review_id}}",
+					"raw": "http://localhost:3000/api/reviews/{{review_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3001",
+					"port": "3000",
 					"path": [
 						"api",
 						"reviews",
@@ -517,7 +552,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "eaa1bfeb-ab1b-4c61-89d3-7d0fc689114a",
+						"id": "cac4a42d-ab46-48ca-9838-0b5e44db13ee",
 						"exec": [
 							""
 						],
@@ -549,12 +584,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3001/api/reviews/",
+					"raw": "http://localhost:3000/api/reviews/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3001",
+					"port": "3000",
 					"path": [
 						"api",
 						"reviews",
@@ -571,7 +606,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "843b959a-f5f6-4034-8792-52e68ce7ebe2",
+						"id": "463eca43-80c3-4ced-86cd-25deeea86b9d",
 						"exec": [
 							"pm.test(\"Review deleted\", function(){\r",
 							"    pm.response.to.have.status(200)\r",
@@ -605,12 +640,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3001/api/reviews/",
+					"raw": "http://localhost:3000/api/reviews/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3001",
+					"port": "3000",
 					"path": [
 						"api",
 						"reviews",
@@ -627,7 +662,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "60a57782-3462-46b7-9345-af42fc1bde03",
+						"id": "df4e5ab2-7e43-4ffb-923e-70ea87db03a5",
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
 							"\r",
@@ -667,12 +702,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3001/api/reviews/{{review_id}}",
+					"raw": "http://localhost:3000/api/reviews/{{review_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3001",
+					"port": "3000",
 					"path": [
 						"api",
 						"reviews",
@@ -689,7 +724,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "0c684eaf-ad59-48c3-ad82-9048c4a766b3",
+						"id": "3202baf6-27f7-4f0f-9585-286c2bdcb21b",
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
 							"\r",
@@ -732,12 +767,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3001/api/reviews/",
+					"raw": "http://localhost:3000/api/reviews/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3001",
+					"port": "3000",
 					"path": [
 						"api",
 						"reviews",
@@ -754,7 +789,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "c46d31fe-ddfd-4586-b855-1ad17b9f9ce3",
+						"id": "8455b720-2b22-44af-951e-cc7a2804141e",
 						"exec": [
 							"pm.test(\"Invalid ID to delete\", function(){\r",
 							"    pm.response.to.have.status(404)\r",
@@ -788,12 +823,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3001/api/reviews/{{review_id}}",
+					"raw": "http://localhost:3000/api/reviews/{{review_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3001",
+					"port": "3000",
 					"path": [
 						"api",
 						"reviews",
@@ -809,7 +844,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "9922ae95-dd4f-42ec-ab95-9a3920fb848c",
+				"id": "9db782b6-0ef3-4b97-833e-f72bb29acb9b",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -819,7 +854,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "f8456a6e-be48-4982-b98b-76c5f4eac23b",
+				"id": "7d91b132-d2e8-4293-a879-1c86a1130bcf",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -831,7 +866,7 @@
 		{
 			"id": "cd185905-a834-4211-8030-583d17702534",
 			"key": "host",
-			"value": "http://localhost:3001",
+			"value": "http://localhost:3000",
 			"type": "string"
 		}
 	],
