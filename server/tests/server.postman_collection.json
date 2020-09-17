@@ -47,6 +47,47 @@
 			"response": []
 		},
 		{
+			"name": "activity DELETE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "38eece57-66fc-4f71-991a-426ad89d2ce6",
+						"exec": [
+							"pm.test(\"Correct status code\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/activities/{{activity_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"activities",
+						"{{activity_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "activity PUT ID",
 			"event": [
 				{
