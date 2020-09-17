@@ -251,11 +251,6 @@
 					"script": {
 						"id": "0ab72058-8ab5-4ad1-a347-fc762396cd83",
 						"exec": [
-							"pm.test(\"Correct status code\", function(){\r",
-							"    pm.response.to.have.status(200);\r",
-							"})\r",
-							"\r",
-							"\r",
 							"pm.test(\"Correct activity response\", function(){\r",
 							"    var jsonData = pm.response.json();\r",
 							"\r",
@@ -341,17 +336,25 @@
 					"script": {
 						"id": "d41a1cea-81fa-44fe-90dc-f6bb37c04956",
 						"exec": [
+							"var schema = {\r",
+							"  \"name\" : \"string\",\r",
+							"  \"activity_type\" : \"string\"\r",
+							"}\r",
+							"\r",
+							"pm.test('Schema Validation', function (){\r",
+							"    var result = tv4.validateResult(pm.response.json(), schema);\r",
+							"\r",
+							"    if(!result.valid){\r",
+							"        console.log(result);\r",
+							"    }\r",
+							"    pm.expect(result.valid).to.be.true;\r",
+							"})\r",
+							"\r",
 							"\r",
 							"pm.test(\"Correct status code\", function(){\r",
 							"    pm.response.to.have.status(201);\r",
 							"})\r",
-							"\r",
-							"var schema = {\"name\" : \"String\", \"activity_type\":\"String\"}\r",
-							"var json = pm.response.json()\r",
-							"\r",
-							"    pm.test('schema is valid', function(){\r",
-							"                pm.expect(tv4.validate(json, schema)).to.be.true;\r",
-							"    })"
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -373,7 +376,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"name\" : \"Junior Summer Soccer Teams21\", \"activity_type\":\"Soccer\"}",
+					"raw": "{\"name\" : \"Junior Summer Soccer Teams29\", \"activity_type\":\"Soccer\"}",
 					"options": {
 						"raw": {
 							"language": "json"
