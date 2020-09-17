@@ -1,17 +1,507 @@
 {
 	"info": {
-		"_postman_id": "f7ee95b5-9cb9-442f-a6a9-42de46138872",
+		"_postman_id": "959e65b6-40bb-4836-8dce-e04b74455019",
 		"name": "server",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "GET /api",
+			"name": "Post review",
 			"event": [
 				{
-					"listen": "prerequest",
+					"listen": "test",
 					"script": {
-						"id": "b58d92ec-5214-450c-adb0-28e068aa71b9",
+						"id": "7e308e4e-142b-493d-8db3-897c9c644b1c",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"review_id\", jsonData._id);\r",
+							"\r",
+							"pm.test(\"Review created\", function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Review has valid data\", function(){\r",
+							"    pm.expect(jsonData.subject).to.eql('rough start');\r",
+							"    pm.expect(jsonData.author).to.eql(\"5f620b07171db72678abb4b7\");\r",
+							"    pm.expect(jsonData.reviewee).to.eql(\"5f620b07171db72628abb4b3\");\r",
+							"    pm.expect(jsonData.rating).to.eql(5);\r",
+							"    pm.expect(jsonData.subject).to.eql(\"rough start\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"author\": \"5f620b07171db72678abb4b7\", \"reviewee\": \"5f620b07171db72628abb4b3\", \"rating\": 5, \"subject\": \"rough start\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/reviews/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"reviews",
+						""
+					]
+				},
+				"description": "Post review"
+			},
+			"response": []
+		},
+		{
+			"name": "Get review by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fc75ab6d-5f1b-410e-b94c-5db5cfc78e90",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"\r",
+							"pm.test(\"Review found\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Review data has valid types\", function(){\r",
+							"    pm.expect(jsonData).to.be.an(\"object\");\r",
+							"    pm.expect(jsonData.author).to.be.a(\"string\");\r",
+							"    pm.expect(jsonData.reviewee).to.be.a(\"string\");\r",
+							"    pm.expect(jsonData.rating).to.be.a(\"number\");\r",
+							"    pm.expect(jsonData.subject).to.be.a(\"string\");\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/reviews/{{review_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"reviews",
+						"{{review_id}}"
+					]
+				},
+				"description": "Post review"
+			},
+			"response": []
+		},
+		{
+			"name": "Get reviews",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5f29adba-9fd8-4d8e-9d94-cf7b8c9a98a2",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"\r",
+							"pm.test(\"Reviews found\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Reviews parsed as json, is an object\", function(){\r",
+							"    pm.expect(jsonData).to.be.an(\"object\");\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/reviews/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"reviews",
+						""
+					]
+				},
+				"description": "Post review"
+			},
+			"response": []
+		},
+		{
+			"name": "Patch review",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5169ff55-c0d6-43fe-8d06-fd7410f7a788",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"\r",
+							"pm.test(\"Review patched\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Review has expected changes\", function(){\r",
+							"    pm.expect(jsonData.subject).to.eql(\"Getting there\");\r",
+							"    pm.expect(jsonData.rating).to.eql(10);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "Application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "Application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"rating\": 10, \"subject\": \"Getting there\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/reviews/{{review_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"reviews",
+						"{{review_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch review with invalid rating",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4fef6977-490e-49f8-9f6f-eef7577fa97d",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"\r",
+							"pm.test(\"Couldn't update, invalid type\", function(){\r",
+							"    pm.response.to.have.status(500);\r",
+							"});\r",
+							"pm.test(\"Correct error message\", function(){\r",
+							"    pm.expect(jsonData.message).to.eql(\"Invalid input\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"rating\": \"You think you can fool me?\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/reviews/{{review_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"reviews",
+						"{{review_id}}"
+					]
+				},
+				"description": "Post review"
+			},
+			"response": []
+		},
+		{
+			"name": "Put review",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3b1a8b6e-029e-428c-95d2-6887f25e61a5",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"\r",
+							"pm.test(\"Review patched\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Review has expected changes\", function(){\r",
+							"    pm.expect(jsonData.author).to.eql(\"5f620b07171db75578abb4b2\");\r",
+							"    pm.expect(jsonData.reviewee).to.eql(\"5f620b07271db77638abb4b1\");\r",
+							"    pm.expect(jsonData.subject).to.eql(\"It works\");\r",
+							"    pm.expect(jsonData.rating).to.eql(8);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "Application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "Application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"author\": \"5f620b07171db75578abb4b2\", \"reviewee\": \"5f620b07271db77638abb4b1\", \"rating\": 8, \"subject\": \"It works\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/reviews/{{review_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"reviews",
+						"{{review_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put review with invalid rating",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a0fd6b3d-2201-4d7f-8619-c50124289917",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"\r",
+							"pm.test(\"Review patched\", function(){\r",
+							"    pm.response.to.have.status(500);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "Application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "Application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"author\": \"5f620b07171db75578abb4b2\", \"reviewee\": \"5f620b07271db77638abb4b1\", \"rating\": \"heyy\", \"subject\": \"It works\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/reviews/{{review_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"reviews",
+						"{{review_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete review",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5ec635ab-e1ac-46cb-b170-63a3f3d85b59",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"\r",
+							"pm.test(\"Review deleted\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/reviews/{{review_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"reviews",
+						"{{review_id}}"
+					]
+				},
+				"description": "Post review"
+			},
+			"response": []
+		},
+		{
+			"name": "Post review for delete all",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cac4a42d-ab46-48ca-9838-0b5e44db13ee",
 						"exec": [
 							""
 						],
@@ -20,23 +510,271 @@
 				}
 			],
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"author\": \"5f620b07171db72678abb4b7\", \"reviewee\": \"5f620b07171db72628abb4b3\", \"rating\": 5, \"subject\": \"rough start\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/reviews/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"reviews",
+						""
+					]
+				},
+				"description": "Post review"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete all reviews",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "463eca43-80c3-4ced-86cd-25deeea86b9d",
+						"exec": [
+							"pm.test(\"Review deleted\", function(){\r",
+							"    pm.response.to.have.status(200)\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
 					{
 						"key": "Accept",
 						"value": "application/json",
 						"type": "text"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "{{host}}/api",
+					"raw": "{{host}}/api/reviews/",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
-						"api"
+						"api",
+						"reviews",
+						""
 					]
+				},
+				"description": "Post review"
+			},
+			"response": []
+		},
+		{
+			"name": "Get review with invalid id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "df4e5ab2-7e43-4ffb-923e-70ea87db03a5",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"\r",
+							"pm.test(\"Review not found\", function(){\r",
+							"    pm.response.to.have.status(404)\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
 				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/reviews/{{review_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"reviews",
+						"{{review_id}}"
+					]
+				},
+				"description": "Post review"
+			},
+			"response": []
+		},
+		{
+			"name": "Get reviews, none found",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3202baf6-27f7-4f0f-9585-286c2bdcb21b",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"\r",
+							"pm.test(\"No reviews found 404\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Review data has valid types\", function(){\r",
+							"    pm.expect(jsonData.message).to.eql(\"No reviews found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/reviews/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"reviews",
+						""
+					]
+				},
+				"description": "Post review"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete user with invalid id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8455b720-2b22-44af-951e-cc7a2804141e",
+						"exec": [
+							"pm.test(\"Invalid ID to delete\", function(){\r",
+							"    pm.response.to.have.status(404)\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/reviews/{{review_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"reviews",
+						"{{review_id}}"
+					]
+				},
+				"description": "Post review"
 			},
 			"response": []
 		}
@@ -45,7 +783,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "05864cff-5cba-4070-bac3-a59328954ebf",
+				"id": "9db782b6-0ef3-4b97-833e-f72bb29acb9b",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -55,7 +793,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "e9c319be-3306-4fc5-ba34-fcf64391213a",
+				"id": "7d91b132-d2e8-4293-a879-1c86a1130bcf",
 				"type": "text/javascript",
 				"exec": [
 					""
