@@ -13,11 +13,14 @@ var history = require('connect-history-api-fallback');
 
 
 
-const activityControllers = require('./routes/activities');
+const userControllers = require('./routes/users');
+const groupControllers = require('./routes/groups');
+const reviewControllers = require('./routes/reviews');
+const groupControllers = require('./routes/groups');
 
 
 // Variables
-var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/activities';
+var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/ss';
 var port = process.env.PORT || 3000;
 
 // Connect to MongoDB
@@ -46,9 +49,10 @@ app.get('/api', function(req, res) {
 });
 
 
+app.use('/api/users',userControllers);
+app.use('/api/groups',groupControllers);
+app.use('/api/reviews', reviewControllers);
 app.use('/api/activities', activityControllers);
-
-
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
 app.use('/api/*', function (req, res) {
