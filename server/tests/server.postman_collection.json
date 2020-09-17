@@ -6,15 +6,22 @@
 	},
 	"item": [
 		{
-			"name": "activity DELETE ID",
+			"name": "Post activity",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "90ecddac-c846-469c-b16b-5812c493103c",
+						"id": "30a76d49-aa7a-49fe-b2b0-21a8d7386bf3",
 						"exec": [
-							"pm.test(\"Correct status code\", function(){\r",
-							"    pm.response.to.have.status(200);\r",
+							"var jsonData = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"activity_id\", jsonData.createdActivity._id);\r",
+							"\r",
+							"var json = pm.response.json();\r",
+							"\r",
+							"pm.test(\"correct activity created\", function(){\r",
+							"    pm.expect(\"Junior Summer Soccer Teams70\").to.eq(json.createdActivity.name);\r",
+							"    pm.expect(\"Soccer\").to.eq(json.createdActivity.activity_type);\r",
+							"\r",
 							"})"
 						],
 						"type": "text/javascript"
@@ -22,163 +29,31 @@
 				}
 			],
 			"request": {
-				"method": "DELETE",
+				"method": "POST",
 				"header": [
 					{
 						"key": "Accept",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "{{host}}/activities/{{activity_id}}",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"activities",
-						"{{activity_id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "activity DELETE",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "38eece57-66fc-4f71-991a-426ad89d2ce6",
-						"exec": [
-							"pm.test(\"Correct status code\", function(){\r",
-							"    pm.response.to.have.status(200);\r",
-							"})"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Accept",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "{{host}}/api/activities/{{activity_id}}",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"api",
-						"activities",
-						"{{activity_id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "activity PUT ID",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "ce51f970-f0a3-4f12-bf70-a7d992b6dfa4",
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Accept",
-						"type": "text",
-						"value": "application/json"
+						"value": "application/json",
+						"type": "text"
 					},
 					{
 						"key": "Content-Type",
-						"type": "text",
-						"value": "application/json"
+						"value": "application/json",
+						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"name\" : \"Junior Summer Soccer 2022\", \"activity_type\" : \"Soccer1\"}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"raw": "{\"name\" : \"Junior Summer Soccer Teams70\", \"activity_type\":\"Soccer\"}"
 				},
 				"url": {
-					"raw": "{{host}}/api/activities/{{activity_id}}",
+					"raw": "{{host}}/api/activities",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
 						"api",
-						"activities",
-						"{{activity_id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "activity PATCH ID",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "d01cd3e0-df99-493f-b5f0-1d2958ca826f",
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PATCH",
-				"header": [
-					{
-						"key": "Accept",
-						"type": "text",
-						"value": "application/json"
-					},
-					{
-						"key": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"name\" : \"hi hi\"}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{host}}/api/activities/{{activity_id}}",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"api",
-						"activities",
-						"{{activity_id}}"
+						"activities"
 					]
 				}
 			},
@@ -237,7 +112,9 @@
 							"pm.test(\"Correct activity response\", function(){\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(jsonData.activity_type).to.eql(pm.environment.get(\"activity_type\")); \r",
-							"    }); "
+							"    }); \r",
+							"\r",
+							"    "
 						],
 						"type": "text/javascript"
 					}
@@ -266,6 +143,47 @@
 							"key": "activity_type",
 							"value": "Soccer"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "non existant activity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3963cb8a-436a-46f2-870c-f7ae62d64984",
+						"exec": [
+							"pm.test(\"Correct status code\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"})\r",
+							"\r",
+							"// assert certain error message "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/activities/1f63a07deb8c0c2ee4b2dc1e",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"activities",
+						"1f63a07deb8c0c2ee4b2dc1e"
 					]
 				}
 			},
@@ -312,25 +230,142 @@
 			"response": []
 		},
 		{
-			"name": "non existant activity",
+			"name": "activity PUT ID",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "3963cb8a-436a-46f2-870c-f7ae62d64984",
+						"id": "ce51f970-f0a3-4f12-bf70-a7d992b6dfa4",
 						"exec": [
-							"pm.test(\"Correct status code\", function(){\r",
-							"    pm.response.to.have.status(404);\r",
+							"pm.test(\"correct status code when the activity existss \", function(){\r",
+							"    pm.response.to.have.status(200);\r",
 							"})\r",
 							"\r",
-							"// assert certain error message "
+							"pm.test(\"correct json returned\", function(){\r",
+							"    var json = pm.response.json();\r",
+							"    pm.expect(\"Junior Summer Soccer 2022\").to.eq(json.name);\r",
+							"    pm.expect(\"Soccer1\").to.eq(json.activity_type);\r",
+							"})"
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
 			"request": {
-				"method": "GET",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\" : \"Junior Summer Soccer 2022\", \"activity_type\" : \"Soccer1\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/activities/{{activity_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"activities",
+						"{{activity_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "activity PATCH ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d01cd3e0-df99-493f-b5f0-1d2958ca826f",
+						"exec": [
+							"pm.test(\"correct status when we patch\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"correct json returned when patching\", function(){\r",
+							"    var json = pm.response.json();\r",
+							"    pm.expect(\"hi hi\").to.eq(json.name);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\" : \"hi hi\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/activities/{{activity_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"activities",
+						"{{activity_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "activity DELETE ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "90ecddac-c846-469c-b16b-5812c493103c",
+						"exec": [
+							"pm.test(\"Correct status code\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
 				"header": [
 					{
 						"key": "Accept",
@@ -360,23 +395,15 @@
 					"script": {
 						"id": "d41a1cea-81fa-44fe-90dc-f6bb37c04956",
 						"exec": [
-							"var schema = {\r",
-							"  \"name\" : \"string\",\r",
-							"  \"activity_type\" : \"string\"\r",
-							"}\r",
+							"var jsonData = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"activity_id\", jsonData.createdActivity._id);\r",
 							"\r",
-							"pm.test('Schema Validation', function (){\r",
-							"    var result = tv4.validateResult(pm.response.json(), schema);\r",
+							"var json = pm.response.json();\r",
 							"\r",
-							"    if(!result.valid){\r",
-							"        console.log(result);\r",
-							"    }\r",
-							"    pm.expect(result.valid).to.be.true;\r",
-							"})\r",
+							"pm.test(\"correct activity created\", function(){\r",
+							"    pm.expect(\"Junior Summer Soccer Teams72\").to.eq(json.createdActivity.name);\r",
+							"    pm.expect(\"Soccer\").to.eq(json.createdActivity.activity_type);\r",
 							"\r",
-							"\r",
-							"pm.test(\"Correct status code\", function(){\r",
-							"    pm.response.to.have.status(201);\r",
 							"})\r",
 							""
 						],
@@ -400,7 +427,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"name\" : \"Junior Summer Soccer Teams43\", \"activity_type\":\"Soccer\"}",
+					"raw": "{\"name\" : \"Junior Summer Soccer Teams72\", \"activity_type\":\"Soccer\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -421,33 +448,41 @@
 			"response": []
 		},
 		{
-			"name": "Post activity",
+			"name": "activity DELETE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "38eece57-66fc-4f71-991a-426ad89d2ce6",
+						"exec": [
+							"pm.test(\"Correct status code\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
-				"method": "POST",
+				"method": "DELETE",
 				"header": [
 					{
 						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+						"type": "text",
+						"value": "application/json"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"name\" : \"Junior Summer Soccer Teams41\", \"activity_type\":\"Soccer\"}"
-				},
 				"url": {
-					"raw": "{{host}}/api/activities",
+					"raw": "{{host}}/api/activities/{{activity_id}}",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
 						"api",
-						"activities"
+						"activities",
+						"{{activity_id}}"
 					]
 				}
 			},
