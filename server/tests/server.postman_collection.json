@@ -31,14 +31,11 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:3000/api/activities/{{activity_id}}",
-					"protocol": "http",
+					"raw": "{{host}}/activities/{{activity_id}}",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
-						"api",
 						"activities",
 						"{{activity_id}}"
 					]
@@ -72,12 +69,10 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:3000/api/activities/{{activity_id}}",
-					"protocol": "http",
+					"raw": "{{host}}/api/activities/{{activity_id}}",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"activities",
@@ -125,12 +120,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/activities/{{activity_id}}",
-					"protocol": "http",
+					"raw": "{{host}}/api/activities/{{activity_id}}",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"activities",
@@ -178,12 +171,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/activities/{{activity_id}}",
-					"protocol": "http",
+					"raw": "{{host}}/api/activities/{{activity_id}}",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"activities",
@@ -220,12 +211,10 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:3000/api/activities",
-					"protocol": "http",
+					"raw": "{{host}}/api/activities",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"activities"
@@ -264,12 +253,10 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:3000/api/activities?activity_type=Soccer",
-					"protocol": "http",
+					"raw": "{{host}}/api/activities?activity_type=Soccer",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"activities"
@@ -311,12 +298,10 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:3000/api/activities/{{activity_id}}",
-					"protocol": "http",
+					"raw": "{{host}}/api/activities/{{activity_id}}",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"activities",
@@ -354,12 +339,10 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:3000/api/activities/{{activity_id}}",
-					"protocol": "http",
+					"raw": "{{host}}/api/activities/{{activity_id}}",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"activities",
@@ -417,7 +400,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"name\" : \"Junior Summer Soccer Teams42\", \"activity_type\":\"Soccer\"}",
+					"raw": "{\"name\" : \"Junior Summer Soccer Teams43\", \"activity_type\":\"Soccer\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -425,12 +408,43 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3001/api/activities",
-					"protocol": "http",
+					"raw": "{{host}}/api/activities",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3001",
+					"path": [
+						"api",
+						"activities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post activity",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\" : \"Junior Summer Soccer Teams41\", \"activity_type\":\"Soccer\"}"
+				},
+				"url": {
+					"raw": "{{host}}/api/activities",
+					"host": [
+						"{{host}}"
+					],
 					"path": [
 						"api",
 						"activities"
