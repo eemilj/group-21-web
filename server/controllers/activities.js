@@ -1,5 +1,5 @@
 const Activity = require('../models/Activity');
-
+const Group = require('../models/groups');
 
 // create a new document
 const addActivity = (req, res) =>{
@@ -117,6 +117,75 @@ const patchActivityById = (req, res, next) => {
     });
 };
 
+const getActivityWithGroupId = (req, res) => {
+    var groupId = req.params.groupId;
+
+    Group.findById(groupId, function (err, group){
+        if(group === null){
+            return res.status(404).json({"message": "No group found"});
+        }
+        if(err){
+            return res.status(500).json({"message": "Invalid operation"})
+        }
+        res.json(group);
+    });
+};
+
+const createActivityGroup = (req, res) => {
+    const activityId = req.params.id;
+
+    Activity.findById(activityId, function (err, activity){
+        if(activity == null){
+            return res.status(404).json({"message": "Activity not found"});
+        }
+        var group = new Group(req.body);
+        group.activity = activityId;
+        group.save()
+            .then(result => {
+                console.log(result);
+                res.status(201).json({
+                    message: 'Handling post request to groups.',
+                    createdGroup: result
+                });
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json({
+                    error: err
+                });
+            });
+    });
+
+};
+
+const deleteActivityGroupWithId = (req, res) => {
+    const groupId = req.params.groupId;
+
+    Group.findOneAndDelete({ _id: groupId }, function (err, group){
+        if(group === null){
+            return res.status(404).json({"message": "No group found"});
+        }
+        if(err){
+            return res.status(500).json({"message": "Invalid operation"})
+        }
+        res.json(group);
+    });
+};
+
+const getGroupsWithActivityId = (req, res) => {
+    const id = req.params.id;
+
+    Group.find({ activity: { $eq: id } }, function (err, group){
+        if(group === null){
+            return res.status(404).json({"message": "No group found"});
+        }
+        if(err){
+            return res.status(500).json({"message": "Invalid operation"})
+        }
+        res.json(group);
+        });
+};
+
 
 
 module.exports = {
@@ -126,5 +195,9 @@ module.exports = {
     deleteActivityById,
     updateActivityById,
     patchActivityById,
-    deleteActivityAll
+    deleteActivityAll,
+    getActivityWithGroupId,
+    createActivityGroup,
+    deleteActivityGroupWithId,
+    getGroupsWithActivityId
 };
