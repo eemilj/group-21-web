@@ -71,6 +71,20 @@ const deleteActivityById = (req, res) => {
         });
 };
 
+// delete all documents
+const deleteActivityAll = (req, res, next) => {
+    Activity.deleteMany(function(err, activities){
+        if (err) {
+            return next(err);
+        }
+        if (activities === null) {
+            return res.status(404).json({'message': 'activities not found'});
+        }
+        console.log('Successfully deleted all documents');
+        res.json();
+    });
+};
+
 const updateActivityById = (req, res, next) => {
     var id = req.params.id;
     Activity.findById(id, function (err, activities){
@@ -112,5 +126,6 @@ module.exports = {
     getActivityById,
     deleteActivityById,
     updateActivityById,
-    patchActivityById
+    patchActivityById,
+    deleteActivityAll
 };

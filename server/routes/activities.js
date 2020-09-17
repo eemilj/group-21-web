@@ -9,5 +9,6 @@ router.get('/:id', ActivityController.getActivityById);
 router.delete('/:id', ActivityController.deleteActivityById);
 router.put('/:id', ActivityController.updateActivityById);
 router.patch('/:id', ActivityController.patchActivityById);
+router.delete('/', ActivityController.deleteActivityAll);
 
 module.exports = router;
