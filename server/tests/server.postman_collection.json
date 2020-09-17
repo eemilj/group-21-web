@@ -1,45 +1,10 @@
 {
 	"info": {
 		"_postman_id": "959e65b6-40bb-4836-8dce-e04b74455019",
-		"name": "server Copy",
+		"name": "server",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
-		{
-			"name": "GET /api",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "7a3ade17-7c52-452e-ba45-aad00c11ffaf",
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{host}}/api",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"api"
-					]
-				}
-			},
-			"response": []
-		},
 		{
 			"name": "Post review",
 			"event": [
@@ -91,12 +56,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/reviews/",
-					"protocol": "http",
+					"raw": "{{host}}/api/reviews/",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"reviews",
@@ -160,12 +123,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/reviews/{{review_id}}",
-					"protocol": "http",
+					"raw": "{{host}}/api/reviews/{{review_id}}",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"reviews",
@@ -225,12 +186,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/reviews/",
-					"protocol": "http",
+					"raw": "{{host}}/api/reviews/",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"reviews",
@@ -288,12 +247,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/reviews/{{review_id}}",
-					"protocol": "http",
+					"raw": "{{host}}/api/reviews/{{review_id}}",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"reviews",
@@ -349,12 +306,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/reviews/{{review_id}}",
-					"protocol": "http",
+					"raw": "{{host}}/api/reviews/{{review_id}}",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"reviews",
@@ -414,12 +369,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/reviews/{{review_id}}",
-					"protocol": "http",
+					"raw": "{{host}}/api/reviews/{{review_id}}",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"reviews",
@@ -472,12 +425,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/reviews/{{review_id}}",
-					"protocol": "http",
+					"raw": "{{host}}/api/reviews/{{review_id}}",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"reviews",
@@ -530,12 +481,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/reviews/{{review_id}}",
-					"protocol": "http",
+					"raw": "{{host}}/api/reviews/{{review_id}}",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"reviews",
@@ -584,12 +533,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/reviews/",
-					"protocol": "http",
+					"raw": "{{host}}/api/reviews/",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"reviews",
@@ -640,12 +587,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/reviews/",
-					"protocol": "http",
+					"raw": "{{host}}/api/reviews/",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"reviews",
@@ -702,12 +647,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/reviews/{{review_id}}",
-					"protocol": "http",
+					"raw": "{{host}}/api/reviews/{{review_id}}",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"reviews",
@@ -767,12 +710,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/reviews/",
-					"protocol": "http",
+					"raw": "{{host}}/api/reviews/",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"reviews",
@@ -823,12 +764,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/reviews/{{review_id}}",
-					"protocol": "http",
+					"raw": "{{host}}/api/reviews/{{review_id}}",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"reviews",
