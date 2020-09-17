@@ -56,20 +56,19 @@ const getActivityById = (req, res, next) => {
 };
 
 
-const deleteActivityById = (req, res) => {
-    const id = req.params.id;
-    Activity.findOneAndDelete(id)
-        .exec()
-        .then(result => {
-            res.status(200).json(result);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error : err
-            });
-        });
+const deleteActivityById = (req, res, next) => {
+    var id = req.params.id;
+    Activity.findOneAndDelete({ _id: id }, function(err, activity) {
+        if (err) {
+            return next(err);
+        }
+        if (activity === null) {
+            return res.status(404).json({ message: 'user not found' });
+        }
+        res.status(200).json(activity);
+    });
 };
+
 
 // delete all documents
 const deleteActivityAll = (req, res, next) => {
