@@ -12,9 +12,9 @@ var history = require('connect-history-api-fallback');
 //var fs = require('fs');
 
 
-
 const userControllers = require('./routes/users');
 const groupControllers = require('./routes/groups');
+var reviewControllers = require('./routes/reviews');
 
 // Variables
 var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/ss';
@@ -48,6 +48,7 @@ app.get('/api', function(req, res) {
 
 app.use('/api/users',userControllers);
 app.use('/api/groups',groupControllers);
+app.use('/api/reviews', reviewControllers);
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
 app.use('/api/*', function (req, res) {
