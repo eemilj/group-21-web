@@ -48,12 +48,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3001/api/users",
-					"protocol": "http",
+					"raw": "{{host}}/api/users",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3001",
 					"path": [
 						"api",
 						"users"
@@ -103,12 +101,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3001/api/users/",
-					"protocol": "http",
+					"raw": "{{host}}/api/users/",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3001",
 					"path": [
 						"api",
 						"users",
@@ -148,12 +144,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3001/api/users/",
-					"protocol": "http",
+					"raw": "{{host}}/api/users/",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3001",
 					"path": [
 						"api",
 						"users",
@@ -193,12 +187,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3001/api/users/",
-					"protocol": "http",
+					"raw": "{{host}}/api/users/",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3001",
 					"path": [
 						"api",
 						"users",
@@ -241,12 +233,10 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:3001/api/users/{{user_id}}",
-					"protocol": "http",
+					"raw": "{{host}}/api/users/{{user_id}}",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3001",
 					"path": [
 						"api",
 						"users",
@@ -276,12 +266,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3001/api/users",
-					"protocol": "http",
+					"raw": "{{host}}/api/users",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3001",
 					"path": [
 						"api",
 						"users"
@@ -318,12 +306,10 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:3001/api/users/invalidID123",
-					"protocol": "http",
+					"raw": "{{host}}/api/users/invalidID123",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3001",
 					"path": [
 						"api",
 						"users",
@@ -353,12 +339,10 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3001/api/users/id123",
-					"protocol": "http",
+					"raw": "{{host}}/api/users/id123",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3001",
 					"path": [
 						"api",
 						"users",
@@ -403,12 +387,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3001/api/users/{{user_id}}",
-					"protocol": "http",
+					"raw": "{{host}}/api/users/{{user_id}}",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3001",
 					"path": [
 						"api",
 						"users",
@@ -448,12 +430,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3001/api/users/5f635f95f9243e0bf8c720e1",
-					"protocol": "http",
+					"raw": "{{host}}/api/users/5f635f95f9243e0bf8c720e1",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3001",
 					"path": [
 						"api",
 						"users",
@@ -493,12 +473,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3001/api/users/invalidID123456789",
-					"protocol": "http",
+					"raw": "{{host}}/api/users/invalidID123456789",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3001",
 					"path": [
 						"api",
 						"users",
@@ -541,12 +519,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3001/api/users/{{user_id}}",
-					"protocol": "http",
+					"raw": "{{host}}/api/users/{{user_id}}",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3001",
 					"path": [
 						"api",
 						"users",
@@ -586,12 +562,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3001/api/users/5f635f95f9243e0bf8c720e1",
-					"protocol": "http",
+					"raw": "{{host}}/api/users/5f635f95f9243e0bf8c720e1",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3001",
 					"path": [
 						"api",
 						"users",
@@ -631,12 +605,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3001/api/users/invalidID123456789",
-					"protocol": "http",
+					"raw": "{{host}}/api/users/invalidID123456789",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3001",
 					"path": [
 						"api",
 						"users",
@@ -671,12 +643,10 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3001/api/users/{{user_id}}",
-					"protocol": "http",
+					"raw": "{{host}}/api/users/{{user_id}}",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3001",
 					"path": [
 						"api",
 						"users",
@@ -712,15 +682,681 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3001/api/users",
-					"protocol": "http",
+					"raw": "{{host}}/api/users",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3001",
 					"path": [
 						"api",
 						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST new group",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2356568d-fb95-4d5b-ad45-3626142a6a48",
+						"exec": [
+							"var json = pm.response.json();",
+							"postman.setEnvironmentVariable(\"group_id\", json.createdGroup._id);",
+							"",
+							"pm.test('correct status code when group does not exist and POST successfully', function(){",
+							"    pm.response.to.have.status(201);",
+							"})",
+							"pm.test('correct JSON returned when creating a group', function(){",
+							"   pm.expect('Group').to.eq(json.createdGroup.name);",
+							"   pm.expect('Stockholm').to.eq(json.createdGroup.location);",
+							"   pm.expect('Activity').to.eq(json.createdGroup.activity);",
+							"   pm.expect('2020-09-20T12:00:00.000Z').to.eq(json.createdGroup.startDate);",
+							"   pm.expect('2020-09-25T12:00:00.000Z').to.eq(json.createdGroup.endDate);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"Group\",\n    \"location\": \"Stockholm\",\n    \"activity\": \"Activity\",\n    \"startDate\": \"2020-09-20T12:00:00.000Z\",\n    \"endDate\": \"2020-09-25T12:00:00.000Z\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/groups",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"groups"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST new group",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "12a5bc8e-f144-4e0b-91ab-328f5b043665",
+						"exec": [
+							"var json = pm.response.json();",
+							"postman.setEnvironmentVariable(\"group_id\", json.createdGroup._id);",
+							"",
+							"pm.test('correct status code when group does not exist and POST successfully', function(){",
+							"    pm.response.to.have.status(201);",
+							"})",
+							"pm.test('correct JSON returned when creating a group', function(){",
+							"   pm.expect('Group1').to.eq(json.createdGroup.name);",
+							"   pm.expect('Gothenburg').to.eq(json.createdGroup.location);",
+							"   pm.expect('Activity1').to.eq(json.createdGroup.activity);",
+							"   pm.expect('2020-09-20T12:00:00.000Z').to.eq(json.createdGroup.startDate);",
+							"   pm.expect('2020-09-25T12:00:00.000Z').to.eq(json.createdGroup.endDate);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"Group1\",\n    \"location\": \"Gothenburg\",\n    \"activity\": \"Activity1\",\n    \"startDate\": \"2020-09-20T12:00:00.000Z\",\n    \"endDate\": \"2020-09-25T12:00:00.000Z\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/groups",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"groups"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST a group but it exists",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "36974809-9883-47e3-928d-9fc645c87362",
+						"exec": [
+							"pm.test('status code 500 when group exists', function(){",
+							"    pm.response.to.have.status(500);",
+							"",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"Group1\",\n    \"location\": \"Gothenburg\",\n    \"activity\": \"Activity1\",\n    \"startDate\": \"2020-09-20T12:00:00.000Z\",\n    \"endDate\": \"2020-09-25T12:00:00.000Z\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/groups",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"groups"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET all groups",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "36c71a17-e4ba-4f2c-accc-d92a4f4d4d9c",
+						"exec": [
+							"pm.test('correct status code when users do exist and GET them successfully', function(){",
+							"    pm.response.to.have.status(200);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/groups",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"groups"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET group with ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "662dff3b-96c4-478e-9dd6-4c30883f8f19",
+						"exec": [
+							"pm.test('correct status code when user does exist and GET them successfully', function(){",
+							"    pm.response.to.have.status(200);",
+							"})",
+							"pm.test('correct JSON returned when getting a user', function(){",
+							"   var json = pm.response.json();",
+							"   pm.expect('Group1').to.eq(json.name);",
+							"   pm.expect('Gothenburg').to.eq(json.location);",
+							"   pm.expect('Activity1').to.eq(json.activity);",
+							"   pm.expect('2020-09-20T12:00:00.000Z').to.eq(json.startDate);",
+							"   pm.expect('2020-09-25T12:00:00.000Z').to.eq(json.endDate);",
+							"})",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/groups/{{group_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"groups",
+						"{{group_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET when group not found",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a08a6ea0-c654-49db-8ee9-5a6f37848762",
+						"exec": [
+							"pm.test('status code 404 when a group with the specified ID not found', function(){",
+							"    pm.response.to.have.status(404);",
+							"",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/groups/5f63723308b4fe0aeaf7e878",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"groups",
+						"5f63723308b4fe0aeaf7e878"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT group with ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0604c16f-add6-4f7f-bb06-cf5fbbf84caa",
+						"exec": [
+							"pm.test('correct status code when group does not exist and PUT successfully', function(){",
+							"    pm.response.to.have.status(200);",
+							"})",
+							"pm.test('correct JSON returned when creating a group', function(){",
+							"   var json = pm.response.json();",
+							"   pm.expect('Group2').to.eq(json.name);",
+							"   pm.expect('Stockholm').to.eq(json.location);",
+							"   pm.expect('Activity2').to.eq(json.activity);",
+							"   pm.expect('2020-09-20T12:00:00.000Z').to.eq(json.startDate);",
+							"   pm.expect('2020-09-25T12:00:00.000Z').to.eq(json.endDate);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"Group2\",\n    \"location\": \"Stockholm\",\n    \"activity\": \"Activity2\",\n    \"startDate\": \"2020-09-20T12:00:00.000Z\",\n    \"endDate\": \"2020-09-25T12:00:00.000Z\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/groups/{{group_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"groups",
+						"{{group_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT group with ID - group does not exist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "848a1784-6b6b-47a7-92c4-9fa4cc6ebd84",
+						"exec": [
+							"pm.test('status code 404 when group does not exist', function(){",
+							"    pm.response.to.have.status(404);",
+							"",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"Group2\",\n    \"location\": \"Stockholm\",\n    \"activity\": \"Activity2\",\n    \"startDate\": \"2020-09-20T12:00:00.000Z\",\n    \"endDate\": \"2020-09-25T12:00:00.000Z\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/groups/5f63723308b4fe0aeaf7e871",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"groups",
+						"5f63723308b4fe0aeaf7e871"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT group with invalid ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "41ef477a-45d9-483a-83e8-88db57eb34cd",
+						"exec": [
+							"pm.test('status code 500 when group has invalid ID', function(){",
+							"    pm.response.to.have.status(500);",
+							"",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"Group2\",\n    \"location\": \"Stockholm\",\n    \"activity\": \"Activity2\",\n    \"startDate\": \"2020-09-20T12:00:00.000Z\",\n    \"endDate\": \"2020-09-25T12:00:00.000Z\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/groups/invalidGroupID123456789",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"groups",
+						"invalidGroupID123456789"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH group with ID - changing location",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1c196590-e848-429c-9a38-68cd444273aa",
+						"exec": [
+							"pm.test('correct status code when group does exist and PUT successfully', function(){",
+							"    pm.response.to.have.status(200);",
+							"})",
+							"pm.test('correct JSON returned when patching a group', function(){",
+							"   var json = pm.response.json();",
+							"   pm.expect(\"Uppsala\").to.eq(json.location);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"location\": \"Uppsala\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/groups/{{group_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"groups",
+						"{{group_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH group with ID - group does not exist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "23b166ed-05a2-4770-8c50-f18e89ca79e9",
+						"exec": [
+							"pm.test('status code 404 when group does not exist', function(){",
+							"    pm.response.to.have.status(404);",
+							"",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"location\": \"Gothenburg\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/groups/5f63723308b4fe0aeaf7e871",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"groups",
+						"5f63723308b4fe0aeaf7e871"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH group with invalid ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7a806613-4d42-40cb-b44c-c2184ddba117",
+						"exec": [
+							"pm.test('status code 500 when group id is invalid', function(){",
+							"    pm.response.to.have.status(500);",
+							"",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"location\": \"Gothenburg\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/groups/invalidGroupID123456789",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"groups",
+						"invalidGroupID123456789"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE group by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9931013f-8678-4967-90b0-f291a72809ac",
+						"exec": [
+							"pm.test('correct status code when user does exist and GET them successfully', function(){",
+							"    pm.response.to.have.status(200);",
+							"})",
+							"pm.test('correct JSON returned when getting a user', function(){",
+							"   var json = pm.response.json();",
+							"   pm.expect('Group2').to.eq(json.name);",
+							"   pm.expect('Uppsala').to.eq(json.location);",
+							"   pm.expect('Activity2').to.eq(json.activity);",
+							"   pm.expect('2020-09-20T12:00:00.000Z').to.eq(json.startDate);",
+							"   pm.expect('2020-09-25T12:00:00.000Z').to.eq(json.endDate);",
+							"})",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/groups/{{group_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"groups",
+						"{{group_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a group that does not exist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f6edb76f-b8d3-4d1b-b54c-5cbddd888741",
+						"exec": [
+							"pm.test('status code 500 when when trying to delete a group that does not exist', function(){",
+							"    pm.response.to.have.status(404);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/groups/5f637b4fa41c610cb8c4a6ec",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"groups",
+						"5f637b4fa41c610cb8c4a6ec"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a group with an invalid ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d357ebbd-d823-45c5-acb0-7ec4b81caebe",
+						"exec": [
+							"pm.test('status code 500 when when trying to delete a user without a proper ID', function(){",
+							"    pm.response.to.have.status(500);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/groups/5f63",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"groups",
+						"5f63"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE all groups - currently checking for two",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e66d2b0e-ed00-4c65-b49e-8872e8a34a24",
+						"exec": [
+							"pm.test('correct status code', function(){",
+							"    pm.response.to.have.status(200);",
+							"})",
+							"pm.test('correct JSON returned when deleting the two users that exists in the collection', function(){",
+							"   var json = pm.response.json();",
+							"   pm.expect(1).to.eq(json.n);",
+							"   pm.expect(1).to.eq(json.ok);",
+							"   pm.expect(1).to.eq(json.deletedCount);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/groups",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"groups"
 					]
 				}
 			},
