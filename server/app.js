@@ -16,7 +16,7 @@ var history = require('connect-history-api-fallback');
 const userControllers = require('./routes/users');
 const groupControllers = require('./routes/groups');
 const reviewControllers = require('./routes/reviews');
-const groupControllers = require('./routes/groups');
+const activityControllers = require('./routes/activities');
 
 
 // Variables
