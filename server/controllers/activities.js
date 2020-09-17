@@ -1,5 +1,4 @@
 const Activity = require('../models/Activity');
-//var Users = require('../models/users');
 
 
 // create a new document
