@@ -1,11 +1,9 @@
-var express = require('express');
-var router = express.Router();
+const Activity = require('../models/Activity');
+//var Users = require('../models/users');
 
-var Activity = require('../models/activities');
-var Users = require('../models/users');
 
 // create a new document
-router.post('/api/activities', function(req, res) {
+const addActivity = (req, res) =>{
     var activities = new Activity({
         name: req.body.name,
         activity_type : req.body.activity_type
@@ -24,12 +22,11 @@ router.post('/api/activities', function(req, res) {
                 error: err
             });
         });
-});
-
+};
 
 
 // filter the groups by type, if it exists if not return all
-router.get('/api/activities', function(req, res, next){
+const getActivity = (req, res, next) => {
     var filter = req.query.activity_type;
 
     Activity.find(function(err, activities){
@@ -44,59 +41,23 @@ router.get('/api/activities', function(req, res, next){
             res.json(activities);
         }
     });
-});
+};
 
-
-
-
-// create the body of a sub resource
-router.post('/api/activities/users', function(req, res, next){
-    var activities = new Users(req.body);
-
-    activities.save(function(err, activities) {
-        if (err) {
-            return next(err);
-        }
-        res.status(201).json(activities);
-    });
-});
-
-
-// return the sub resource
-router.get('/api/activities/users', function(req, res, next){
-    Users.find(function(err, activities){
-        if(err){
-            return next(err);
-        }
-        res.json({
-            'activities/users': activities
-        });
-    });
-});
-
-// return the document
-router.get('/api/activities/:id', function(req, res){
+const getActivityById = (req, res, next) => {
     var id = req.params.id;
-    Activity.findById(id)
-        .exec()
-        .then(doc=>{
-            console.log('From the database', doc);
-            if (doc){
-                res.status(200).json(doc);
-            } else{
-                res.status(404).json({message: ' no valid entry found for provided ID'});
-            }
-            res.status(200).json(doc);
-        })
-        .catch(err=>{
-            console.log(err);
-            res.status(500).json({error:err});
-        });
-});
+    Activity.findById(id, function(err, activities) {
+        if (err) { return next(err); }
+        if (activities == null) {
+            return res.status(404).json(
+                {'message': 'User not found'}
+            );
+        }
+        res.json(activities);
+    });
+};
 
 
-// delete one documents
-router.delete('/api/activities/:id', (req, res) => {
+const deleteActivityById = (req, res) => {
     const id = req.params.id;
     Activity.findOneAndDelete(id)
         .exec()
@@ -109,26 +70,9 @@ router.delete('/api/activities/:id', (req, res) => {
                 error : err
             });
         });
-});
+};
 
-
-
-// delete all documents
-router.delete('/api/activities/', function(req, res, next) {
-    Activity.deleteMany(function(err, activities){
-        if (err) {
-            return next(err);
-        }
-        if (activities === null) {
-            return res.status(404).json({'message': 'activities not found'});
-        }
-        console.log('Successfully deleted all documents');
-        res.json();
-    });
-});
-
-
-router.put('/api/activities/:id', function (req, res, next) {
+const updateActivityById = (req, res, next) => {
     var id = req.params.id;
     Activity.findById(id, function (err, activities){
         if (err) { return next(err); }
@@ -140,9 +84,11 @@ router.put('/api/activities/:id', function (req, res, next) {
         activities.save();
         res.json(activities);
     });
-});
+};
 
-router.patch('/api/activities/:id', function(req, res, next) {
+
+
+const patchActivityById = (req, res, next) => {
     var id = req.params.id;
     Activity.findById(id, function (err, activities){
         if (err) { return next(err); }
@@ -157,9 +103,15 @@ router.patch('/api/activities/:id', function(req, res, next) {
         activities.save();
         res.json(activities);
     });
-});
+};
 
 
 
-
-module.exports = router;
+module.exports = {
+    addActivity,
+    getActivity,
+    getActivityById,
+    deleteActivityById,
+    updateActivityById,
+    patchActivityById
+};
