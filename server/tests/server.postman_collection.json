@@ -425,12 +425,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/activities",
+					"raw": "http://localhost:3001/api/activities",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "3001",
 					"path": [
 						"api",
 						"activities"
