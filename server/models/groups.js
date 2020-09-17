@@ -20,14 +20,13 @@ var groupSchema = new Schema({
         required: true
     },
 
-    regMembers: {
-        type: [
-                {
-                    userID: String
-                }
-            ],
-        required: true
-    },
+    regMembers: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'UserID'
+        }
+    ]
+    ,
 
     startDate: {
         type: Date,

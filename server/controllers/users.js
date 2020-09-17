@@ -103,11 +103,27 @@ const deleteUserById = (req, res, next) => {
     });
 };
 
+const deleteAllUsers = (req, res, next) => {
+    User.deleteMany(function(err, users){
+        if (err) {
+            return next(err);
+        }
+        if (users == null) {
+            return res.status(404).json(
+                {"message": "Users not found."});
+        }
+        console.log('Successfully deleted all users.');
+        return res.status(200).json(users);
+    })
+
+};
+
 module.exports = {
     createUser,
     getAllUsers,
     getUserById,
     updateUserById,
     patchUserById,
-    deleteUserById
+    deleteUserById,
+    deleteAllUsers
 };

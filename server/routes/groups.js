@@ -9,6 +9,6 @@ router.get('/:id', groupController.getGroupById);
 router.put('/:id', groupController.updateGroupById);
 router.patch('/:id', groupController.patchGroupById);
 router.delete('/:id', groupController.deleteGroupById);
-
+router.delete('/', groupController.deleteAllGroups);
 
 module.exports = router;

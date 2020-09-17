@@ -95,11 +95,27 @@ const deleteGroupById = (req, res, next) => {
     });
 };
 
+const deleteAllGroups = (req, res, next) => {
+  Group.deleteMany(function(err, groups){
+      if (err) {
+          return next(err);
+      }
+      if (groups == null) {
+          return res.status(404).json(
+              {"message": "Groups not found."});
+      }
+      console.log('Successfully deleted all groups.');
+      return res.status(200).json(groups);
+  })
+
+};
+
 module.exports = {
     createGroup,
     getAllGroups,
     getGroupById,
     updateGroupById,
     patchGroupById,
-    deleteGroupById
+    deleteGroupById,
+    deleteAllGroups
 };
