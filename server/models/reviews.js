@@ -4,12 +4,13 @@ var Schema = mongoose.Schema;
 // Define Mongoose user schema
 var reviewSchema = new Schema({
     author: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref:'user',
         required: [true, "Author is required."],
     },
-
     reviewee: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref:'group',
         required: [true, "Reviewee is required"]
     },
 
