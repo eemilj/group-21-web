@@ -1,26 +1,36 @@
 {
 	"info": {
-		"_postman_id": "f7ee95b5-9cb9-442f-a6a9-42de46138872",
+		"_postman_id": "edce9573-2e4a-4c1a-a471-dab9e4384adb",
 		"name": "server",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "GET /api",
+			"name": "POST a user (specifying admin)",
 			"event": [
 				{
-					"listen": "prerequest",
+					"listen": "test",
 					"script": {
-						"id": "b58d92ec-5214-450c-adb0-28e068aa71b9",
+						"id": "665b0aea-b34d-44a8-a6eb-923d07149646",
 						"exec": [
-							""
+							"var json = pm.response.json();",
+							"postman.setEnvironmentVariable(\"user_id\", json._id);",
+							"",
+							"pm.test('correct status code when user does not exist and POST successfully', function(){",
+							"    pm.response.to.have.status(201);",
+							"})",
+							"pm.test('correct JSON returned when creating a user', function(){",
+							"   pm.expect('admin22').to.eq(json.createdUser.username);",
+							"   pm.expect('pass').to.eq(json.createdUser.password);",
+							"   pm.expect(true).to.eq(json.createdUser.admin);",
+							"})"
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [
 					{
 						"key": "Accept",
@@ -28,13 +38,689 @@
 						"type": "text"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\":\"admin22\",\"password\":\"pass\",\"admin\":true}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "{{host}}/api",
+					"raw": "http://localhost:3000/api/users",
+					"protocol": "http",
 					"host": [
-						"{{host}}"
+						"localhost"
 					],
+					"port": "3000",
 					"path": [
-						"api"
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST a user (w/o specifying admin)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "35dccf6d-1166-40b4-893a-cabe5f611d43",
+						"exec": [
+							"var json = pm.response.json();",
+							"postman.setEnvironmentVariable(\"user_id\", json.createdUser._id);",
+							"",
+							"pm.test('correct status code when user does not exist and POST successfully', function(){",
+							"    pm.response.to.have.status(201);",
+							"})",
+							"pm.test('correct JSON returned when creating a user', function(){",
+							"   pm.expect('newuser').to.eq(json.createdUser.username);",
+							"   pm.expect('pass').to.eq(json.createdUser.password);",
+							"})",
+							"",
+							"pm.test('the default administrator permissions should be assigned from the backend', function(){",
+							"    var json = pm.response.json();",
+							"    pm.expect(false).to.eq(json.createdUser.admin);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\":\"newuser\",\"password\":\"pass\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST a user (specifying admin) but the user exists",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "de67c73d-b84c-412b-90b6-cce8bb8d3fc4",
+						"exec": [
+							"pm.test('status code 500 when user exists', function(){",
+							"    pm.response.to.have.status(500);",
+							"",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\":\"admin22\",\"password\":\"pass\",\"admin\":true}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST a user (w/o specifying admin) but the user exists",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1a7fd9bb-fa75-4ce8-a379-6d5226659aff",
+						"exec": [
+							"pm.test('status code 500 when user exists', function(){",
+							"    pm.response.to.have.status(500);",
+							"",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\":\"newuser\",\"password\":\"pass\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET user with ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e0ac7ded-1e1e-4fd2-805f-b8b1675beb5a",
+						"exec": [
+							"pm.test('correct status code when user does exist and GET them successfully', function(){",
+							"    pm.response.to.have.status(200);",
+							"})",
+							"pm.test('correct JSON returned when getting a user', function(){",
+							"   var json = pm.response.json();",
+							"   pm.expect('newuser').to.eq(json.username);",
+							"   pm.expect('pass').to.eq(json.password);",
+							"   pm.expect(false).to.eq(json.admin);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/{{user_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET all users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7213f29f-afa7-491e-acbb-51eb491c29b3",
+						"exec": [
+							"pm.test('correct status code when users do exist and GET them successfully', function(){",
+							"    pm.response.to.have.status(200);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET when user not found",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9e2c0998-9e72-410e-a59a-ddc581ec9a4a",
+						"exec": [
+							"pm.test('status code 404 when a user with the specified ID not found', function(){",
+							"    pm.response.to.have.status(404);",
+							"",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/invalidID123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"invalidID123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a user with an invalid ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "36bdb9b9-5045-4ef9-bd3b-9659413a3879",
+						"exec": [
+							"pm.test('status code 500 when when trying to delete a user without a proper ID', function(){",
+							"    pm.response.to.have.status(500);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/users/id123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"id123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT user with ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7e96053c-5701-4db0-af14-69143e1fbde7",
+						"exec": [
+							"pm.test('correct status code when user does exist and PUT successfully', function(){",
+							"    pm.response.to.have.status(200);",
+							"})",
+							"pm.test('correct JSON returned when creating a user', function(){",
+							"   var json = pm.response.json();",
+							"   pm.expect('new_user_put').to.eq(json.username);",
+							"   pm.expect('new_pass_put').to.eq(json.password);",
+							"   pm.expect(true).to.eq(json.admin);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\": \"new_user_put\",\"password\":\"new_pass_put\",\"admin\":true}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/{{user_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT user with ID -  user does not exist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c81fd22d-f6f4-4323-8159-b22650776603",
+						"exec": [
+							"pm.test('status code 404 when user does not exist', function(){",
+							"    pm.response.to.have.status(404);",
+							"",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\": \"new_user_put\",\"password\":\"new_pass_put\",\"admin\":true}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/5f635f95f9243e0bf8c720e1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"5f635f95f9243e0bf8c720e1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT user with invalid ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1363a6ef-2358-437d-ab3d-07670d174c46",
+						"exec": [
+							"pm.test('status code 500 when user has invalid ID', function(){",
+							"    pm.response.to.have.status(500);",
+							"",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\": \"new_user_put\",\"password\":\"new_pass_put\",\"admin\":true}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/invalidID123456789",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"invalidID123456789"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH user with ID - changing admin permissions",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fd679f98-19a7-4423-97a7-621cc728bf91",
+						"exec": [
+							"pm.test('correct status code when user does exist and PUT successfully', function(){",
+							"    pm.response.to.have.status(200);",
+							"})",
+							"pm.test('correct JSON returned when patching a user', function(){",
+							"   var json = pm.response.json();",
+							"   pm.expect(false).to.eq(json.admin);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"admin\":false}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/{{user_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH user with ID - user does not exist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2e801982-c799-476c-9127-7b3ed62ac887",
+						"exec": [
+							"pm.test('status code 404 when user does not exist', function(){",
+							"    pm.response.to.have.status(404);",
+							"",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"admin\":false}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/5f635f95f9243e0bf8c720e1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"5f635f95f9243e0bf8c720e1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH user with invalid ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5c76f2fa-2965-436a-91d1-c5c2ef4a917e",
+						"exec": [
+							"pm.test('status code 500 when user id is invalid', function(){",
+							"    pm.response.to.have.status(500);",
+							"",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"admin\":false}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/invalidID123456789",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"invalidID123456789"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a user by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "723ac8e9-e0f3-4deb-9e83-d82088173cf4",
+						"exec": [
+							"pm.test('correct status code when user does exist and DELETE them successfully', function(){",
+							"    pm.response.to.have.status(200);",
+							"})",
+							"pm.test('correct JSON returned when deleting a user', function(){",
+							"   var json = pm.response.json();",
+							"   pm.expect('new_user_put').to.eq(json.username);",
+							"   pm.expect('new_pass_put').to.eq(json.password);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/users/{{user_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE all users - currently checking for one",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "53dfd6ea-d497-4311-a1be-eab26dd43a78",
+						"exec": [
+							"pm.test('correct status code', function(){",
+							"    pm.response.to.have.status(200);",
+							"})",
+							"pm.test('correct JSON returned when deleting the two users that exists in the collection', function(){",
+							"   var json = pm.response.json();",
+							"   pm.expect(1).to.eq(json.n);",
+							"   pm.expect(1).to.eq(json.ok);",
+							"   pm.expect(1).to.eq(json.deletedCount);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users"
 					]
 				}
 			},
@@ -45,7 +731,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "05864cff-5cba-4070-bac3-a59328954ebf",
+				"id": "8d7c03bd-838a-49c7-84c9-925af1fdda03",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -55,7 +741,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "e9c319be-3306-4fc5-ba34-fcf64391213a",
+				"id": "ddd497e4-6749-4883-8940-82bbf8ef5e05",
 				"type": "text/javascript",
 				"exec": [
 					""
