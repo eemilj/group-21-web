@@ -6,8 +6,18 @@ var path = require('path');
 var cors = require('cors');
 var history = require('connect-history-api-fallback');
 
+//var mutler = require('mutler')
+//var dotenv = require('dotenv/config')
+//var ejs = require('ejs')
+//var fs = require('fs');
+
+
+
+const activityControllers = require('./routes/activities');
+
+
 // Variables
-var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/animalDevelopmentDB';
+var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/activities';
 var port = process.env.PORT || 3000;
 
 // Connect to MongoDB
@@ -34,6 +44,11 @@ app.use(cors());
 app.get('/api', function(req, res) {
     res.json({'message': 'Welcome to your DIT341 backend ExpressJS project!'});
 });
+
+
+app.use('/api/activities', activityControllers);
+
+
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
 app.use('/api/*', function (req, res) {
