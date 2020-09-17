@@ -1,8 +1,6 @@
-var express = require('express');
-var router = express.Router();
+const Activity = require('../models/Activity');
+//var Users = require('../models/users');
 
-var Activity = require('../models/activities');
-var Users = require('../models/users');
 
 // create a new document
 const addActivity = (req, res) =>{
@@ -24,12 +22,11 @@ const addActivity = (req, res) =>{
                 error: err
             });
         });
-});
-
+};
 
 
 // filter the groups by type, if it exists if not return all
-router.get('/api/activities', function(req, res, next){
+const getActivity = (req, res, next) => {
     var filter = req.query.activity_type;
 
     Activity.find(function(err, activities){
@@ -73,26 +70,9 @@ const deleteActivityById = (req, res) => {
                 error : err
             });
         });
-});
+};
 
-
-
-// delete all documents
-router.delete('/api/activities/', function(req, res, next) {
-    Activity.deleteMany(function(err, activities){
-        if (err) {
-            return next(err);
-        }
-        if (activities === null) {
-            return res.status(404).json({'message': 'activities not found'});
-        }
-        console.log('Successfully deleted all documents');
-        res.json();
-    });
-});
-
-
-router.put('/api/activities/:id', function (req, res, next) {
+const updateActivityById = (req, res, next) => {
     var id = req.params.id;
     Activity.findById(id, function (err, activities){
         if (err) { return next(err); }
@@ -104,9 +84,11 @@ router.put('/api/activities/:id', function (req, res, next) {
         activities.save();
         res.json(activities);
     });
-});
+};
 
-router.patch('/api/activities/:id', function(req, res, next) {
+
+
+const patchActivityById = (req, res, next) => {
     var id = req.params.id;
     Activity.findById(id, function (err, activities){
         if (err) { return next(err); }
@@ -121,9 +103,15 @@ router.patch('/api/activities/:id', function(req, res, next) {
         activities.save();
         res.json(activities);
     });
-});
+};
 
 
 
-
-module.exports = router;
+module.exports = {
+    addActivity,
+    getActivity,
+    getActivityById,
+    deleteActivityById,
+    updateActivityById,
+    patchActivityById
+};
