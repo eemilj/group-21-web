@@ -65,7 +65,7 @@ const deleteActivityById = (req, res, next) => {
         if (activity === null) {
             return res.status(404).json({ message: 'user not found' });
         }
-        res.status(200).json(activity);
+        res.status(200).json();
     });
 };
 
