@@ -30,6 +30,17 @@
               </a>
             </li>
 
+            <li class="nav-item">
+              <a class="nav-link" href="">
+                <router-link to="/account">Account</router-link>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="">
+                <router-link to="/account">Admin</router-link>
+              </a>
+            </li>
           </ul>
         </b-navbar-nav>
       </b-collapse>
