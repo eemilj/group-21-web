@@ -3,8 +3,12 @@
 'is-complete':activity.completed}">
   <p>
     <input type="checkbox" v-on:change="markComplete">
+    <b>{{"Activity Name :   "}}</b>
     {{activity.name}}
-  <button @click="emit('del-activity', activity.id )" class="del">x</button>
+<br>
+    <b>{{"Activity Type :  "}}</b>
+    {{activity.activity_type}}
+  <button @click="$emit('del-activity', activity.id )" class="del">x</button>
   </p>
 </div>
 </template>
@@ -37,7 +41,7 @@ export default {
   background: red;
   color: white;
   border: none;
-  padding: 5px 9px;
+  padding: 5px 13px;
   border-radius: 50%;
   cursor: pointer;
   float: right;

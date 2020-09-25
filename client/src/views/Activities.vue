@@ -1,9 +1,8 @@
 <template>
   <div id="activities">
     <h1></h1>
-    <div v-bind:key='activity.id' v-for='activity in activities'>
-      <ActivityItem v-bind:activity='activity' v-on:del-activity="$emit('del-activity', activity.id)" />
-      <h3>{{activity.name}}</h3>
+    <div v-bind:key="activity.id" v-for="activity in activities">
+      <ActivityItem v-bind:activity="activity" v-on:del-activity="$emit('del-activity', activity.id)" />
     </div>
   </div>
 </template>

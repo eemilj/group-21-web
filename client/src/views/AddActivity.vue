@@ -1,7 +1,9 @@
 <template>
   <div>
     <form @submit="addActivity">
-      <input type="text" v-model="name" name="name" placeholder="Add Activity...">
+      <input type="text" v-model="name" name="name" placeholder="Add Activity Name ...">
+      <input type="text" v-model="activity_type" name="activity_type" placeholder="Add Activity Type...">
+
       <input type="submit" value="Submit" class="btn"/>
     </form>
   </div>
@@ -11,9 +13,11 @@
 import uuid from 'uuid'
 export default {
   name: 'AddActivity',
+
   data() {
     return {
-      name: ''
+      name: '',
+      activity_type: ''
     }
   },
   methods: {
@@ -22,10 +26,13 @@ export default {
       const newActivity = {
         id: uuid.v4(),
         name: this.name,
-        activity_type: false
+        activity_type: this.activity_type,
+        completed: false
+
       }
       this.$emit('add-activity', newActivity)
       this.name = ''
+      this.activity_type = ''
     }
   }
 }

@@ -3,7 +3,7 @@
     <h1>Admin Page</h1>
     <layout/>
     <AddActivity v-on:add-activity="addActivity"/>
-    <Activities v-bind:activities='activities' v-on:del-activity="deleteAcitivity"/>
+    <Activities v-bind:activities="activities" v-on:del-activity="deleteActivity"/>
     <Activities/>
   </div>
 </template>
@@ -24,8 +24,9 @@ export default {
   data() {
     return {
       activities: [{
-        id: 1,
-        name: 'Demo Activity Name',
+        id: 3,
+        name: 'hi',
+        activity_type: 'soccer',
         completed: false
       }]
     }
@@ -39,11 +40,8 @@ export default {
     },
     created() {
       axios.get('http://localhost:3000/api/activities')
-        .then(response => {
-          for (var i = 0; i < response.data.activities.length; i++) {
-            console.log('Activity ' + response.data.activities[i]._id)
-          }
-        }).catch(error => {
+        .then(response => { this.activities = response.data })
+        .catch(error => {
           this.activities = []
           console.log(error)
         })
