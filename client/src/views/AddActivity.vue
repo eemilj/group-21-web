@@ -1,7 +1,7 @@
 <template>
   <div>
     <form @submit="addActivity">
-      <input type="text" v-model="title" name="title" placeholder="Add Activity...">
+      <input type="text" v-model="name" name="name" placeholder="Add Activity...">
       <input type="submit" value="Submit" class="btn"/>
     </form>
   </div>
@@ -13,7 +13,7 @@ export default {
   name: 'AddActivity',
   data() {
     return {
-      title: ''
+      name: ''
     }
   },
   methods: {
@@ -21,11 +21,11 @@ export default {
       e.preventDefault()
       const newActivity = {
         id: uuid.v4(),
-        title: this.title,
-        completed: false
+        name: this.name,
+        activity_type: false
       }
       this.$emit('add-activity', newActivity)
-      this.title = ''
+      this.name = ''
     }
   }
 }

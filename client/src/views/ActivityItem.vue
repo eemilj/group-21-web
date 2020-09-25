@@ -3,7 +3,7 @@
 'is-complete':activity.completed}">
   <p>
     <input type="checkbox" v-on:change="markComplete">
-    {{activity.title}}
+    {{activity.name}}
   <button @click="emit('del-activity', activity.id )" class="del">x</button>
   </p>
 </div>

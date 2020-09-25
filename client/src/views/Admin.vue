@@ -25,7 +25,7 @@ export default {
     return {
       activities: [{
         id: 1,
-        title: 'Todo One',
+        name: 'Demo Activity Name',
         completed: false
       }]
     }
@@ -38,7 +38,7 @@ export default {
       this.activities = [...this.activities, newActivity]
     },
     created() {
-      axios.get('/api/activities')
+      axios.get('http://localhost:3000/api/activities')
         .then(response => {
           for (var i = 0; i < response.data.activities.length; i++) {
             console.log('Activity ' + response.data.activities[i]._id)
