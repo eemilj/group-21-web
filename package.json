@@ -7,6 +7,8 @@
     "postinstall": "npm install --prefix server && npm install --prefix client && npm install --only=dev --prefix client && npm run build --prefix client"
   },
   "dependencies": {
-    "request": "^2.88.2"
+    "axios": "^0.20.0",
+    "request": "^2.88.2",
+    "uuid": "^8.3.0"
   }
 }

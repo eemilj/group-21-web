@@ -1,12 +1,19 @@
 <template>
-  <div>
-    <h1>Activities Page</h1>
+  <div id="activities">
+    <h1></h1>
+    <div v-bind:key='activity.id' v-for='activity in activities'>
+      <ActivityItem v-bind:activity='activity' v-on:del-activity="$emit('del-activity', activity.id)" />
+      <h3>{{activity.title}}</h3>
+    </div>
   </div>
 </template>
 
 <script>
+import ActivityItem from './ActivityItem'
 export default {
-  name: 'activities'
+  name: 'Activities',
+  components: { ActivityItem },
+  props: ['activities']
 }
 </script>
 
