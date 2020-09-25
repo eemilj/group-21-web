@@ -28,14 +28,14 @@ export default new Router({
       component: Activities
     },
     {
-      path: '/admin',
-      name: 'admin',
-      component: Admin
-    },
-    {
       path: '/account',
       name: 'account',
       component: Account
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: Admin
     }
   ]
 })

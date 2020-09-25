@@ -4,6 +4,8 @@
     <layout/>
     <AddActivity v-on:add-activity="addActivity"/>
     <Activities v-bind:activities="activities" v-on:del-activity="deleteActivity"/>
+    <Activities v-bind:activities="activities" v-on:del-activity="created"/>
+
     <Activities/>
   </div>
 </template>
@@ -12,7 +14,7 @@
 import Activities from './Activities'
 import layout from './layout'
 import AddActivity from './AddActivity'
-import axios from 'axios'
+import { Api } from '@/Api'
 
 export default {
   name: 'Admin',
@@ -39,7 +41,7 @@ export default {
       this.activities = [...this.activities, newActivity]
     },
     created() {
-      axios.get('http://localhost:3000/api/activities')
+      Api.get('/activities')
         .then(response => { this.activities = response.data })
         .catch(error => {
           this.activities = []
