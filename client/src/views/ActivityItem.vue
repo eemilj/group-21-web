@@ -1,9 +1,7 @@
 <template>
-<div class='activity-item' v-bind:class="{
-'is-complete':activity.completed}">
+<div class='activity-item' >
 
   <p>
-    <input type="checkbox" v-on:change="markComplete">
     <b>{{"Activity Name :   "}}</b>
     {{activity.name}}
 <br>
@@ -21,11 +19,9 @@ export default {
   name: 'ActivityItem',
   props: ['activity'],
   methods: {
-    markComplete() {
-      this.activity.completed = !this.activity.completed
-    }
   }
 }
+
 </script>
 
 <style scoped>
@@ -34,10 +30,6 @@ export default {
   padding: 10px;
   border-bottom: 1px #ccc dotted;
   align-content: baseline;
-}
-
-.is-complete {
-  text-decoration: line-through;
 }
 
 .del {

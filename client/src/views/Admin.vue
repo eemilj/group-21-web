@@ -27,14 +27,14 @@ export default {
     }
   },
   methods: {
-
-    deleteActivity(id) {
-      Api.delete(`/activities/${id}`)
-        .then(res => { this.activities = this.activities.filter(activity => activity.id !== id) })
-        .catch(err => console.log(err))
-    },
     addActivity(newActivity) {
-      this.activities = [...this.activities, newActivity]
+      // eslint-disable-next-line camelcase
+      const { name, activity_type } = newActivity
+      Api.post('/activities', {
+        name,
+        activity_type
+      })
+        .catch(err => console.log(err))
     },
     showActivities() {
       Api.get('/activities')
@@ -44,13 +44,18 @@ export default {
           console.log(error)
         })
     },
-    updateActivity() {
-      Api.put('/activities')
-        .then(response => { this.activities = response.data })
-        .catch(error => {
-          this.activities = []
-          console.log(error)
-        })
+    updateActivity(patchedActivity, id) {
+      // eslint-disable-next-line camelcase
+      const { name, activity_type } = patchedActivity
+      Api.patch(`/activities/${id}`, {
+        name,
+        activity_type
+      })
+        .catch(err => console.log(err))
+    },
+    deleteActivity(id) {
+      Api.delete(`/activities/${id}`)
+        .catch(err => console.log(err))
     }
   }
 }
