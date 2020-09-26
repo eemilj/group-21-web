@@ -2,9 +2,10 @@
   <div id="admin">
     <h1>Admin Page</h1>
     <layout/>
+    <button @click="created" >Show All Activities</button>
+
     <AddActivity v-on:add-activity="addActivity"/>
     <Activities v-bind:activities="activities" v-on:del-activity="deleteActivity"/>
-    <Activities v-bind:activities="activities" v-on:del-activity="created"/>
 
     <Activities/>
   </div>
