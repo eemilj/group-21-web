@@ -1,8 +1,8 @@
 <template>
   <div>
-    <form @submit="addActivity">
-      <input type="text" v-model="name" name="name" placeholder="Add Activity Name ...">
-      <input type="text" v-model="activity_type" name="activity_type" placeholder="Add Activity Type...">
+    <form @submit="UpdateActivity">
+      <input type="text" v-model="name" name="name" placeholder="Update Activity Name ...">
+      <input type="text" v-model="activity_type" name="activity_type" placeholder="Update Activity Type...">
 
       <input type="submit" value="Submit" class="btn"/>
     </form>
@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'AddActivity',
+  name: 'UpdateActivity',
 
   data() {
     return {
@@ -21,7 +21,7 @@ export default {
     }
   },
   methods: {
-    addActivity(e) {
+    UpdateActivity(e) {
       e.preventDefault()
       const newActivity = {
         id: this.id,

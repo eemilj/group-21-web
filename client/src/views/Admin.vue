@@ -3,9 +3,9 @@
     <h1>Admin Page</h1>
     <button @click="showActivities" >Show All Activities</button>
     <button @click="deleteActivities">Delete All Activities</button>
-
     <AddActivity v-on:add-activity="addActivity"/>
     <Activities v-bind:activities="activities" v-on:del-activity="deleteOneActivitiy" v-on:update-activity="updateActivity"/>
+    <UpdateActivity v-if="Show" v-on:update-activity="updateActivity"/>
 
     <Activities/>
   </div>
@@ -14,6 +14,7 @@
 <script>
 import Activities from './Activities'
 import AddActivity from './AddActivity'
+import UpdateActivity from './UpdateActivity'
 
 import { Api } from '@/Api'
 
@@ -21,11 +22,13 @@ export default {
   name: 'Admin',
   components: {
     AddActivity,
-    Activities
+    Activities,
+    UpdateActivity
   },
   data() {
     return {
-      activities: []
+      activities: [],
+      Show: false
     }
   },
   methods: {
@@ -48,9 +51,10 @@ export default {
           console.log(error)
         })
     },
-    updateActivity(patchedActivity, id) {
+    updateActivity(id, updateActivity) {
       // eslint-disable-next-line camelcase
-      const { name, activity_type } = patchedActivity
+      const { name, activity_type } = updateActivity
+
       Api.put(`/activities/${id}`, {
         name,
         activity_type

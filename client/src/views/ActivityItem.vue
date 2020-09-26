@@ -2,6 +2,8 @@
 <div class='activity-item' >
 
   <p>
+    <input type="checkbox" v-model="Show"/>
+
     <button @click="$emit('del-activity', activity._id )" class="del">x</button>
     <button @click="$emit('update-activity', activity._id )" class="update">Update</button>
 
