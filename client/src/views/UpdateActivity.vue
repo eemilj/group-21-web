@@ -23,13 +23,13 @@ export default {
   methods: {
     UpdateActivity(e) {
       e.preventDefault()
-      const newActivity = {
+      const updateActivity = {
         id: this.id,
         name: this.name,
         activity_type: this.activity_type
 
       }
-      this.$emit('add-activity', newActivity)
+      this.$emit('update-activity', updateActivity)
       this.id = ''
       this.name = ''
       this.activity_type = ''
