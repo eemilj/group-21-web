@@ -1,11 +1,10 @@
 <template>
   <div id="admin">
     <h1>Admin Page</h1>
-    <layout/>
-    <button @click="created" >Show All Activities</button>
+    <button @click="showActivities" >Show All Activities</button>
 
     <AddActivity v-on:add-activity="addActivity"/>
-    <Activities v-bind:activities="activities" v-on:del-activity="deleteActivity"/>
+    <Activities v-bind:activities="activities" v-on:del-activity="deleteActivity" v-on:update-activity="updateActivity"/>
 
     <Activities/>
   </div>
@@ -13,7 +12,6 @@
 
 <script>
 import Activities from './Activities'
-import layout from './layout'
 import AddActivity from './AddActivity'
 import { Api } from '@/Api'
 
@@ -21,8 +19,7 @@ export default {
   name: 'Admin',
   components: {
     AddActivity,
-    Activities,
-    layout
+    Activities
   },
   data() {
     return {
@@ -41,8 +38,16 @@ export default {
     addActivity(newActivity) {
       this.activities = [...this.activities, newActivity]
     },
-    created() {
+    showActivities() {
       Api.get('/activities')
+        .then(response => { this.activities = response.data })
+        .catch(error => {
+          this.activities = []
+          console.log(error)
+        })
+    },
+    updateActivity() {
+      Api.put('/activities')
         .then(response => { this.activities = response.data })
         .catch(error => {
           this.activities = []
