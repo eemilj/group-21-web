@@ -15,6 +15,7 @@ export default {
 
   data() {
     return {
+      id: 'activities._id',
       name: '',
       activity_type: ''
     }
