@@ -23,17 +23,15 @@ export default {
   },
   data() {
     return {
-      activities: [{
-        id: 3,
-        name: 'hi',
-        activity_type: 'soccer',
-        completed: false
-      }]
+      activities: []
     }
   },
   methods: {
+
     deleteActivity(id) {
-      this.activities = this.activities.filter(activity => activity.id !== id)
+      Api.delete(`/activities/${id}`)
+        .then(res => { this.activities = this.activities.filter(activity => activity.id !== id) })
+        .catch(err => console.log(err))
     },
     addActivity(newActivity) {
       this.activities = [...this.activities, newActivity]

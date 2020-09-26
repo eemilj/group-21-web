@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import uuid from 'uuid'
 export default {
   name: 'AddActivity',
 
@@ -24,7 +23,6 @@ export default {
     addActivity(e) {
       e.preventDefault()
       const newActivity = {
-        id: uuid.v4(),
         name: this.name,
         activity_type: this.activity_type,
         completed: false
