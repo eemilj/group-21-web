@@ -2,13 +2,14 @@
 <div class='activity-item' >
 
   <p>
+    <button @click="$emit('del-activity', activity._id )" class="del">x</button>
+    <button @click="$emit('update-activity', activity._id )" class="update">Update</button>
+
     <b>{{"Activity Name :   "}}</b>
     {{activity.name}}
 <br>
     <b>{{"Activity Type :  "}}</b>
     {{activity.activity_type}}
-  <button @click="$emit('del-activity', activity.id )" class="del">x</button>
-    <button @click="$emit('update-activity', activity.id )" class="update">Update</button>
 
   </p>
 </div>

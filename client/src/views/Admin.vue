@@ -5,7 +5,7 @@
     <button @click="deleteActivities">Delete All Activities</button>
 
     <AddActivity v-on:add-activity="addActivity"/>
-    <Activities v-bind:activities="activities" v-on:del-activity="deleteActivity" v-on:update-activity="updateActivity"/>
+    <Activities v-bind:activities="activities" v-on:del-activity="deleteOneActivitiy" v-on:update-activity="updateActivity"/>
 
     <Activities/>
   </div>
@@ -79,11 +79,10 @@ export default {
           console.log(error)
         })
     },
-    deleteOneActivitiy() {
-      var _id = '5f6efba53466b51c6411481d'
-      Api.delete(`/activities/${_id}`)
+    deleteOneActivitiy(id) {
+      Api.delete(`/activities/${id}`)
         .then(response => {
-          this.activities = this.activities.filter(activity => activity.id !== _id
+          this.activities = this.activities.filter(activity => activity.id !== id
           )
             .catch(error => {
               console.log(error)

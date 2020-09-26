@@ -15,21 +15,23 @@ export default {
 
   data() {
     return {
-      id: 'activities._id',
       name: '',
-      activity_type: ''
+      activity_type: '',
+      id: ''
     }
   },
   methods: {
     addActivity(e) {
       e.preventDefault()
       const newActivity = {
+        id: this.id,
         name: this.name,
         activity_type: this.activity_type,
         completed: false
 
       }
       this.$emit('add-activity', newActivity)
+      this.id = ''
       this.name = ''
       this.activity_type = ''
     }
