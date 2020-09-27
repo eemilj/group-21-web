@@ -1,15 +1,16 @@
 <template>
 <div class='activity-item' >
 
-    <button @click="$emit('del-activity', activity._id, activity.name, activity.activity_type )" class="del">x</button>
+  <button @click="$emit('del-activity', activity._id, activity.name, activity.activity_type )" class="del">x</button>
+  <button @click="$emit('update-activity', activity._id, activity.name, activity.activity_type )" class="update">Confirm Update</button>
 
+  <div class="formatActivity">
     <b>{{"Activity Name :   "}}</b>
     {{activity.name}}
 <br>
     <b>{{"Activity Type :  "}}</b>
     {{activity.activity_type}}
-
-    <button @click="$emit('update-activity', activity._id, activity.name, activity.activity_type )" class="update">Confirm Update</button>
+  </div>
 
   </div>
 </template>
@@ -47,8 +48,8 @@ export default {
   float: right;
 }
 .update {
-  background: lightseagreen;
-  color: white;
+  background: #9fcdff;
+  color: black;
   border: none;
   margin-right: 40px;
   padding: 5px 13px;
@@ -56,4 +57,9 @@ export default {
   cursor: pointer;
   float: right;
 }
+.formatActivity {
+  text-align: left;
+  float: left;
+}
+
 </style>

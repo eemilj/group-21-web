@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <form @submit="addActivity">
-      <input type="text" v-model="name" name="name" placeholder="Add Activity Name ...">
-      <input type="text" v-model="activity_type" name="activity_type" placeholder="Add Activity Type...">
+  <div class="margin">
+    <form class="submit" @submit="addActivity">
+      <input class="addClass" type="text" v-model="name" name="name" placeholder="Add Activity Name ...">
+      <input class="addClass" type="text" v-model="activity_type" name="activity_type" placeholder="Add Activity Type...">
 
       <input type="submit" value="Submit" class="btn"/>
     </form>
@@ -49,5 +49,14 @@ input[type="text"]{
 
 input[type="submit"]{
   flex:2
+}
+.addClass {
+  background-color: #d4edda;
+}
+.submit {
+  background-color: lightgrey;
+}
+.margin {
+  margin: 50px;
 }
 </style>

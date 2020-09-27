@@ -1,8 +1,8 @@
 <template>
   <div id="admin">
     <h1>Admin Page</h1>
-    <button @click="showActivities" >Show All Activities</button>
-    <button @click="deleteActivities">Delete All Activities</button>
+    <button class="show" @click="showActivities" >Show All Activities</button>
+    <button class="warning" @click="deleteActivities">Delete All Activities</button>
     <AddActivity v-on:add-activity="addActivity"/>
     <UpdateActivity v-on:update-activity="createNewActivity"/>
 
@@ -112,5 +112,13 @@ export default {
   border-radius: 0%;
   cursor: pointer;
   float: right;
+}
+.warning {
+  background-color: #f2b4ba;
+  margin: 10px;
+}
+.show {
+  background-color: darkseagreen;
+  margin: 10px;
 }
 </style>

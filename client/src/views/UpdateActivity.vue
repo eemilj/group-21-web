@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <form @submit="UpdateActivity">
-      <input type="text" v-model="name" name="name" placeholder="Update Activity Name ...">
-      <input type="text" v-model="activity_type" name="activity_type" placeholder="Update Activity Type...">
+  <div class="margin">
+    <form class="submit" @submit="UpdateActivity">
+      <input class="updateClass" type="text" v-model="name" name="name" placeholder="Update Activity Name ...">
+      <input class="updateClass" type="text" v-model="activity_type" name="activity_type" placeholder="Update Activity Type...">
 
       <input type="submit" value="Submit" class="btn"/>
     </form>
@@ -49,5 +49,14 @@ input[type="text"]{
 
 input[type="submit"]{
   flex:2
+}
+.updateClass {
+  background-color: #9fcdff;
+}
+.submit {
+  background-color: lightgrey;
+}
+.margin {
+  margin: 50px;
 }
 </style>
