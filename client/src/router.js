@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
-import Activities from './views/Activities.vue'
+import ActivitiesUser from './views/ActivitiesUser.vue'
 import Admin from './views/Admin.vue'
 import Account from './views/Account.vue'
 
@@ -23,9 +23,9 @@ export default new Router({
       component: Login
     },
     {
-      path: '/activities',
-      name: 'activities',
-      component: Activities
+      path: '/ActivitiesUser',
+      name: 'ActivitiesUser',
+      component: ActivitiesUser
     },
     {
       path: '/account',

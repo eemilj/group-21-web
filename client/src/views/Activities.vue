@@ -1,6 +1,6 @@
 <template>
   <div id="activities">
-    <h1></h1>
+
     <div v-bind:key="activity.id" v-for="activity in activities">
 
       <ActivityItem v-bind:activity="activity"

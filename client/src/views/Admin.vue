@@ -4,9 +4,7 @@
     <button @click="showActivities" >Show All Activities</button>
     <button @click="deleteActivities">Delete All Activities</button>
     <AddActivity v-on:add-activity="addActivity"/>
-    <Activities v-bind:activities="activities" v-on:del-activity="deleteOneActivitiy" v-on:update-activity="updateActivity"/>
-
-    <Activities/>
+    <Activities v-bind:activities="activities" v-on:del-activity="deleteOneActivitiy" v-on:update-activity="updateActivity"/><Activities/>
   </div>
 </template>
 
@@ -17,7 +15,7 @@ import AddActivity from './AddActivity'
 import { Api } from '@/Api'
 
 export default {
-  name: 'Admin',
+  name: 'admin',
   components: {
     AddActivity,
     Activities

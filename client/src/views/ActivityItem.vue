@@ -4,7 +4,7 @@
     <button @click="$emit('del-activity', activity._id, activity.name, activity.activity_type )" class="del">x</button>
 
     <b>{{"Activity Name :   "}}</b>
-    {{activity.name}}
+    {{activity.name}}s
 <br>
     <b>{{"Activity Type :  "}}</b>
     {{activity.activity_type}}
@@ -16,7 +16,7 @@
   <span v-if="Show"><UpdateActivity  v-on:update-activity="updateActivity"/>
     <button @click="$emit('update-activity', activity._id, activity.name, activity.activity_type )" class="update">Confirm Update</button></span>
 
-</div>
+  </div>
 </template>
 
 <script>
