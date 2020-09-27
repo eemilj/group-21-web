@@ -43,7 +43,7 @@ export default {
   font-size: 50px;
   display: grid;
   grid-template-columns:repeat(3,1fr);
-  grid-auto-rows: minmax(10px, auto);
+  grid-auto-rows: minmax(200px, auto);
   margin: 50px;
 }
 
