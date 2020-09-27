@@ -4,7 +4,7 @@
     <div class="activity-item">
     <div class="title"> <b> Activity Type</b></div>
     <div class = "contentType"> <b>{{activity.activity_type}}</b></div>
-<br>
+
     <div class = "title"> <b> Activity Name</b></div>
     <div class = "contentName"> <b>{{activity.name}}</b></div>
       <button @click="$emit('enter-activity', activity._id, activity.name, activity.activity_type )" class="enter">Enter</button>
@@ -32,10 +32,13 @@ export default {
 .title{
   font-size: large;
   color: lightslategrey;
+  margin-top: 20px;
 }
 .contentType{
   font-size: 30px;
   color: midnightblue;
+  margin-top: 20px;
+
 }
 .contentName{
   font-size: 45px;
