@@ -1,11 +1,15 @@
 <template>
   <div class='activity-item2' >
 
-    <b>{{"Activity Name"}}</b>
-    {{activity.name}}s
-    <br>
-    <b>{{"Activity Type"}}</b>
-    {{activity.activity_type}}
+    <div class="activity-item">
+    <div class="title"> <b> Activity Type</b></div>
+    <div class = "contentType"> <b>{{activity.activity_type}}</b></div>
+<br>
+    <div class = "title"> <b> Activity Name</b></div>
+    <div class = "contentName"> <b>{{activity.name}}</b></div>
+      <button @click="$emit('enter-activity', activity._id, activity.name, activity.activity_type )" class="enter">Enter</button>
+
+    </div>
 
   </div>
 </template>
@@ -25,11 +29,31 @@ export default {
 </script>
 
 <style scoped>
+.title{
+  font-size: large;
+  color: lightslategrey;
+}
+.contentType{
+  font-size: 30px;
+  color: midnightblue;
+}
+.contentName{
+  font-size: 45px;
+  color: darkred;
+}
 .activity-item {
   background: white;
-  padding: 80px;
-  border-bottom: 1px #ccc dotted;
+  padding: 3px;
+  border: 2px #ccc dotted;
   align-content: baseline;
 }
-
+.enter {
+  background: whitesmoke;
+  color: lightgrey;
+  border: none;
+  width: available;
+  border-radius: 0%;
+  cursor: pointer;
+  margin: 20px;
+}
 </style>

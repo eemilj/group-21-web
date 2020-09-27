@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
   <div class="header"><em>Activities</em> </div>
 
     <button @click="showActivities" >Show All Activities</button>
@@ -30,6 +30,9 @@ export default {
           this.activities3 = []
           console.log(error)
         })
+    },
+    beforeMount() {
+      this.showActivities()
     }
   }
 }
@@ -40,14 +43,15 @@ export default {
 .coloumns{
   font-size: 50px;
   display: grid;
-  grid-template-columns:repeat(4,1fr);
-  grid-auto-rows: minmax(250px, auto);
+  grid-template-columns:repeat(3,1fr);
+  grid-auto-rows: minmax(10px, auto);
+  margin: 50px;
 }
 
 .header{
   font-size: 50px;
   grid-column: 1/5;
-  margin-bottom: 100px;
+  margin: 50px;
   text-align: center;
 }
 
