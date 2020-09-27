@@ -4,7 +4,7 @@
     <button @click="$emit('del-activity', activity._id, activity.name, activity.activity_type )" class="del">x</button>
 
     <b>{{"Activity Name :   "}}</b>
-    {{activity.name}}s
+    {{activity.name}}
 <br>
     <b>{{"Activity Type :  "}}</b>
     {{activity.activity_type}}

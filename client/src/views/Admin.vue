@@ -5,6 +5,7 @@
     <button @click="deleteActivities">Delete All Activities</button>
     <AddActivity v-on:add-activity="addActivity"/>
     <Activities v-bind:activities="activities" v-on:del-activity="deleteOneActivitiy" v-on:update-activity="updateActivity"/><Activities/>
+    <UpdateActivity v-on:update-activity="createNewActivity"/>
   </div>
 </template>
 
@@ -13,10 +14,12 @@ import Activities from './Activities'
 import AddActivity from './AddActivity'
 
 import { Api } from '@/Api'
+import UpdateActivity from './UpdateActivity'
 
 export default {
   name: 'admin',
   components: {
+    UpdateActivity,
     AddActivity,
     Activities
   },
@@ -25,7 +28,8 @@ export default {
       activities: [],
       name: '',
       activity_type: '',
-      id: ''
+      id: '',
+      objectFromHere: 'hi'
     }
   },
   methods: {
@@ -38,6 +42,11 @@ export default {
       })
         .catch(err => console.log(err))
     },
+    createNewActivity(newActivity) {
+      // eslint-disable-next-line camelcase
+      const { name } = newActivity
+      this.objectFromHere = name
+    },
     showActivities() {
       Api.get('/activities')
         .then(response => {
@@ -48,12 +57,10 @@ export default {
           console.log(error)
         })
     },
-    updateActivity(id) {
-      // eslint-disable-next-line camelcase
-
+    updateActivity(id, newData) {
+      var name = this.objectFromHere
       Api.patch(`/activities/${id}`, {
-        name: 'test',
-        activity_type: '123456'
+        name: name
       })
         .catch(err => console.log(err))
     },
