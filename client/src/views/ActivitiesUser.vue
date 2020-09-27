@@ -2,7 +2,6 @@
   <div >
   <div class="header"><em>Activities</em> </div>
 
-    <button @click="showActivities" >Show All Activities</button>
     <ActivitiesForClient class="coloumns" v-bind:activities2="activities3" /><ActivitiesForClient/>
 
   </div>
@@ -20,6 +19,9 @@ export default {
       activities3: []
     }
   },
+  mounted: function () {
+    this.showActivities()
+  },
   methods: {
     showActivities() {
       Api.get('/activities')
@@ -30,9 +32,6 @@ export default {
           this.activities3 = []
           console.log(error)
         })
-    },
-    beforeMount() {
-      this.showActivities()
     }
   }
 }
