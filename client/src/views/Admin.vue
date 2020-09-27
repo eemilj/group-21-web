@@ -4,8 +4,9 @@
     <button @click="showActivities" >Show All Activities</button>
     <button @click="deleteActivities">Delete All Activities</button>
     <AddActivity v-on:add-activity="addActivity"/>
-    <Activities v-bind:activities="activities" v-on:del-activity="deleteOneActivitiy" v-on:update-activity="updateActivity"/><Activities/>
     <UpdateActivity v-on:update-activity="createNewActivity"/>
+
+    <Activities v-bind:activities="activities" v-on:del-activity="deleteOneActivitiy" v-on:update-activity="updateActivity"/><Activities/>
   </div>
 </template>
 

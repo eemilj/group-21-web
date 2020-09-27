@@ -9,22 +9,15 @@
     <b>{{"Activity Type :  "}}</b>
     {{activity.activity_type}}
 
-  <div class="update">
-    <input type="checkbox" v-model="Show"/>
-    <b> Update</b>
-  </div>
-  <span v-if="Show"><UpdateActivity  v-on:update-activity="updateActivity"/>
-    <button @click="$emit('update-activity', activity._id, activity.name, activity.activity_type )" class="update">Confirm Update</button></span>
+    <button @click="$emit('update-activity', activity._id, activity.name, activity.activity_type )" class="update">Confirm Update</button>
 
   </div>
 </template>
 
 <script>
-import UpdateActivity from './UpdateActivity'
 
 export default {
   name: 'ActivityItem',
-  components: { UpdateActivity },
   props: ['activity'],
   data() {
     return {
