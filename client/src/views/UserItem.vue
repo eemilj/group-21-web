@@ -1,11 +1,17 @@
 <template>
-  <div class='user-item' >
+  <div class='activity-item' >
 
     <button @click="$emit('del-user', user._id )" class="del">x</button>
 
     <div class="formatActivity">
       <b>{{"User Username :"}}</b>
-      {{user}}
+      {{user.username}}
+      <br>
+      <b>{{"Admin Status :"}}</b>
+      {{user.admin}}
+      <br>
+      <b>{{"Registration Date :"}}</b>
+      {{user.registrationDate}}
       <br>
     </div>
 

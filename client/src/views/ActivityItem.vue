@@ -5,9 +5,9 @@
   <button @click="$emit('update-activity', activity._id, activity.name, activity.activity_type )" class="update">Confirm Update</button>
 
   <div class="formatActivity">
+    <br>
     <b>{{"Activity Name :"}}</b>
     {{activity.name}}
-<br>
     <b>{{"Activity Type :"}}</b>
     {{activity.activity_type}}
   </div>
