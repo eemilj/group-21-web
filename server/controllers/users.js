@@ -24,6 +24,30 @@ const createUser = (req, res) => {
         });
 };
 
+const authenticateUser = (req, res) => {
+    var username = req.body.username;
+    var reqPassword = req.body.password;
+
+    User.findOne({ username: username}, (err, user) => {
+        if (user === null ) {
+            return res.status(404).json({ message: 'User not found.' });
+        }
+        if (reqPassword === user.password) {
+            res.status(200).json({
+                user: {
+                    id: user._id,
+                    username: user.username,
+                    admin: user.admin
+                }
+            });
+        } else {
+            res.json({ message: 'Wrong credentials. Try again.'});
+        }
+    }).catch(error => {
+        res.status(500).json({ error: error});
+    });
+};
+
 const getAllUsers = (req, res, next) => {
     User.find(function (err, users) {
         if (err) {
@@ -125,5 +149,6 @@ module.exports = {
     updateUserById,
     patchUserById,
     deleteUserById,
-    deleteAllUsers
+    deleteAllUsers,
+    authenticateUser
 };
