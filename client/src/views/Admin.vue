@@ -10,11 +10,11 @@
                 v-on:update-activityName="updateActivityName"
     />
     <button class="show" @click="showGroups" >Show All Groups</button>
-    <Groups v-bind:groups="groups" v-on:del-group="deleteOneGroup" /><Groups/>
+    <Groups v-bind:groups="groups" v-on:del-group="deleteOneGroup" />
 
     <button class="show" @click="showUsers" >Show All Users</button>
     <UpdateUser v-on:update-user="createNewUser"/>
-    <Users v-bind:users="users" v-on:del-user="deleteOneUser" v-on:update-user="updateUser"/><Users/>
+    <Users v-bind:users="users" v-on:del-user="deleteOneUser" v-on:update-user="updateUser"/>
 
   </div>
 </template>
@@ -46,7 +46,7 @@ export default {
       name: '',
       activity_type: '',
       id: '',
-      admin: ''
+      admin: Boolean
     }
   },
   methods: {
@@ -107,8 +107,9 @@ export default {
         .catch(err => console.log(err))
     },
     updateUser(id) {
+      var name3 = this.objectFromHereUser
       Api.patch(`/users/${id}`, {
-        admin: 'true'
+        admin: name3
       })
         .catch(err => console.log(err))
     },
