@@ -37,11 +37,12 @@ const authenticateUser = (req, res) => {
                 user: {
                     id: user._id,
                     username: user.username,
-                    admin: user.admin
+                    admin: user.admin,
+                    registrationDate: user.registrationDate
                 }
             });
         } else {
-            res.json({ message: 'Wrong credentials. Try again.'});
+            res.status(401).json({ message: 'Wrong credentials. Try again.'});
         }
     }).catch(error => {
         res.status(500).json({ error: error});
