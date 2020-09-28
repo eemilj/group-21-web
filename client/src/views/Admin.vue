@@ -1,18 +1,21 @@
 <template>
   <div id="admin">
     <h1>Admin Page</h1>
-    <button class="show" @click="showActivities" >Show All Activities</button>
+    <button class = "show" @click="showActivities" >Show All Activities</button>
     <button class="warning" @click="deleteActivities">Delete All Activities</button>
 
     <AddActivity v-on:add-activity="addActivity"/>
-    <UpdateActivity v-on:update-activity="createNewActivity"/>
-    <Activities v-bind:activities="activities" v-on:del-activity="deleteOneActivitiy" v-on:update-activity="updateActivity"/><Activities/>
+    <UpdateActivity v-on:update-activityName="createNewActivityName" v-on:update-activityType="createNewActivityType"/>
+    <Activities v-bind:activities="activities" v-on:del-activity="deleteOneActivitiy"
+                v-on:update-activityName="updateActivityName"
+                v-on:update-activityType="updateActivityType"/><Activities/>
 
     <button class="show" @click="showGroups" >Show All Groups</button>
     <Groups v-bind:groups="groups" v-on:del-group="deleteOneGroup" /><Groups/>
 
     <button class="show" @click="showUsers" >Show All Users</button>
-    <Users v-bind:users="users" v-on:del-user="deleteOneUser"/>
+    <UpdateUser v-on:update-user="createNewUser"/>
+    <Users v-bind:users="users" v-on:del-user="deleteOneUser" v-on:update-user="updateUser"/><Users/>
 
   </div>
 </template>
@@ -24,6 +27,7 @@ import AddActivity from './AddActivity'
 import UpdateActivity from './UpdateActivity'
 import Groups from './Groups'
 import Users from './Users'
+import UpdateUser from './UpdateUser'
 
 export default {
   name: 'admin',
@@ -32,7 +36,8 @@ export default {
     AddActivity,
     Activities,
     Groups,
-    Users
+    Users,
+    UpdateUser
   },
   data() {
     return {
@@ -42,8 +47,7 @@ export default {
       name: '',
       activity_type: '',
       id: '',
-      ObjectFromHere: '',
-      objectFromHereUser: ''
+      admin: ''
     }
   },
   methods: {
@@ -56,10 +60,20 @@ export default {
       })
         .catch(err => console.log(err))
     },
-    createNewActivity(newActivity) {
+    createNewActivityName(newActivity) {
       // eslint-disable-next-line camelcase
       const { name } = newActivity
       this.objectFromHere = name
+    },
+    createNewActivityType(newActivity2) {
+      // eslint-disable-next-line camelcase
+      const { type } = newActivity2
+      this.objectFromHere2 = type
+    },
+    createNewUser(newUser) {
+      // eslint-disable-next-line camelcase
+      const { name2 } = newUser
+      this.objectFromHereUser = name2
     },
     showActivities() {
       Api.get('/activities')
@@ -91,10 +105,24 @@ export default {
           console.log(error)
         })
     },
-    updateActivity(id) {
+    updateActivityName(id) {
       var name = this.objectFromHere
       Api.patch(`/activities/${id}`, {
         name: name
+      })
+        .catch(err => console.log(err))
+    },
+    updateActivityType(id) {
+      var type2 = this.objectFromHere2
+      Api.patch(`/activities/${id}`, {
+        activity_type: type2
+      })
+        .catch(err => console.log(err))
+    },
+    updateUser(id) {
+      var name3 = this.objectFromHereUser
+      Api.patch(`/users/${id}`, {
+        admin: name3
       })
         .catch(err => console.log(err))
     },

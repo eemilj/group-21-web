@@ -1,11 +1,19 @@
 <template>
+  <div>
   <div class="margin">
-    <form class="submit" @submit="UpdateActivity">
+    <form class="submit" @submit="UpdateActivityName">
       <input class="updateClass" type="text" v-model="name" name="name" placeholder="Update Activity Name ...">
-      <input class="updateClass" type="text" v-model="activity_type" name="activity_type" placeholder="Update Activity Type...">
-
       <input type="submit" value="Submit" class="btn"/>
-    </form>
+  </form>
+  </div>
+
+  <div class="margin">
+  <form class="submit" @submit="UpdateActivityType">
+      <input class="updateClass" type="text" v-model="activity_type" name="activity_type" placeholder="Update Activity Type...">
+        <input type="submit" value="Submit" class="btn"/>
+
+      </form>
+  </div>
   </div>
 </template>
 
@@ -16,22 +24,24 @@ export default {
   data() {
     return {
       name: '',
-      activity_type: '',
-      id: ''
+      activity_type: ''
     }
   },
   methods: {
-    UpdateActivity(e) {
+    UpdateActivityName(e) {
       e.preventDefault()
-      const updateActivity = {
-        id: this.id,
-        name: this.name,
-        activity_type: this.activity_type
-
+      const updateActivityName = {
+        name: this.name
       }
-      this.$emit('update-activity', updateActivity)
-      this.id = ''
+      this.$emit('update-activityName', updateActivityName)
       this.name = ''
+    },
+    UpdateActivityType(e) {
+      e.preventDefault()
+      const updateActivityType = {
+        activity_type: this.activity_type
+      }
+      this.$emit('update-activityType', updateActivityType)
       this.activity_type = ''
     }
   }

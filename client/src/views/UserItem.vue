@@ -2,6 +2,7 @@
   <div class='activity-item' >
 
     <button @click="$emit('del-user', user._id )" class="del">x</button>
+    <button @click="$emit('update-user', user._id)" class="update">Confirm Update</button>
 
     <div class="formatActivity">
       <b>{{"User Username :"}}</b>
@@ -46,7 +47,7 @@ export default {
   float: right;
 }
 .update {
-  background: #9fcdff;
+  background: #ffeeba;
   color: black;
   border: none;
   margin-right: 40px;

@@ -5,6 +5,7 @@
 
       <UserItem v-bind:user="user"
                  v-on:del-user="$emit('del-user', user._id)"
+                 v-on:update-user="$emit('update-user', user._id)"
       />
 
     </div>

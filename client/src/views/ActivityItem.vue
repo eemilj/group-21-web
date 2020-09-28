@@ -2,7 +2,8 @@
 <div class='activity-item' >
 
   <button @click="$emit('del-activity', activity._id, activity.name, activity.activity_type )" class="del">x</button>
-  <button @click="$emit('update-activity', activity._id, activity.name, activity.activity_type )" class="update">Confirm Update</button>
+  <button @click="$emit('update-activityName', activity._id, activity.name, activity.activity_type )" class="update"> Update Name</button>
+  <button @click="$emit('update-activityType', activity._id, activity.name, activity.activity_type )" class="update"> Update Type</button>
 
   <div class="formatActivity">
     <br>
