@@ -5,11 +5,10 @@
     <button class="warning" @click="deleteActivities">Delete All Activities</button>
 
     <AddActivity v-on:add-activity="addActivity"/>
-    <UpdateActivity v-on:update-activityName="createNewActivityName" v-on:update-activityType="createNewActivityType"/>
+    <UpdateActivity v-on:update-activityName="createNewActivityName"/>
     <Activities v-bind:activities="activities" v-on:del-activity="deleteOneActivitiy"
                 v-on:update-activityName="updateActivityName"
-                v-on:update-activityType="updateActivityType"/><Activities/>
-
+    />
     <button class="show" @click="showGroups" >Show All Groups</button>
     <Groups v-bind:groups="groups" v-on:del-group="deleteOneGroup" /><Groups/>
 
@@ -65,11 +64,6 @@ export default {
       const { name } = newActivity
       this.objectFromHere = name
     },
-    createNewActivityType(newActivity2) {
-      // eslint-disable-next-line camelcase
-      const { type } = newActivity2
-      this.objectFromHere2 = type
-    },
     createNewUser(newUser) {
       // eslint-disable-next-line camelcase
       const { name2 } = newUser
@@ -112,17 +106,9 @@ export default {
       })
         .catch(err => console.log(err))
     },
-    updateActivityType(id) {
-      var type2 = this.objectFromHere2
-      Api.patch(`/activities/${id}`, {
-        activity_type: type2
-      })
-        .catch(err => console.log(err))
-    },
     updateUser(id) {
-      var name3 = this.objectFromHereUser
       Api.patch(`/users/${id}`, {
-        admin: name3
+        admin: 'true'
       })
         .catch(err => console.log(err))
     },

@@ -6,7 +6,6 @@
       <ActivityItem v-bind:activity="activity"
                     v-on:del-activity="$emit('del-activity', activity._id)"
                     v-on:update-activityName="$emit('update-activityName', activity._id)"
-                    v-on:update-activityType="$emit('update-activityType', activity._id)"
       />
 
     </div>

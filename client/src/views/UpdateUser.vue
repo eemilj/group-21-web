@@ -1,7 +1,7 @@
 <template>
   <div class="margin">
     <form class="submit" @submit="UpdateUser">
-      <input class="updateClass" type="text" v-model="admin" name="admin" placeholder="Update Admin Status ...">
+      <input class="updateClass" type="text" v-model="name" name="admin" placeholder="Update Admin Status ...">
 
       <input type="submit" value="Submit" class="btn"/>
     </form>
@@ -14,7 +14,7 @@ export default {
 
   data() {
     return {
-      admin: ''
+      admin: false
     }
   },
   methods: {
@@ -24,7 +24,7 @@ export default {
         admin: this.admin
       }
       this.$emit('update-activity', updateUser)
-      this.admin = ''
+      this.admin = false
     }
   }
 }

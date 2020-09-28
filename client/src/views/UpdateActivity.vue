@@ -7,13 +7,6 @@
   </form>
   </div>
 
-  <div class="margin">
-  <form class="submit" @submit="UpdateActivityType">
-      <input class="updateClass" type="text" v-model="activity_type" name="activity_type" placeholder="Update Activity Type...">
-        <input type="submit" value="Submit" class="btn"/>
-
-      </form>
-  </div>
   </div>
 </template>
 
