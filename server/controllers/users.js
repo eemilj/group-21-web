@@ -30,7 +30,7 @@ const getAllUsers = (req, res, next) => {
             return next(err);
         }
         res.json(
-            {"users": users}
+            users
         );
     });
 }

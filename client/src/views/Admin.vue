@@ -3,34 +3,47 @@
     <h1>Admin Page</h1>
     <button class="show" @click="showActivities" >Show All Activities</button>
     <button class="warning" @click="deleteActivities">Delete All Activities</button>
+
     <AddActivity v-on:add-activity="addActivity"/>
     <UpdateActivity v-on:update-activity="createNewActivity"/>
-
     <Activities v-bind:activities="activities" v-on:del-activity="deleteOneActivitiy" v-on:update-activity="updateActivity"/><Activities/>
+
+    <button class="show" @click="showGroups" >Show All Groups</button>
+    <Groups v-bind:groups="groups" v-on:del-group="deleteOneGroup" /><Groups/>
+
+    <button class="show" @click="showUsers" >Show All Users</button>
+    <Users v-bind:users="users" v-on:del-user="deleteOneUser"/>
+
   </div>
 </template>
 
 <script>
+import { Api } from '@/Api'
 import Activities from './Activities'
 import AddActivity from './AddActivity'
-
-import { Api } from '@/Api'
 import UpdateActivity from './UpdateActivity'
+import Groups from './Groups'
+import Users from './Users'
 
 export default {
   name: 'admin',
   components: {
     UpdateActivity,
     AddActivity,
-    Activities
+    Activities,
+    Groups,
+    Users
   },
   data() {
     return {
       activities: [],
+      groups: [],
+      users: [],
       name: '',
       activity_type: '',
       id: '',
-      objectFromHere: 'hi'
+      ObjectFromHere: '',
+      objectFromHereUser: ''
     }
   },
   methods: {
@@ -58,7 +71,27 @@ export default {
           console.log(error)
         })
     },
-    updateActivity(id, newData) {
+    showGroups() {
+      Api.get('/groups')
+        .then(response => {
+          this.groups = response.data
+        })
+        .catch(error => {
+          this.groups = []
+          console.log(error)
+        })
+    },
+    showUsers() {
+      Api.get('/users')
+        .then(response => {
+          this.users = response.data
+        })
+        .catch(error => {
+          this.users = []
+          console.log(error)
+        })
+    },
+    updateActivity(id) {
       var name = this.objectFromHere
       Api.patch(`/activities/${id}`, {
         name: name
@@ -91,6 +124,26 @@ export default {
       Api.delete(`/activities/${id}`)
         .then(response => {
           this.activities = this.activities.filter(activity => activity.id !== id
+          )
+            .catch(error => {
+              console.log(error)
+            })
+        })
+    },
+    deleteOneGroup(id) {
+      Api.delete(`/groups/${id}`)
+        .then(response => {
+          this.groups = this.groups.filter(group => group.id !== id
+          )
+            .catch(error => {
+              console.log(error)
+            })
+        })
+    },
+    deleteOneUser(id) {
+      Api.delete(`/users/${id}`)
+        .then(response => {
+          this.users = this.users.filter(user => user.id !== id
           )
             .catch(error => {
               console.log(error)

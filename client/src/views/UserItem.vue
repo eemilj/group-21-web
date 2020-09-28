@@ -1,16 +1,13 @@
 <template>
-<div class='activity-item' >
+  <div class='user-item' >
 
-  <button @click="$emit('del-activity', activity._id, activity.name, activity.activity_type )" class="del">x</button>
-  <button @click="$emit('update-activity', activity._id, activity.name, activity.activity_type )" class="update">Confirm Update</button>
+    <button @click="$emit('del-user', user._id )" class="del">x</button>
 
-  <div class="formatActivity">
-    <b>{{"Activity Name :"}}</b>
-    {{activity.name}}
-<br>
-    <b>{{"Activity Type :"}}</b>
-    {{activity.activity_type}}
-  </div>
+    <div class="formatActivity">
+      <b>{{"User Username :"}}</b>
+      {{user}}
+      <br>
+    </div>
 
   </div>
 </template>
@@ -18,8 +15,8 @@
 <script>
 
 export default {
-  name: 'ActivityItem',
-  props: ['activity']
+  name: 'UserItem',
+  props: ['user']
 }
 
 </script>
