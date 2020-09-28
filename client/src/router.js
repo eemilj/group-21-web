@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import Activities from './views/Activities.vue'
 import ViewGroup from './views/ViewGroup'
+import Groups from './views/Groups'
 
 Vue.use(Router)
 
@@ -30,6 +31,11 @@ export default new Router({
       path: '/groups/:id',
       name: 'group',
       component: ViewGroup
+    },
+    {
+      path: '/groups',
+      name: 'groups',
+      component: Groups
     }
   ]
 })

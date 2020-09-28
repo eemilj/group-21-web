@@ -1,11 +1,18 @@
 <template>
   <div class="reviewStyle">
-    <form @submit="addReview">
-      <input type="text" v-model="subject" name="subject" placeholder="Subject">
+    <form @submit="addReview" class="reviewBox">
+      <input type="text" v-model="subject" name="subject" placeholder="Subject" class="subject">
       <br>
-      <input type="text" v-model="content" name="content" placeholder="Write review">
+      <textarea v-model="content" name="content" placeholder="Write review" class="content"/>
       <br>
-      <input type="number" v-model="rating" name="rating" placeholder="Rating">
+      <select v-model="rating" name="rating">
+        <option disabled value="">Choose rating</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select>
       <br>
       <input type="submit" value="Submit" class="btn"/>
     </form>
@@ -37,8 +44,9 @@ export default {
       }
       this.$emit('add-review', newReview)
       this.id = ''
+      this.reviewee = ''
       this.name = ''
-      this.location = ''
+      this.rating = ''
       this.content = ''
     }
   }
@@ -47,8 +55,21 @@ export default {
 
 <style scoped>
 .reviewStyle{
+  justify-self: center;
   child-align: left;
-  margin-bottom: 100px;
   margin-top: 50px;
+}
+.subject{
+}
+.content{
+  margin-top: 10px;
+  min-width: 400px;
+  min-height: 200px;
+  resize: inherit;
+}
+.btn{
+  margin-top: 10px;
+  background: #ffffff;
+  border: 1px #ccc dotted;
 }
 </style>
