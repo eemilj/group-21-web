@@ -13,7 +13,6 @@
     <Groups v-bind:groups="groups" v-on:del-group="deleteOneGroup" />
 
     <button class="show" @click="showUsers" >Show All Users</button>
-    <UpdateUser v-on:update-user="createNewUser"/>
     <Users v-bind:users="users" v-on:del-user="deleteOneUser" v-on:update-user="updateUser"/>
 
   </div>
@@ -26,7 +25,6 @@ import AddActivity from './AddActivity'
 import UpdateActivity from './UpdateActivity'
 import Groups from './Groups'
 import Users from './Users'
-import UpdateUser from './UpdateUser'
 
 export default {
   name: 'admin',
@@ -35,8 +33,7 @@ export default {
     AddActivity,
     Activities,
     Groups,
-    Users,
-    UpdateUser
+    Users
   },
   data() {
     return {
@@ -103,13 +100,6 @@ export default {
       var name = this.objectFromHere
       Api.patch(`/activities/${id}`, {
         name: name
-      })
-        .catch(err => console.log(err))
-    },
-    updateUser(id) {
-      var name3 = this.objectFromHereUser
-      Api.patch(`/users/${id}`, {
-        admin: name3
       })
         .catch(err => console.log(err))
     },

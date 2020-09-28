@@ -2,7 +2,6 @@
   <div class='activity-item' >
 
     <button @click="$emit('del-user', user._id )" class="del">x</button>
-    <button @click="$emit('update-user', user._id)" class="update">Confirm Update</button>
 
     <div class="formatActivity">
       <b>{{"User Username :"}}</b>
