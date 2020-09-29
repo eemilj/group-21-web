@@ -1,7 +1,7 @@
 <template>
   <div id="activities">
 
-    <div v-bind:key="activity.id" v-for="activity in activities">
+    <div v-bind:key="activity._id" v-for="activity in activities">
 
       <ActivityItem v-bind:activity="activity"
                     v-on:del-activity="$emit('del-activity', activity._id)"
