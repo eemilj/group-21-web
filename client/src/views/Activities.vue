@@ -2,8 +2,7 @@
   <div >
     <div class="header"><em>Activities</em> </div>
 
-    <ActivitiesForClient class="coloumns" v-bind:activities2="activities3" v-on:enter-activity="goToActivity" /><ActivitiesForClient/>
-    <button @click="$emit('update-activityName', activity._id )" class="update"> Update Name</button>
+    <ActivitiesForClient class="coloumns" v-bind:activities2="activities3" v-on:get-activity="getActivityID" /><ActivitiesForClient/>
 
   </div>
 </template>
@@ -17,7 +16,8 @@ export default {
   components: { ActivitiesForClient },
   data() {
     return {
-      activities3: []
+      activities3: [],
+      result: ''
     }
   },
   mounted: function () {
@@ -34,8 +34,17 @@ export default {
           console.log(error)
         })
     },
-    goToActivity(id) {
-      this.$router.push('/activities/' + id + '/groups/')
+    getActivityID(id) {
+      Api.get(`/activities/${id}`)
+        .then(response => {
+          this.result = this.result.filter(activity => activity.id === id,
+            this.$router.push('/activities/' + id + '/groups/'),
+            console.log(this.result)
+          )
+            .catch(error => {
+              console.log(error)
+            })
+        })
     }
   }
 }

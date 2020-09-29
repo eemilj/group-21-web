@@ -3,7 +3,7 @@
 
     <div v-bind:key="activity4.id" v-for="activity4 in activities2">
 
-      <ActivityItemForClient v-bind:activity="activity4"/>
+      <ActivityItemForClient v-bind:activity="activity4" v-on:get-activity="$emit('get-activity', activity4._id)"/>
 
     </div>
 

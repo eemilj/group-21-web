@@ -7,7 +7,7 @@
 
     <div class = "title"> <b> Activity Name</b></div>
     <div class = "contentName"> <b>{{activity.name}}</b></div>
-      <button @click="$emit('enter-activity', activity._id )" class="enter">Enter</button>
+      <button @click="$emit('get-activity', activity._id )"  class="enter">Enter</button>
 
     </div>
 
