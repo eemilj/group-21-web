@@ -20,7 +20,7 @@
 
             <li class="nav-item">
               <a class="nav-link" href="">
-                <router-link to="/ActivitiesUser">Activities</router-link>
+                <router-link to="/Activities">Activities</router-link>
               </a>
             </li>
 

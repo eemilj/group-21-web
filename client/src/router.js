@@ -23,8 +23,8 @@ export default new Router({
       component: Login
     },
     {
-      path: '/ActivitiesUser',
-      name: 'ActivitiesUser',
+      path: '/Activities',
+      name: 'Activities',
       component: ActivitiesUser
     },
     {

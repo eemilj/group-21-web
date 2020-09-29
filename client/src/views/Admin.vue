@@ -6,7 +6,7 @@
 
     <AddActivity v-on:add-activity="addActivity"/>
     <UpdateActivity v-on:update-activityName="createNewActivityName"/>
-    <Activities v-bind:activities="activities" v-on:del-activity="deleteOneActivitiy"
+    <ActivitiesAdmin v-bind:activities="activities" v-on:del-activity="deleteOneActivitiy"
                 v-on:update-activityName="updateActivityName"
     />
     <button class="show" @click="showGroups" >Show All Groups</button>
@@ -20,7 +20,7 @@
 
 <script>
 import { Api } from '@/Api'
-import Activities from './Activities'
+import ActivitiesAdmin from './ActivitiesAdmin'
 import AddActivity from './AddActivity'
 import UpdateActivity from './UpdateActivity'
 import Groups from './Groups'
@@ -31,7 +31,7 @@ export default {
   components: {
     UpdateActivity,
     AddActivity,
-    Activities,
+    ActivitiesAdmin,
     Groups,
     Users
   },

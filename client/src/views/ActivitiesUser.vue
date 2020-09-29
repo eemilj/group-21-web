@@ -2,7 +2,7 @@
   <div >
   <div class="header"><em>Activities</em> </div>
 
-    <ActivitiesForClient class="coloumns" v-bind:activities2="activities3" /><ActivitiesForClient/>
+    <ActivitiesForClient class="coloumns" v-bind:activities2="activities3" v-on:enter-activity="goToActivity" /><ActivitiesForClient/>
 
   </div>
 </template>
@@ -32,6 +32,9 @@ export default {
           this.activities3 = []
           console.log(error)
         })
+    },
+    goToActivity(id) {
+      this.$router.push('/activities/' + id + '/groups/')
     }
   }
 }
