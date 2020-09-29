@@ -3,6 +3,7 @@
     <div class="header"><em>Activities</em> </div>
 
     <ActivitiesForClient class="coloumns" v-bind:activities2="activities3" v-on:enter-activity="goToActivity" /><ActivitiesForClient/>
+    <button @click="$emit('update-activityName', activity._id )" class="update"> Update Name</button>
 
   </div>
 </template>
