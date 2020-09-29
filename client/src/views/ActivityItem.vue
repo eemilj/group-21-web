@@ -8,6 +8,7 @@
     <br>
     <b>{{"Activity Name :"}}</b>
     {{activity.name}}
+    <br>
     <b>{{"Activity Type :"}}</b>
     {{activity.activity_type}}
   </div>
