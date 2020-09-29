@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import Activities from './views/Activities.vue'
-import Admin from './views/Admin.vue'
+import Admin from '../Components/Admin.vue'
 import Account from './views/Account.vue'
 
 Vue.use(Router)

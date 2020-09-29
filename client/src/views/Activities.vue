@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import ActivitiesForClient from './ActivitiesForClient'
+import ActivitiesForClient from '../../Components/ActivitiesForClient'
 import { Api } from '@/Api'
 
 export default {
