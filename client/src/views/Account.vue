@@ -1,34 +1,122 @@
 <template>
   <div class="container">
     <header class="jumbotron">
-      <h3>
+      <h2>
         Welcome <strong>{{currentUser.user.username}}</strong>!
-      </h3>
+      </h2>
     </header>
+    <div class="col-md-6">
+        <h3>User Information</h3>
+        <p>
+          <strong align="left">Id:</strong>
+          {{currentUser.user.id}}
+        </p>
+        <p>
+          <strong>Registration date:</strong>
+          {{currentUser.user.registrationDate}}
+        </p>
+        <p>
+          <strong>Admin role:</strong>
+          {{currentUser.user.admin}}
+        </p>
+    </div>
+    <div class="col-md-6">
+    <h3>Update your Password</h3>
+    <form name="form" @submit.prevent="handlePasswordUpdate">
+      <div v-if="!successful">
+        <div class="form-group">
+          <label>Password</label>
+          <input
+            v-model="newPassword"
+            v-validate="'required|min:6|max:40'"
+            name="password"
+            type="password"
+            class="form-control"
+            placeholder="Enter your new password"
+            ref="password">
+          <div
+            v-if="submitted && errors.has('password')"
+            class="alert-danger"
+          >{{errors.first('password')}}</div>
+        </div>
 
-    <p>
-      <strong>Id:</strong>
-      {{currentUser.user.id}}
-    </p>
+        <div class="form-group">
+          <label>Confirm password</label>
+          <input
+            v-validate="'required|confirmed:password'"
+            name="password_confirmation"
+            type="password"
+            class="form-control"
+            placeholder="Type the password again"
+            data-vv-as="password">
+        </div>
 
-    <p>
-      <strong>Registration date:</strong>
-      {{currentUser.user.registrationDate}}
-    </p>
+        <div class="alert alert-danger" v-show="errors.any()">
+          <div v-if="errors.has('password')">
+            {{ errors.first('password') }}
+          </div>
+          <div v-if="errors.has('password_confirmation')">
+            {{ errors.first('password_confirmation') }}
+          </div>
+        </div>
 
-    <p>
-      <strong>Admin role:</strong>
-      {{currentUser.user.admin}}
-    </p>
+        <div class="form-group">
+          <button class="btn btn-primary btn-block">Update</button>
+        </div>
+      </div>
+    </form>
+
+    <div
+      v-if="message"
+      class="alert"
+      :class="successful ? 'alert-success' : 'alert-danger'"
+    >{{message}}
+    </div>
+  </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'Account',
+  data() {
+    return {
+      newPassword: '',
+      submitted: false,
+      successful: false,
+      message: ''
+    }
+  },
   computed: {
     currentUser() {
       return this.$store.state.auth.user
+    }
+  },
+  methods: {
+    handlePasswordUpdate() {
+      this.message = ''
+      this.submitted = true
+      this.$validator.validate().then(isValid => {
+        if (isValid) {
+          axios.patch('http://localhost:3000/api/users/' + this.$store.state.auth.user.user.id, {
+            password: this.newPassword
+          }).then(
+            (response) => {
+              this.message = 'Your password has been updated successfully!'
+              this.successful = true
+            },
+            error => {
+              this.message =
+                (error.response && error.response.data && error.response.data.message) ||
+                error.message ||
+                error.toString()
+              this.successful = false
+            }
+          )
+        }
+      })
     }
   },
   mounted() {
