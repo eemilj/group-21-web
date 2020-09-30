@@ -58,6 +58,8 @@ input[type="submit"]{
 }
 .submit {
   background-color: lightgrey;
+  width: 25%;
+
 }
 .margin {
   margin: 50px;

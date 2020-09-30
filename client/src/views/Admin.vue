@@ -20,11 +20,11 @@
 
 <script>
 import { Api } from '@/Api'
-import ActivitiesAdmin from './ActivitiesAdmin'
-import AddActivity from './AddActivity'
-import UpdateActivity from './UpdateActivity'
-import Groups from './Groups'
-import Users from './Users'
+import ActivitiesAdmin from '../../Components/ActivitiesAdmin'
+import AddActivity from '../../Components/AddActivity'
+import UpdateActivity from '../../Components/UpdateActivity'
+import Groups from '../../Components/Groups'
+import Users from '../../Components/Users'
 
 export default {
   name: 'admin',
@@ -55,6 +55,9 @@ export default {
         activity_type
       })
         .catch(err => console.log(err))
+        .then(() => {
+          this.showActivities()
+        })
     },
     createNewActivityName(newActivity) {
       // eslint-disable-next-line camelcase
@@ -102,6 +105,9 @@ export default {
         name: name
       })
         .catch(err => console.log(err))
+        .then(() => {
+          this.showActivities()
+        })
     },
     deleteActivity() {
       Api.delete('/activities/5f6f07f83466b51c6411481e')
@@ -124,35 +130,44 @@ export default {
         .catch(error => {
           console.log(error)
         })
+        .then(() => {
+          this.showActivities()
+        })
     },
     deleteOneActivitiy(id) {
       Api.delete(`/activities/${id}`)
         .then(response => {
-          this.activities = this.activities.filter(activity => activity.id !== id
-          )
-            .catch(error => {
-              console.log(error)
-            })
+          this.activities = this.activities.filter(activity => activity.id !== id)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(() => {
+          this.showActivities()
         })
     },
     deleteOneGroup(id) {
       Api.delete(`/groups/${id}`)
         .then(response => {
-          this.groups = this.groups.filter(group => group.id !== id
-          )
-            .catch(error => {
-              console.log(error)
-            })
+          this.groups = this.groups.filter(group => group.id !== id)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(() => {
+          this.showActivities()
         })
     },
     deleteOneUser(id) {
       Api.delete(`/users/${id}`)
         .then(response => {
-          this.users = this.users.filter(user => user.id !== id
-          )
-            .catch(error => {
-              console.log(error)
-            })
+          this.users = this.users.filter(user => user.id !== id)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(() => {
+          this.showActivities()
         })
     }
   }
