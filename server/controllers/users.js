@@ -12,7 +12,7 @@ const createUser = (req, res) => {
         .then(result => {
             console.log(result);
             res.status(201).json({
-                message: 'Handling post request to users.',
+                message: 'You have successfully registered!',
                 createdUser : result
             });
         })
@@ -54,9 +54,7 @@ const getAllUsers = (req, res, next) => {
         if (err) {
             return next(err);
         }
-        res.json(
-            {"users": users}
-        );
+        res.json({users});
     });
 }
 
