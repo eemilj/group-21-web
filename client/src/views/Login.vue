@@ -52,6 +52,9 @@
           <div v-if="message" class="alert alert-danger" role="alert">{{message}}</div>
         </div>
       </form>
+      <div class="text">
+        Not a member yet? <a href="/register">Sign up!</a>
+      </div>
     </div>
   </div>
 </template>

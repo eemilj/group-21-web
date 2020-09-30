@@ -76,6 +76,9 @@
         class="alert"
         :class="successful ? 'alert-success' : 'alert-danger'"
       >{{message}}</div>
+      <div class="text">
+        Already a member? <a href="/login">Login!</a>
+      </div>
     </div>
   </div>
 </template>
