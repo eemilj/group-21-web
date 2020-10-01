@@ -1,16 +1,12 @@
 <template>
   <div class="col-md-12">
-    <div class="reg-description">
-      <h2>
-        Register an account!
-      </h2>
-    </div>
     <div class="card card-container">
       <img
         id="profile-img"
         src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
         class="profile-img-card"
       />
+      <h3>Sign up</h3>
       <form name="form" @submit.prevent="handleRegister">
         <div v-if="!successful">
           <div class="form-group">
@@ -77,7 +73,7 @@
         :class="successful ? 'alert-success' : 'alert-danger'"
       >{{message}}</div>
       <div class="text">
-        Already a member? <a href="/login">Login!</a>
+        Already a member? <a href="/login">Sign in!</a>
       </div>
     </div>
   </div>

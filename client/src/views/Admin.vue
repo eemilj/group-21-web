@@ -35,6 +35,9 @@ export default {
     if (!this.currentUser) {
       this.$router.push('/login')
       alert('Access denied. Authentication is required.')
+    } else if (!this.currentUser.user.admin) {
+      this.$router.push('/account')
+      alert('Access denied.')
     }
   }
 }

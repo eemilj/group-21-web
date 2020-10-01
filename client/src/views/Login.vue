@@ -1,16 +1,12 @@
 <template>
   <div class="col-md-12">
-    <div class="login-description">
-      <h2>
-        Login to the Hobby Hub!
-      </h2>
-    </div>
     <div class="card card-container">
       <img
         id="profile-img"
         src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
         class="profile-img-card"
       />
+      <h3>Sign in</h3>
       <form name="form" @submit.prevent="handleLogin">
         <div class="form-group">
           <label>Username</label>
