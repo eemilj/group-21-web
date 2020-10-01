@@ -4,6 +4,7 @@
     <div class="header"> {{group.name}} </div>
     <div class="description">
       <h3>{{group.location}}</h3>
+      <h4>{{group.description}}</h4>
     </div>
     <div class="jumbotron">
       <h3> Reviews </h3>
