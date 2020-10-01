@@ -20,7 +20,7 @@
 
             <li class="nav-item">
               <a class="nav-link" href="">
-                <router-link to="/activities">Activities</router-link>
+                <router-link to="/Activities">Activities</router-link>
               </a>
             </li>
 
@@ -38,7 +38,7 @@
 
             <li class="nav-item">
               <a class="nav-link" href="">
-                <router-link to="/account">Admin</router-link>
+                <router-link to="/admin">Admin</router-link>
               </a>
             </li>
           </ul>

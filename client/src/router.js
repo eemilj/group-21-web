@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import Activities from './views/Activities.vue'
+import Admin from './views/Admin.vue'
+import Account from './views/Account.vue'
 import ViewGroup from './views/ViewGroup'
 import Groups from './views/Groups'
 
@@ -23,9 +25,19 @@ export default new Router({
       component: Login
     },
     {
-      path: '/activities',
-      name: 'activities',
+      path: '/Activities',
+      name: 'Activities',
       component: Activities
+    },
+    {
+      path: '/account',
+      name: 'account',
+      component: Account
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: Admin
     },
     {
       path: '/groups/:id',
