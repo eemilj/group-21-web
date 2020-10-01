@@ -16,16 +16,20 @@ const postReview = (req, res, next) => {
 
 const getAllReviews = (req, res, next) => {
     var filter = req.query.reviewee;
-    ReviewSchema.find(function(err, reviews){
+    ReviewSchema.find(function(err, reviews, next){
         if(err){
             return next(err);
         }
+        if(reviews.length === 0){
+            return res.status(404).json({"message": "No reviews found"});
+        }
         if(filter){
             res.json(reviews.filter (function (e) {
-                return filter == e.reviewee;
+                return filter === e.reviewee;
             }));
         } else {
-            res.json(reviews);
+
+            res.status(200).json(reviews);
         }
     });
 };
