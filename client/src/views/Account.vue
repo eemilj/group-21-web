@@ -5,7 +5,7 @@
         Welcome <strong>{{currentUser.user.username}}</strong>!
       </h2>
     </header>
-    <div class="col-md-6">
+    <div class="col-md-12">
         <h3>User Information</h3>
         <p>
           <strong align="left">Id:</strong>
@@ -20,7 +20,7 @@
           {{currentUser.user.admin}}
         </p>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-12">
     <h3>Update your Password</h3>
     <form name="form" @submit.prevent="handlePasswordUpdate">
       <div v-if="!successful">
@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { Api } from '@/Api'
 
 export default {
   name: 'Account',
@@ -100,7 +100,7 @@ export default {
       this.submitted = true
       this.$validator.validate().then(isValid => {
         if (isValid) {
-          axios.patch('http://localhost:3000/api/users/' + this.$store.state.auth.user.user.id, {
+          Api.patch('http://localhost:3000/api/users/' + this.$store.state.auth.user.user.id, {
             password: this.newPassword
           }).then(
             (response) => {
