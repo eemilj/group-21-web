@@ -26,8 +26,17 @@ export default {
     AddGroup,
     GroupItem
   },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user
+    }
+  },
   mounted() {
-    this.getGroups()
+    if (!this.currentUser) {
+      this.$router.push('/login')
+    } else {
+      this.getGroups()
+    }
   },
   data() {
     return {

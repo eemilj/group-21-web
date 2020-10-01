@@ -37,9 +37,18 @@ export default {
       reviews: []
     }
   },
-  mounted: function () {
-    this.showGroup()
-    this.getReviews()
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user
+    }
+  },
+  mounted() {
+    if (!this.currentUser) {
+      this.$router.push('/login')
+    } else {
+      this.showGroup()
+      this.getReviews()
+    }
   },
   methods: {
     showGroup() {

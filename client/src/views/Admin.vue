@@ -46,6 +46,18 @@ export default {
       admin: Boolean
     }
   },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user
+    }
+  },
+  mounted() {
+    if (!this.currentUser) {
+      this.$router.push('/login')
+    } else if (!this.currentUser.user.admin) {
+      this.$router.push('/account')
+    }
+  },
   methods: {
     addActivity(newActivity) {
       // eslint-disable-next-line camelcase
