@@ -1507,10 +1507,7 @@
 							"pm.test(\"Reviews found\", function(){\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
-							"\r",
-							"pm.test(\"Reviews parsed as json, is an object\", function(){\r",
-							"    pm.expect(jsonData).to.be.an(\"object\");\r",
-							"})"
+							"\r"
 						],
 						"type": "text/javascript"
 					}

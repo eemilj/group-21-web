@@ -30,12 +30,13 @@ var groupSchema = new Schema({
 
     startDate: {
         type: Date,
-        required: true
     },
 
     endDate: {
         type: Date,
-        required: true
+    },
+    description: {
+        type: String
     },
 
     thumbnail: {

@@ -5,6 +5,8 @@ import Login from './views/Login.vue'
 import Activities from './views/Activities.vue'
 import Admin from './views/Admin.vue'
 import Account from './views/Account.vue'
+import ViewGroup from './views/ViewGroup'
+import Groups from './views/Groups'
 
 Vue.use(Router)
 
@@ -36,6 +38,16 @@ export default new Router({
       path: '/admin',
       name: 'admin',
       component: Admin
+    },
+    {
+      path: '/groups/:id',
+      name: 'group',
+      component: ViewGroup
+    },
+    {
+      path: '/groups',
+      name: 'groups',
+      component: Groups
     }
   ]
 })
