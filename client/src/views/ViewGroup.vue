@@ -50,7 +50,9 @@ export default {
     },
     deleteGroup() {
       Api.delete('/groups/' + this.$route.params.id)
-      this.$router.push('/groups/')
+        .then(() => {
+          this.$router.push('/activities/')
+        })
     },
     getReviews() {
       Api.get('/reviews?reviewee=' + this.$route.params.id)
@@ -63,10 +65,18 @@ export default {
       Api.post('/reviews', {
         subject, content, rating, reviewee
       })
-        .catch(err => console.log(err))
+        .catch(err => {
+          console.log(err)
+        })
+        .then(() => {
+          this.getReviews()
+        })
     },
     deleteReview(id) {
       Api.delete('/reviews/' + id)
+        .then(() => {
+          this.getReviews()
+        })
     },
     hideEditReview() {
       this.showEditModal = false

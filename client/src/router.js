@@ -45,7 +45,7 @@ export default new Router({
       component: ViewGroup
     },
     {
-      path: '/groups',
+      path: '/activities/:id/groups',
       name: 'groups',
       component: Groups
     }

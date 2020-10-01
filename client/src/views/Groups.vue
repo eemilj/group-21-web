@@ -36,17 +36,23 @@ export default {
   },
   methods: {
     getGroups() {
-      Api.get('/groups')
+      Api.get('/activities/' + this.$route.params.id + '/groups')
         .then(response => {
-          this.groups = response.data.groups
+          this.groups = response.data
+          console.log(response.data)
         })
     },
     addGroup(newGroup) {
       const { name, activity, location, description } = newGroup
-      Api.post('/groups', {
+      Api.post('/activities/' + this.$route.params.id + '/groups', {
         name, activity, location, description
       })
-        .catch(err => console.log(err))
+        .catch(error => {
+          console.log(error)
+        })
+        .then(() => {
+          this.getGroups()
+        })
     }
   }
 }

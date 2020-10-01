@@ -1,9 +1,6 @@
 <template>
   <div class="reviewItem">
-    <b-dropdown id="dropdown-1" text="Edit" class="m-md-2">
-      <b-dropdown-item @click="$emit('edit-review', review._id)" class="edit">Edit</b-dropdown-item>
-      <b-dropdown-item @click="$emit('del-review', review._id)" class="delete">Delete</b-dropdown-item>
-    </b-dropdown>
+      <b-button @click="$emit('del-review', review._id)" class="m-md-2">Delete</b-button>
     <h3> {{review.subject}}</h3>
     <div class="justify-content-end">
       <h6> {{review.content}}</h6>
@@ -36,6 +33,7 @@ export default {
   justify-self: right;
   float: right;
   margin: 5px;
+  background: #ff230d;
 }
 
 </style>

@@ -24,12 +24,11 @@ const getAllReviews = (req, res, next) => {
             return res.status(404).json({"message": "No reviews found"});
         }
         if(filter){
-            res.json(reviews.filter (function (e) {
-                return filter === e.reviewee;
+            res.json(reviews.filter(function (e) {
+                return filter == e.reviewee;
             }));
         } else {
-
-            res.status(200).json(reviews);
+            res.json(reviews);
         }
     });
 };
