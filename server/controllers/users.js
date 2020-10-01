@@ -12,16 +12,47 @@ const createUser = (req, res) => {
         .then(result => {
             console.log(result);
             res.status(201).json({
-                message: 'Handling post request to users.',
+                message: 'You have successfully registered!',
                 createdUser : result
             });
         })
         .catch(err => {
             console.log(err);
-            res.status(500).json({
-                error: err
-            });
+            if (err.code === 11000 || err.code === 11001) {
+                res.status(409).json({
+                    message: 'This user already exists.'
+                })
+            } else {
+                res.status(500).json({
+                    error: err
+                });
+            }
         });
+};
+
+const authenticateUser = (req, res) => {
+    var username = req.body.username;
+    var reqPassword = req.body.password;
+
+    User.findOne({ username: username}, (err, user) => {
+        if (user === null ) {
+            return res.status(404).json({ message: 'User not found.' });
+        }
+        if (reqPassword === user.password) {
+            res.status(200).json({
+                user: {
+                    id: user._id,
+                    username: user.username,
+                    admin: user.admin,
+                    registrationDate: user.registrationDate
+                }
+            });
+        } else {
+            res.status(401).json({ message: 'Wrong credentials. Try again.'});
+        }
+    }).catch(error => {
+        res.status(500).json({ error: error});
+    });
 };
 
 const getAllUsers = (req, res, next) => {
@@ -29,9 +60,7 @@ const getAllUsers = (req, res, next) => {
         if (err) {
             return next(err);
         }
-        res.json(
-            {"users": users}
-        );
+        res.json({users});
     });
 }
 
@@ -125,5 +154,6 @@ module.exports = {
     updateUserById,
     patchUserById,
     deleteUserById,
-    deleteAllUsers
+    deleteAllUsers,
+    authenticateUser
 };
