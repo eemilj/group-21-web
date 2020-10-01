@@ -4,8 +4,10 @@ import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import Activities from './views/Activities.vue'
 import Register from './views/Register'
-import Account from './views/Account'
-import Admin from './views/Admin'
+import Admin from './views/Admin.vue'
+import Account from './views/Account.vue'
+import ViewGroup from './views/ViewGroup'
+import Groups from './views/Groups'
 
 Vue.use(Router)
 
@@ -24,6 +26,11 @@ const router = new Router({
       component: Login
     },
     {
+      path: '/activities',
+      name: 'activities',
+      component: Activities
+    },
+    {
       path: '/register',
       name: 'register',
       component: Register
@@ -39,9 +46,14 @@ const router = new Router({
       component: Admin
     },
     {
-      path: '/activities',
-      name: 'activities',
-      component: Activities
+      path: '/groups/:id',
+      name: 'group',
+      component: ViewGroup
+    },
+    {
+      path: '/activities/:id/groups',
+      name: 'groups',
+      component: Groups
     }
   ]
 })
