@@ -122,8 +122,8 @@
 					"script": {
 						"id": "6c9b6499-7395-4d07-a149-cc4430e50bd0",
 						"exec": [
-							"pm.test('status code 500 when user exists', function(){",
-							"    pm.response.to.have.status(500);",
+							"pm.test('status code 409 when user exists', function(){",
+							"    pm.response.to.have.status(409);",
 							"",
 							"})"
 						],
@@ -165,8 +165,8 @@
 					"script": {
 						"id": "69cb31ca-4b80-4314-86ea-bbb86a77f48e",
 						"exec": [
-							"pm.test('status code 500 when user exists', function(){",
-							"    pm.response.to.have.status(500);",
+							"pm.test('status code 409 when user exists', function(){",
+							"    pm.response.to.have.status(409);",
 							"",
 							"})"
 						],
