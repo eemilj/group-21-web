@@ -1,16 +1,20 @@
 <template>
-  <div>
+  <div class="container-fluid">
     <header class="grpHeader">Groups</header>
-  <div class="groups">
-    <div class="flex-md-column p-lg-5 col-6">
-    <div v-for="group in groups" v-bind:key="group._id" class="media">
-      <GroupItem v-bind:group="group"/>
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <div class="groups">
+          <div v-for="group in groups" v-bind:key="group._id" class="media">
+            <GroupItem v-bind:group="group"/>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-5">
+        <div class="addGroup">
+        <AddGroup v-on:add-group="addGroup"/>
+        </div>
+      </div>
     </div>
-    </div>
-    <div class="flex-sm-column p-lg-5 col-2">
-      <AddGroup v-on:add-group="addGroup"/>
-    </div>
-  </div>
   </div>
 </template>
 
@@ -68,10 +72,11 @@ export default {
 </script>
 
 <style scoped>
-.groups{
-  display: flex;
-  justify-content: space-evenly;
-  background: #fffcbe
+.container-fluid{
+  background: #fffcbe;
+}
+.col-md-5{
+  padding-left: 100px;
 }
 .grpHeader{
   font-size: 40px;

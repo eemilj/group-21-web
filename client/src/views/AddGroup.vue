@@ -1,5 +1,5 @@
 <template>
-  <div class="addGroup">
+  <div class="groupAdd">
     <h3>Create Group</h3>
     <form @submit="addGroup" class="groupBox">
       <input type="text" v-model="name" name="name" placeholder="Name" class="name">
@@ -46,21 +46,21 @@ export default {
 </script>
 
 <style scoped>
-.addGroup{
-  float: right;
+.groupAdd{
   padding: 10px;
   background: #7abaff;
   border: 3px #1d2124 solid;
+  min-width: fit-content;
+}
+.groupBox{
+  min-width: fit-content;
 }
 .name, .location, .description{
   margin-bottom: 10px;
+  max-width: inherit;
+  min-width: 80%
 }
-.description{
-  min-width: 300px;
-  max-width: 300px;
-  max-height: 300px;
-  resize: none;
-}
+
 .btn{
   background: #ffffff;
   border: 1px #ccc dotted;
