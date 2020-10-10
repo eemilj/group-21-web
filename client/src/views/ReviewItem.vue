@@ -1,8 +1,8 @@
 <template>
-  <div class="reviewItem">
+  <div class="container-fluid">
       <b-button @click="$emit('del-review', review._id)" class="m-md-2">Delete</b-button>
     <h3> {{review.subject}}</h3>
-    <div class="justify-content-end">
+    <div class="content">
       <h6> {{review.content}}</h6>
     </div>
   </div>
@@ -21,19 +21,19 @@ export default {
 </script>
 
 <style scoped>
-.reviewItem{
+.container-fluid{
   padding: 20px;
-  border-bottom: 1px #ccc dotted;
-  border-top: 1px #ccc dotted;;
+  border-bottom: 1px #000000 double;
   text-align: left;
-  min-width: 1300px;
-  max-width: 1300px;
 }
 .m-md-2{
   justify-self: right;
   float: right;
   margin: 5px;
-  background: #ff230d;
+  background: #ff3e31;
+}
+.content{
+  word-wrap: break-word;
 }
 
 </style>

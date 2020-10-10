@@ -1,10 +1,11 @@
 <template>
-  <div class="container-fluid">
+  <div class="background">
+  <div class="container">
     <header class="grpHeader">Groups</header>
     <div class="row">
       <div class="col-12 col-md-6">
         <div class="groups">
-          <div v-for="group in groups" v-bind:key="group._id" class="media">
+          <div v-for="group in groups" v-bind:key="group._id" class="media overflow-hidden">
             <GroupItem v-bind:group="group"/>
           </div>
         </div>
@@ -15,6 +16,7 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -72,15 +74,17 @@ export default {
 </script>
 
 <style scoped>
-.container-fluid{
+.background{
   background: #fffcbe;
 }
-.col-md-5{
-  padding-left: 100px;
+.addGroup{
+  margin-left: 10%;
 }
 .grpHeader{
   font-size: 40px;
   font-family: Cambria;
   background: #fffcbe
+}
+.media{
 }
 </style>

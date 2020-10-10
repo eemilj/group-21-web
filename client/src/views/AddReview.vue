@@ -3,7 +3,7 @@
     <form @submit="addReview" class="reviewBox">
       <input type="text" v-model="subject" name="subject" placeholder="Subject" class="subject">
       <br>
-      <textarea v-model="content" name="content" placeholder="Write review" class="content"/>
+      <textarea v-model="content" rows="4" name="content" placeholder="Write review" class="content"/>
       <br>
       <select v-model="rating" name="rating">
         <option disabled value="">Choose rating</option>
@@ -55,17 +55,20 @@ export default {
 
 <style scoped>
 .reviewStyle{
-  justify-self: center;
-  child-align: left;
-  margin-top: 50px;
+  padding: 20px;
+  min-width: fit-content;
+  background: #7abaff;
+}
+.reviewBox{
+  min-width: fit-content;
 }
 .subject{
+  width: 80%;
 }
 .content{
   margin-top: 10px;
-  min-width: 400px;
-  min-height: 200px;
-  resize: inherit;
+  width: 80%;
+
 }
 .btn{
   margin-top: 10px;

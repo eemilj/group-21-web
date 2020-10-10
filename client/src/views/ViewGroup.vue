@@ -1,20 +1,26 @@
 <template>
-  <div class="viewGroup">
+  <div class="background">
+  <div class="container">
+    <div class="header overflow-hidden"> {{group.name}} </div>
     <button class="alert-warning" @click="deleteGroup"> Delete group </button>
-    <div class="header"> {{group.name}} </div>
-    <div class="description">
-      <h3>{{group.location}}</h3>
-      <h4>{{group.description}}</h4>
-    </div>
-    <div class="jumbotron">
-      <h3> Reviews </h3>
-      <div v-for="review in reviews" v-bind:key="review._id" class="media">
-        <ReviewItem v-bind:review="review" v-bind:id="review._id" v-on:del-review="deleteReview" v-on:edit-review="showEditReview"/>
+    <div class="col-12 col-md-6">
+      <div class="description">
+        <h3>{{group.location}}</h3>
+        <h4>{{group.description}}</h4>
       </div>
-    <div class="reviewWrite">
-      <AddReview v-on:add-review="addReview"/>
     </div>
+    <div class="col-12">
+      <div class="reviews">
+        <h3> Reviews </h3>
+        <div v-for="review in reviews" v-bind:key="review._id" class="media">
+          <ReviewItem v-bind:review="review" v-bind:id="review._id" v-on:del-review="deleteReview" v-on:edit-review="showEditReview"/>
+        </div>
+        <div class="col-12">
+          <AddReview v-on:add-review="addReview"/>
+        </div>
+      </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -104,24 +110,23 @@ export default {
   font-size: 50px;
 }
 .description{
-  justify-self: left;
   text-align: left;
-  margin-top: 100px;
-  margin-left: 300px;
+  padding-top: 100px;
   border-radius: inherit;
   border-color: #721c24;
-  min-height: 500px;
+  word-wrap: break-word;
+  padding-bottom: 200px;
 }
-.text-field{
-  min-height: 200px;
-  min-width: 200px;
+
+.background{
+  background: #fffcbe;
 }
-.jumbotron{
-  display: grid;
-  justify-content: center;
+.container{
+  width: 80%;
 }
-.editReview{
-  border: revert;
+.reviews{
+  background: #7abaff;
+  border: 1px #000000 solid;
 }
 .alert-warning{
   float: right;

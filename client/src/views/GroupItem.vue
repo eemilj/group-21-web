@@ -30,10 +30,7 @@ export default {
 .groupItem {
   background: white;
   padding: 30px;
-  border-bottom: 1px #ccc dotted;
-  border-top: 1px #ccc dotted;
-  border-left: 1px #ccc dotted;
-  border-right: 1px #ccc dotted;
+  border: 1px #000000 solid;
   align-content: baseline;
   margin-top: 10px;
   margin-bottom: 10px;

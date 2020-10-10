@@ -49,7 +49,7 @@ export default {
 .groupAdd{
   padding: 10px;
   background: #7abaff;
-  border: 3px #1d2124 solid;
+  border: 1px #1d2124 solid;
   min-width: fit-content;
 }
 .groupBox{
