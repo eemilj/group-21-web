@@ -1,8 +1,6 @@
 <template>
   <div class='activity-item' >
 
-    <button @click="$emit('del-user', user._id )" class="del">x</button>
-
     <div class="formatActivity">
       <b>{{"User Username :"}}</b>
       {{user.username}}
@@ -14,6 +12,10 @@
       {{user.registrationDate}}
       <br>
     </div>
+
+    <button @click="$emit('del-user', user._id )" class="del">x</button>
+    <button @click="$emit('update-user', user._id )" class="update">Update Username</button>
+    <button @click="$emit('update-admin', user._id )" class="update">Update Admin Status</button>
 
   </div>
 </template>
@@ -39,21 +41,20 @@ export default {
   background: red;
   color: white;
   border: none;
-  margin-right: 90px;
   padding: 5px 13px;
   border-radius: 50%;
   cursor: pointer;
   float: right;
+  margin: 5px;
 }
 .update {
-  background: #ffeeba;
+  background: #9fcdff;
   color: black;
   border: none;
-  margin-right: 40px;
   padding: 5px 13px;
   border-radius: 0%;
-  cursor: pointer;
-  float: right;
+  margin: 5px;
+  text-align: right;
 }
 .formatActivity {
   text-align: left;

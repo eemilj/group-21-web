@@ -1,10 +1,11 @@
 <template>
-  <div >
-    <div class="header"><em>Activities</em> </div>
+  <b-container>
+    <div >
+      <div class="header"><em>Activities</em> </div>
 
-    <ActivitiesForClient class="coloumns" v-bind:activities2="activities3" v-on:get-activity="getActivityID" /><ActivitiesForClient/>
-
-  </div>
+      <ActivitiesForClient v-bind:activities2="activities3" v-on:get-activity="getActivityID" /><ActivitiesForClient/>
+    </div>
+  </b-container>
 </template>
 
 <script>

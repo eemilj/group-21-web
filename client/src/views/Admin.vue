@@ -1,20 +1,33 @@
 <template>
-  <div id="admin">
-    <h1>Admin Page</h1>
-    <button class = "show" @click="showActivities" >Show All Activities</button>
-    <button class="warning" @click="deleteActivities">Delete All Activities</button>
+  <div>
+    <div >
+      <div class="row">
+        <div class="col-12 col-md-12" col-xs-3>
+          <div class="fixed" >
+            <h1 class="marginAll"> Admin Page</h1>
+            <UpdateActivity  v-on:update-activityName="createNewActivityName"/>
+          </div>
+        </div>
+      </div>
+      <h2 class="marginActivities" id="titleBackground" > Activities</h2>
+      <AddActivity v-on:add-activity="addActivity"/>
+      <button @click="deleteActivities">Delete All Activities</button>
 
-    <AddActivity v-on:add-activity="addActivity"/>
-    <UpdateActivity v-on:update-activityName="createNewActivityName"/>
-    <ActivitiesAdmin v-bind:activities="activities" v-on:del-activity="deleteOneActivitiy"
-                v-on:update-activityName="updateActivityName"
-    />
-    <button class="show" @click="showGroups" >Show All Groups</button>
-    <Groups v-bind:groups="groups" v-on:del-group="deleteOneGroup" />
+      <ActivitiesAdmin v-bind:activities="activities" v-on:del-activity="deleteOneActivitiy"
+                       v-on:update-activityName="updateActivityName"
+                       v-on:update-activityType="updateActivityType"
+      />
 
-    <button class="show" @click="showUsers" >Show All Users</button>
-    <Users v-bind:users="users" v-on:del-user="deleteOneUser" v-on:update-user="updateUser"/>
+      <h2 class="margin" id="titleBackground"> Groups</h2>
 
+      <Groups v-bind:groups="groups" v-on:del-group="deleteOneGroup" />
+
+      <h2 class="margin" id="titleBackground">Users</h2>
+
+      <Users v-bind:users="users" v-on:del-user="deleteOneUser"
+             v-on:update-user="updateUser"
+             v-on:update-admin="updateAdmin"/>
+    </div>
   </div>
 </template>
 
@@ -52,6 +65,10 @@ export default {
     }
   },
   mounted() {
+    this.showActivities()
+    this.showGroups()
+    this.showUsers()
+
     if (!this.currentUser) {
       this.$router.push('/login')
     } else if (!this.currentUser.user.admin) {
@@ -74,12 +91,12 @@ export default {
     createNewActivityName(newActivity) {
       // eslint-disable-next-line camelcase
       const { name } = newActivity
-      this.objectFromHere = name
+      this.ObjectType = name
     },
     createNewUser(newUser) {
       // eslint-disable-next-line camelcase
       const { name2 } = newUser
-      this.objectFromHereUser = name2
+      this.ObjectType = name2
     },
     showActivities() {
       Api.get('/activities')
@@ -112,13 +129,43 @@ export default {
         })
     },
     updateActivityName(id) {
-      var name = this.objectFromHere
+      var name = this.ObjectType
       Api.patch(`/activities/${id}`, {
         name: name
       })
         .catch(err => console.log(err))
         .then(() => {
           this.showActivities()
+        })
+    },
+    updateActivityType(id) {
+      var type = this.ObjectType
+      Api.patch(`/activities/${id}`, {
+        activity_type: type
+      })
+        .catch(err => console.log(err))
+        .then(() => {
+          this.showActivities()
+        })
+    },
+    updateUser(id) {
+      var type = this.ObjectType
+      Api.patch(`/users/${id}`, {
+        username: type
+      })
+        .catch(err => console.log(err))
+        .then(() => {
+          this.showUsers()
+        })
+    },
+    updateAdmin(id) {
+      var type = this.ObjectType
+      Api.patch(`/users/${id}`, {
+        admin: type
+      })
+        .catch(err => console.log(err))
+        .then(() => {
+          this.showUsers()
         })
     },
     deleteActivity() {
@@ -188,22 +235,44 @@ export default {
 </script>
 
 <style scoped>
-.deleteAllWarning {
-  background: red;
-  color: white;
-  border: none;
-  margin-right: 40px;
-  padding: 5px 13px;
-  border-radius: 0%;
-  cursor: pointer;
-  float: right;
-}
+
 .warning {
   background-color: #f2b4ba;
-  margin: 10px;
 }
-.show {
-  background-color: darkseagreen;
-  margin: 10px;
+.margin{
+  margin-top: 50px;
 }
+.marginActivities{
+  margin-top: 250px;
+}
+.marginAll{
+  margin: 50px;
+  padding-top: 30px;
+}
+.fixed{
+  top: 10px;
+  position: fixed;
+  background: #555;
+  color: #f1f1f1;
+  width:100%;
+  z-index: 1000;
+}
+
+#titleBackground {
+  background-color: lightgrey;
+  padding: 10px;
+}
+
+h2{
+  font-family: Candara;
+}
+button{
+  margin-top: 40px;
+  font-family: "Adobe Fan Heiti Std B";
+  font-size: 1em;
+  background-color: red;
+  color: white;
+  border: none;
+}
+
 </style>

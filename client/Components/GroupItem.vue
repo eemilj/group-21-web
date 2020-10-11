@@ -32,7 +32,6 @@ export default {
   background: red;
   color: white;
   border: none;
-  margin-right: 90px;
   padding: 5px 13px;
   border-radius: 50%;
   cursor: pointer;

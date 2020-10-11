@@ -4,7 +4,7 @@
     <div v-bind:key="group.id" v-for="group in groups">
 
       <GroupItem v-bind:group="group"
-                    v-on:del-group="$emit('del-group', group._id)"
+                 v-on:del-group="$emit('del-group', group._id)"
       />
 
     </div>

@@ -1,12 +1,20 @@
 <template>
-  <div class="margin">
-    <form class="submit" @submit="addActivity">
-      <input class="addClass" type="text" v-model="name" name="name" placeholder="Add Activity Name ...">
-      <input class="addClass" type="text" v-model="activity_type" name="activity_type" placeholder="Add Activity Type...">
+  <div>
+    <b-container>
+      <form  @submit="addActivity">
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <input class="addClass" type="text" v-model="name" name="name" placeholder="Add Activity Name ...">
+            <input class="addClass" type="text" v-model="activity_type" name="activity_type" placeholder="Add Activity Type...">
+            <br>
+            <input type="submit" value="Submit" class="submit"/>
+          </div>
+        </div>
+      </form>
+    </b-container>
 
-      <input type="submit" value="Submit" class="btn"/>
-    </form>
   </div>
+
 </template>
 
 <script>
@@ -55,9 +63,11 @@ input[type="submit"]{
 }
 .submit {
   background-color: lightgrey;
-  width: 50%;
+  margin: 3px;
+  padding: 7px;
 }
 .margin {
-  margin: 50px;
+  margin-left: 100px;
 }
+
 </style>
