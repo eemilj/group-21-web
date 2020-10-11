@@ -24,9 +24,11 @@
 
       <h2 class="margin" id="titleBackground">Users</h2>
 
-      <Users v-bind:users="users" v-on:del-user="deleteOneUser"
+      <Users
              v-on:update-user="updateUser"
-             v-on:update-admin="updateAdmin"/>
+             v-on:update-admin="updateAdmin"
+             v-bind:users="users" v-on:del-user="deleteOneUser"
+      />
     </div>
   </div>
 </template>
