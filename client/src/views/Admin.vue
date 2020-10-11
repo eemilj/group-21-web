@@ -274,5 +274,12 @@ button{
   color: white;
   border: none;
 }
-
+button{
+  margin-top: 40px;
+  font-family: "Adobe Fan Heiti Std B";
+  font-size: 1em;
+  background-color: red;
+  color: white;
+  border: none;
+}
 </style>
