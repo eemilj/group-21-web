@@ -76,6 +76,7 @@ const patchGroupById = (req, res, next) => {
         group.startDate = (req.body.startDate || group.startDate);
         group.endDate = (req.body.endDate || group.endDate);
         group.thumbnail = (req.body.thumbnail || group.thumbnail);
+        group.description = (req.body.description || group.description);
         group.save();
         res.json(group);
     });

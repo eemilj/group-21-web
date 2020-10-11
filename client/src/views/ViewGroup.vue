@@ -2,18 +2,24 @@
   <div class="background">
   <div class="container">
     <div class="header overflow-hidden"> {{group.name}} </div>
-    <button class="alert-warning" @click="deleteGroup"> Delete group </button>
-    <div class="col-12 col-md-6">
-      <div class="description">
-        <h3>{{group.location}}</h3>
-        <h4>{{group.description}}</h4>
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <div class="description">
+          <h3>{{group.location}}</h3>
+          <h4>{{group.description}}</h4>
+        </div>
       </div>
+    <div class="col-12 col-md-6">
+    <b-button v-if="currentUser.user.id === group.owner" class="alert-warning" @click="deleteGroup"> Delete group </b-button>
+    <b-button v-if="currentUser.user.id === group.owner" class="alert-info" @click="showEditGroup"> Edit group </b-button>
+      <EditGroup v-if="groupFlag" v-on:edit-group="editGroup"></EditGroup>
+    </div>
     </div>
     <div class="col-12">
       <div class="reviews">
         <h3> Reviews </h3>
         <div v-for="review in reviews" v-bind:key="review._id" class="media">
-          <ReviewItem v-bind:review="review" v-bind:id="review._id" v-on:del-review="deleteReview" v-on:edit-review="showEditReview"/>
+          <ReviewItem v-bind:review="review" v-bind:id="review._id" v-on:del-review="deleteReview"/>
         </div>
         <div class="col-12">
           <AddReview v-on:add-review="addReview"/>
@@ -28,6 +34,7 @@
 import { Api } from '@/Api'
 import AddReview from '@/views/AddReview'
 import ReviewItem from '@/views/ReviewItem'
+import EditGroup from '@/views/EditGroup'
 // import EditReview from '@/views/EditReview'
 
 export default {
@@ -35,13 +42,17 @@ export default {
   components: {
     // EditReview,
     ReviewItem,
-    AddReview
+    AddReview,
+    EditGroup
   },
   data() {
     return {
       group: '',
       reviews: []
     }
+  },
+  props: {
+    groupFlag: Boolean
   },
   computed: {
     currentUser() {
@@ -54,6 +65,7 @@ export default {
     } else {
       this.showGroup()
       this.getReviews()
+      this.groupFlag = false
     }
   },
   methods: {
@@ -76,15 +88,27 @@ export default {
         })
     },
     addReview(newReview) {
-      const { subject, content, rating, reviewee } = newReview
+      const { subject, content, rating, reviewee, author } = newReview
       Api.post('/reviews', {
-        subject, content, rating, reviewee
+        subject, content, rating, reviewee, author
       })
         .catch(err => {
           console.log(err)
         })
         .then(() => {
           this.getReviews()
+        })
+    },
+    editGroup(editedGroup) {
+      const { name, location, description } = editedGroup
+      Api.patch('groups/' + this.$route.params.id, {
+        name, location, description
+      })
+        .catch(err => {
+          console.log(err)
+        })
+        .then(() => {
+          this.showGroup()
         })
     },
     deleteReview(id) {
@@ -100,6 +124,13 @@ export default {
       Api.patch('reviews/' + id, {
         subject: this.subject, content: this.content, rating: this.rating
       })
+    },
+    showEditGroup() {
+      if (this.groupFlag === false) {
+        this.groupFlag = true
+      } else {
+        this.groupFlag = false
+      }
     }
   }
 }
@@ -134,5 +165,9 @@ export default {
   background: #ff0001;
   border-color: #1b1e21;
   color: #e5f4f7;
+}
+.alert-info{
+  float: right;
+  margin: 20px;
 }
 </style>

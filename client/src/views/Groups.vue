@@ -58,9 +58,9 @@ export default {
         })
     },
     addGroup(newGroup) {
-      const { name, activity, location, description } = newGroup
+      const { name, activity, location, description, owner } = newGroup
       Api.post('/activities/' + this.$route.params.id + '/groups', {
-        name, activity, location, description
+        name, activity, location, description, owner
       })
         .catch(error => {
           console.log(error)

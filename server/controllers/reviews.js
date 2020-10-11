@@ -4,7 +4,6 @@ var router = express.Router();
 var ReviewSchema = require('../models/reviews');
 const postReview = (req, res, next) => {
     var review = new ReviewSchema(req.body);
-    review.id = review.ObjectId;
     review.date = Date.now();
     review.save(function (err) {
         if (err) {

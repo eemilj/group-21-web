@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-      <b-button @click="$emit('del-review', review._id)" class="m-md-2">Delete</b-button>
+      <b-button v-if="review.author === currentUser.user.id" @click="$emit('del-review', review._id)" class="m-md-2">Delete</b-button>
     <h3> {{review.subject}}</h3>
     <div class="content">
       <h6> {{review.content}}</h6>
@@ -16,7 +16,12 @@ export default {
   props: ['review'],
   components: [
     EditReview
-  ]
+  ],
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user
+    }
+  }
 }
 </script>
 

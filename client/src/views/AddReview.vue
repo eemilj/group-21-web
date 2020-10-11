@@ -28,19 +28,26 @@ export default {
       reviewee: '',
       subject: '',
       rating: '',
-      content: ''
+      content: '',
+      author: ''
+    }
+  },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user
     }
   },
   methods: {
     addReview(e) {
       e.preventDefault()
+      console.log(this.currentUser.user.id)
       const newReview = {
         id: this.id,
         reviewee: this.$route.params.id,
         subject: this.subject,
         rating: this.rating,
-        content: this.content
-
+        content: this.content,
+        author: this.currentUser.user.id
       }
       this.$emit('add-review', newReview)
       this.id = ''
@@ -48,6 +55,7 @@ export default {
       this.name = ''
       this.rating = ''
       this.content = ''
+      this.author = ''
     }
   }
 }
