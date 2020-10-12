@@ -1,4 +1,5 @@
 var Group = require('../models/groups');
+var Review = require('../models/reviews');
 
 const createGroup = (req, res) => {
     const group = new Group(req.body);
@@ -94,6 +95,17 @@ const deleteGroupById = (req, res, next) => {
             return res.status(404).json(
                 {"message": "Group not found."});
         }
+
+        Review.deleteMany({ reviewee : groupId}, function(error, reviews) {
+            if (error) {
+                return next(error);
+            }
+            if (reviews == null) {
+                return res.status(404).json(
+                    {"message": "Review not found."});
+            }
+        });
+
         res.json(group);
     });
 };

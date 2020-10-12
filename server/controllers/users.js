@@ -1,5 +1,6 @@
 var User = require('../models/users');
-
+var Review = require('../models/reviews');
+var Group = require('../models/groups');
 
 const createUser = (req, res) => {
     var user = new User({
@@ -60,7 +61,7 @@ const getAllUsers = (req, res, next) => {
         if (err) {
             return next(err);
         }
-        res.json({users});
+        res.json(users);
     });
 }
 
@@ -128,6 +129,27 @@ const deleteUserById = (req, res, next) => {
             return res.status(404).json(
                 {"message": "User not found."});
         }
+
+        Review.deleteMany({ author : id}, function(error, reviews) {
+            if (error) {
+                return next(error);
+            }
+            if (reviews == null) {
+                return res.status(404).json(
+                    {"message": "Review not found."});
+            }
+        });
+
+        Group.deleteMany({ owner : id}, function(error, groups) {
+            if (error) {
+                return next(error);
+            }
+            if (groups == null) {
+                return res.status(404).json(
+                    {"message": "Group not found."});
+            }
+        });
+
         res.json(user);
     });
 };

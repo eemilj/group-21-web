@@ -24,22 +24,32 @@
               </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item" v-if="!currentUser">
               <a class="nav-link" href="">
                 <router-link to="/login">Login</router-link>
               </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item" v-if="!currentUser">
+              <a class="nav-link" href="">
+                <router-link to="/register">Register</router-link>
+              </a>
+            </li>
+
+            <li class="nav-item" v-if="currentUser">
               <a class="nav-link" href="">
                 <router-link to="/account">Account</router-link>
               </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item" v-if="showAdminPanel">
               <a class="nav-link" href="">
                 <router-link to="/admin">Admin</router-link>
               </a>
+            </li>
+
+            <li class="nav-item" v-if="currentUser">
+              <a class="nav-link" href="" @click="logOut" style="color: #b80f1e">Logout</a>
             </li>
           </ul>
         </b-navbar-nav>
@@ -50,6 +60,29 @@
   </div>
 
 </template>
+
+<script>
+export default {
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user
+    },
+    showAdminPanel() {
+      if (this.currentUser && this.currentUser.user.admin) {
+        return this.currentUser.user.admin
+      }
+
+      return false
+    }
+  },
+  methods: {
+    logOut() {
+      this.$store.dispatch('auth/logout')
+      this.$router.push('/login')
+    }
+  }
+}
+</script>
 
 <style>
 #app {
