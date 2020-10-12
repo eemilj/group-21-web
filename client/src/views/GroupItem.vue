@@ -1,5 +1,5 @@
 <template>
-  <div class='group-item'  @click="goToGroup">
+  <div class='groupItem'  @click="goToGroup">
     <div class="groupItemFormat">
       <h4>{{group.name}}</h4>
       <div class="description">
@@ -27,26 +27,24 @@ export default {
 </script>
 
 <style scoped>
-.group-item {
+.groupItem {
   background: white;
   padding: 30px;
-  border-bottom: 1px #ccc dotted;
-  border-top: 1px #ccc dotted;
-  border-left: 1px #ccc dotted;
-  border-right: 1px #ccc dotted;
+  border: 1px #000000 solid;
   align-content: baseline;
   margin-top: 10px;
   margin-bottom: 10px;
+  min-width: 100%
 }
 
 .groupItemFormat {
   text-align: left;
   float: left;
 }
-.group-item{
+.groupItem{
   background: #b3ff93
 }
-.group-item:hover{
+.groupItem:hover{
   background: #7abaff;
   cursor: pointer;
 }

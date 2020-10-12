@@ -9,6 +9,9 @@ var groupSchema = new Schema({
         required: true,
         unique: true
     },
+    owner: {
+        type: Schema.Types.ObjectId,
+    },
 
     location: {
         type: String,

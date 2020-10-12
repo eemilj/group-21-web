@@ -1,14 +1,20 @@
 <template>
-  <div>
+  <div class="background">
+  <div class="container">
     <header class="grpHeader">Groups</header>
-  <div class="groups">
-    <div class="flex-md-column p-lg-5 col-6">
-    <div v-for="group in groups" v-bind:key="group._id" class="media">
-      <GroupItem v-bind:group="group"/>
-    </div>
-    </div>
-    <div class="flex-sm-column p-lg-5 col-2">
-      <AddGroup v-on:add-group="addGroup"/>
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <div class="groups">
+          <div v-for="group in groups" v-bind:key="group._id" class="media overflow-hidden">
+            <GroupItem v-bind:group="group"/>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-5">
+        <div class="addGroup">
+        <AddGroup v-on:add-group="addGroup"/>
+        </div>
+      </div>
     </div>
   </div>
   </div>
@@ -52,9 +58,9 @@ export default {
         })
     },
     addGroup(newGroup) {
-      const { name, activity, location, description } = newGroup
+      const { name, activity, location, description, owner } = newGroup
       Api.post('/activities/' + this.$route.params.id + '/groups', {
-        name, activity, location, description
+        name, activity, location, description, owner
       })
         .catch(error => {
           console.log(error)
@@ -68,14 +74,17 @@ export default {
 </script>
 
 <style scoped>
-.groups{
-  display: flex;
-  justify-content: space-evenly;
-  background: #fffcbe
+.background{
+  background: #fffcbe;
+}
+.addGroup{
+  margin-left: 10%;
 }
 .grpHeader{
   font-size: 40px;
   font-family: Cambria;
   background: #fffcbe
+}
+.media{
 }
 </style>

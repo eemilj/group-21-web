@@ -1,19 +1,35 @@
 <template>
-  <div class="viewGroup">
-    <button class="alert-warning" @click="deleteGroup"> Delete group </button>
-    <div class="header"> {{group.name}} </div>
-    <div class="description">
-      <h3>{{group.location}}</h3>
-      <h4>{{group.description}}</h4>
-    </div>
-    <div class="jumbotron">
-      <h3> Reviews </h3>
-      <div v-for="review in reviews" v-bind:key="review._id" class="media">
-        <ReviewItem v-bind:review="review" v-bind:id="review._id" v-on:del-review="deleteReview" v-on:edit-review="showEditReview"/>
+  <div class="background">
+    <div class="container">
+      <div class="header overflow-hidden"> {{group.name}} </div>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="description">
+            <h3>{{group.location}}</h3>
+            <h4>{{group.description}}</h4>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="Edit">
+            <b-button v-if="groupMemberFlag" class="alert-info" @click="joinGroup"> Join group </b-button>
+            <b-button v-if="groupMemberFlag === false" class="alert-info" @click="leaveGroup"> Leave group </b-button>
+            <b-button v-if="currentUser.user.id === group.owner" class="alert-warning" @click="deleteGroup"> Delete group </b-button>
+            <b-button v-if="currentUser.user.id === group.owner" class="alert-info" @click="showEditGroup"> Edit group </b-button>
+            <EditGroup v-if="groupFlag" v-on:edit-group="editGroup"></EditGroup>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="reviews">
+            <h3> Reviews </h3>
+            <div v-for="review in reviews" v-bind:key="review._id" class="media">
+              <ReviewItem v-bind:review="review" v-bind:id="review._id" v-on:del-review="deleteReview"/>
+            </div>
+            <div class="col-12">
+              <AddReview v-on:add-review="addReview"/>
+            </div>
+          </div>
+        </div>
       </div>
-    <div class="reviewWrite">
-      <AddReview v-on:add-review="addReview"/>
-    </div>
     </div>
   </div>
 </template>
@@ -22,6 +38,7 @@
 import { Api } from '@/Api'
 import AddReview from '@/views/AddReview'
 import ReviewItem from '@/views/ReviewItem'
+import EditGroup from '@/views/EditGroup'
 // import EditReview from '@/views/EditReview'
 
 export default {
@@ -29,13 +46,19 @@ export default {
   components: {
     // EditReview,
     ReviewItem,
-    AddReview
+    AddReview,
+    EditGroup
   },
   data() {
     return {
       group: '',
-      reviews: []
+      reviews: [],
+      members: [],
+      groupMemberFlag: Boolean
     }
+  },
+  props: {
+    groupFlag: Boolean
   },
   computed: {
     currentUser() {
@@ -48,6 +71,8 @@ export default {
     } else {
       this.showGroup()
       this.getReviews()
+      this.groupFlag = false
+      this.checkGroupMember()
     }
   },
   methods: {
@@ -70,9 +95,9 @@ export default {
         })
     },
     addReview(newReview) {
-      const { subject, content, rating, reviewee } = newReview
+      const { subject, content, rating, reviewee, author } = newReview
       Api.post('/reviews', {
-        subject, content, rating, reviewee
+        subject, content, rating, reviewee, author
       })
         .catch(err => {
           console.log(err)
@@ -81,19 +106,86 @@ export default {
           this.getReviews()
         })
     },
+    editGroup(editedGroup) {
+      const { name, location, description } = editedGroup
+      Api.patch('groups/' + this.$route.params.id, {
+        name, location, description
+      })
+        .catch(err => {
+          console.log(err)
+        })
+        .then(() => {
+          this.showGroup()
+        })
+    },
     deleteReview(id) {
       Api.delete('/reviews/' + id)
         .then(() => {
           this.getReviews()
         })
     },
-    hideEditReview() {
-      this.showEditModal = false
-    },
     editReview(id) {
       Api.patch('reviews/' + id, {
         subject: this.subject, content: this.content, rating: this.rating
       })
+    },
+    showEditGroup() {
+      if (this.groupFlag === false) {
+        this.groupFlag = true
+      } else {
+        this.groupFlag = false
+      }
+    },
+    joinGroup() {
+      const newMember = this.currentUser.user.id
+      Api.get('/groups/' + this.$route.params.id)
+        .then(response => {
+          this.members = response.data.regMembers
+          this.members.push(newMember)
+        })
+        .then(() => {
+          console.log(this.members)
+          const regMembers = this.members
+          Api.patch('/groups/' + this.$route.params.id, {
+            regMembers
+          })
+        })
+        .then(() => {
+          location.reload()
+        })
+    },
+    leaveGroup() {
+      const newMember = this.currentUser.user.id
+      Api.get('/groups/' + this.$route.params.id)
+        .then(response => {
+          this.members = response.data.regMembers
+          this.members.splice(newMember)
+        })
+        .then(() => {
+          console.log(this.members)
+          const regMembers = this.members
+          Api.patch('/groups/' + this.$route.params.id, {
+            regMembers
+          })
+        })
+        .then(() => {
+          location.reload()
+        })
+    },
+    checkGroupMember() {
+      Api.get('/groups/' + this.$route.params.id)
+        .then(response => {
+          this.members = response.data.regMembers
+        })
+        .then(() => {
+          for (let i = 0; i < this.members.length; i++) {
+            if (this.members[i] === this.currentUser.user.id) {
+              this.groupMemberFlag = false
+              return
+            }
+          }
+          this.groupMemberFlag = true
+        })
     }
   }
 }
@@ -104,24 +196,24 @@ export default {
   font-size: 50px;
 }
 .description{
-  justify-self: left;
   text-align: left;
-  margin-top: 100px;
-  margin-left: 300px;
+  padding-top: 50px;
   border-radius: inherit;
   border-color: #721c24;
-  min-height: 500px;
+  word-wrap: break-word;
+  padding-bottom: 200px;
 }
-.text-field{
-  min-height: 200px;
-  min-width: 200px;
+.Edit{
+  padding-top: 50px;
 }
-.jumbotron{
-  display: grid;
-  justify-content: center;
+.background{
+  background: #fffcbe;
 }
-.editReview{
-  border: revert;
+
+.reviews{
+  margin-top: 50px;
+  background: #7abaff;
+  border: 1px #000000 solid;
 }
 .alert-warning{
   float: right;
@@ -129,5 +221,10 @@ export default {
   background: #ff0001;
   border-color: #1b1e21;
   color: #e5f4f7;
+}
+
+.alert-info{
+  float: right;
+  margin: 20px;
 }
 </style>

@@ -1,7 +1,10 @@
 <template>
   <div class="groupAdd">
-    <h3>Create Group</h3>
-    <form @submit="addGroup" class="groupBox">
+    <br>
+    <br>
+    <br>
+    <h3>Edit Group</h3>
+    <form @submit="editGroup" class="groupBox">
       <input type="text" v-model="name" name="name" placeholder="Name" class="name">
       <br>
       <input type="text" v-model="location" name="location" placeholder="Location" class="location">
@@ -16,10 +19,9 @@
 <script>
 
 export default {
-  name: 'AddGroup',
+  name: 'EditGroup',
   data() {
     return {
-      id: '',
       name: '',
       location: '',
       description: ''
@@ -31,21 +33,17 @@ export default {
     }
   },
   methods: {
-    addGroup(e) {
+    editGroup(e) {
       e.preventDefault()
-      const newGroup = {
-        id: this.id,
+      const editedGroup = {
         name: this.name,
         location: this.location,
-        description: this.description,
-        owner: this.currentUser.user.id
+        description: this.description
       }
-      this.$emit('add-group', newGroup)
-      this.id = ''
+      this.$emit('edit-group', editedGroup)
       this.name = ''
       this.location = ''
       this.description = ''
-      this.owner = ''
     }
   }
 }
