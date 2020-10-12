@@ -2,13 +2,14 @@
   <div class='activity-item2' >
 
     <div class="activity-item">
-    <div class="title"> <b> Activity Type</b></div>
-    <div class = "contentType"> <b>{{activity.activity_type}}</b></div>
+      <div class="title"> <b> Activity Type</b></div>
+      <div class = "contentType"> <b>{{activity.activity_type}}</b></div>
 
-    <div class = "title"> <b> Activity Name</b></div>
-    <div class = "contentName"> <b>{{activity.name}}</b></div>
-      <button @click="$emit('get-activity', activity._id )"  class="enter">Enter</button>
-
+      <div class = "title"> <b> Activity Name</b></div>
+      <div class = "contentName"> <b>{{activity.name}}</b></div>
+      <div id="enterBar">
+        <button @click="$emit('get-activity', activity._id )"  class="enter">Enter</button>
+      </div>
     </div>
 
   </div>
@@ -32,12 +33,13 @@ export default {
 .title{
   font-size: large;
   color: lightslategrey;
-  margin-top: 20px;
+  padding-top: 20px;
 }
 .contentType{
   font-size: 30px;
   color: midnightblue;
-  margin-top: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 
 }
 .contentName{
@@ -47,16 +49,25 @@ export default {
 .activity-item {
   background: white;
   padding: 3px;
-  border: 2px #ccc dotted;
+  border: 2px navajowhite solid;
   align-content: baseline;
 }
 .enter {
-  background: whitesmoke;
-  color: lightgrey;
+  background: none;
+  color: darkred;
+  font-family: "Arial Nova";
+  font-size: 2em;
   border: none;
   width: available;
   border-radius: 0%;
   cursor: pointer;
-  margin: 20px;
+  padding: 20px;
+}
+#enterBar {
+  background-color: wheat;
+  background-blend-mode: color-dodge;
+}
+*{
+  background-color: oldlace;
 }
 </style>

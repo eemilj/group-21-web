@@ -2,7 +2,7 @@
 
   <div id="app">
 
-    <b-navbar toggleable="lg" type="light" variant="warning">
+    <b-navbar toggleable="lg" type="light" variant="warning" fixed="top">
       <b-navbar-brand href="#">Hobby Hub</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -24,32 +24,22 @@
               </a>
             </li>
 
-            <li class="nav-item" v-if="!currentUser">
+            <li class="nav-item">
               <a class="nav-link" href="">
                 <router-link to="/login">Login</router-link>
               </a>
             </li>
 
-            <li class="nav-item" v-if="!currentUser">
-              <a class="nav-link" href="">
-                <router-link to="/register">Register</router-link>
-              </a>
-            </li>
-
-            <li class="nav-item" v-if="currentUser">
+            <li class="nav-item">
               <a class="nav-link" href="">
                 <router-link to="/account">Account</router-link>
               </a>
             </li>
 
-            <li class="nav-item" v-if="showAdminPanel">
+            <li class="nav-item">
               <a class="nav-link" href="">
                 <router-link to="/admin">Admin</router-link>
               </a>
-            </li>
-
-            <li class="nav-item" v-if="currentUser">
-              <a class="nav-link" href="" @click="logOut" style="color: #b80f1e">Logout</a>
             </li>
           </ul>
         </b-navbar-nav>
@@ -61,36 +51,13 @@
 
 </template>
 
-<script>
-export default {
-  computed: {
-    currentUser() {
-      return this.$store.state.auth.user
-    },
-    showAdminPanel() {
-      if (this.currentUser && this.currentUser.user.admin) {
-        return this.currentUser.user.admin
-      }
-
-      return false
-    }
-  },
-  methods: {
-    logOut() {
-      this.$store.dispatch('auth/logout')
-      this.$router.push('/login')
-    }
-  }
-}
-</script>
-
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-    color: #2c3e50;
+  color: #2c3e50;
 }
 
 </style>
