@@ -18,15 +18,15 @@
             <EditGroup v-if="groupFlag" v-on:edit-group="editGroup"></EditGroup>
           </div>
         </div>
-      </div>
-      <div class="col-12">
-        <div class="reviews">
-          <h3> Reviews </h3>
-          <div v-for="review in reviews" v-bind:key="review._id" class="media">
-            <ReviewItem v-bind:review="review" v-bind:id="review._id" v-on:del-review="deleteReview"/>
-          </div>
-          <div class="col-12">
-            <AddReview v-on:add-review="addReview"/>
+        <div class="col-12">
+          <div class="reviews">
+            <h3> Reviews </h3>
+            <div v-for="review in reviews" v-bind:key="review._id" class="media">
+              <ReviewItem v-bind:review="review" v-bind:id="review._id" v-on:del-review="deleteReview"/>
+            </div>
+            <div class="col-12">
+              <AddReview v-on:add-review="addReview"/>
+            </div>
           </div>
         </div>
       </div>
