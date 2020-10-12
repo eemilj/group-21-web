@@ -96,7 +96,7 @@ const deleteGroupById = (req, res, next) => {
                 {"message": "Group not found."});
         }
 
-        Review.deleteMany({ reviewee : groupId}, function(error, reviews) {
+        Review.deleteMany({ reviewee : id}, function(error, reviews) {
             if (error) {
                 return next(error);
             }
