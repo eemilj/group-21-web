@@ -11,7 +11,8 @@
         </div>
         <div class="col-12 col-md-6">
           <div class="Edit">
-            <b-button v-if="checkGroupMember" class="alert-info" @click="joinGroup"> Join group </b-button>
+            <b-button v-if="groupMemberFlag" class="alert-info" @click="joinGroup"> Join group </b-button>
+            <b-button v-if="groupMemberFlag === false" class="alert-info" @click="leaveGroup"> Leave group </b-button>
             <b-button v-if="currentUser.user.id === group.owner" class="alert-warning" @click="deleteGroup"> Delete group </b-button>
             <b-button v-if="currentUser.user.id === group.owner" class="alert-info" @click="showEditGroup"> Edit group </b-button>
             <EditGroup v-if="groupFlag" v-on:edit-group="editGroup"></EditGroup>
@@ -52,7 +53,8 @@ export default {
     return {
       group: '',
       reviews: [],
-      members: []
+      members: [],
+      groupMemberFlag: Boolean
     }
   },
   props: {
@@ -70,6 +72,7 @@ export default {
       this.showGroup()
       this.getReviews()
       this.groupFlag = false
+      this.checkGroupMember()
     }
   },
   methods: {
@@ -147,8 +150,42 @@ export default {
             regMembers
           })
         })
+        .then(() => {
+          location.reload()
+        })
     },
-    checkGroupMember(member) {
+    leaveGroup() {
+      const newMember = this.currentUser.user.id
+      Api.get('/groups/' + this.$route.params.id)
+        .then(response => {
+          this.members = response.data.regMembers
+          this.members.splice(newMember)
+        })
+        .then(() => {
+          console.log(this.members)
+          const regMembers = this.members
+          Api.patch('/groups/' + this.$route.params.id, {
+            regMembers
+          })
+        })
+        .then(() => {
+          location.reload()
+        })
+    },
+    checkGroupMember() {
+      Api.get('/groups/' + this.$route.params.id)
+        .then(response => {
+          this.members = response.data.regMembers
+        })
+        .then(() => {
+          for (let i = 0; i < this.members.length; i++) {
+            if (this.members[i] === this.currentUser.user.id) {
+              this.groupMemberFlag = false
+              return
+            }
+          }
+          this.groupMemberFlag = true
+        })
     }
   }
 }
