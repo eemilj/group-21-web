@@ -1,5 +1,8 @@
 <template>
   <div class="groupAdd">
+    <br>
+    <br>
+    <br>
     <h3>Edit Group</h3>
     <form @submit="editGroup" class="groupBox">
       <input type="text" v-model="name" name="name" placeholder="Name" class="name">

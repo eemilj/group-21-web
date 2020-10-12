@@ -1,32 +1,35 @@
 <template>
   <div class="background">
-  <div class="container">
-    <div class="header overflow-hidden"> {{group.name}} </div>
-    <div class="row">
-      <div class="col-12 col-md-6">
-        <div class="description">
-          <h3>{{group.location}}</h3>
-          <h4>{{group.description}}</h4>
+    <div class="container">
+      <div class="header overflow-hidden"> {{group.name}} </div>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="description">
+            <h3>{{group.location}}</h3>
+            <h4>{{group.description}}</h4>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="Edit">
+            <b-button v-if="checkGroupMember" class="alert-info" @click="joinGroup"> Join group </b-button>
+            <b-button v-if="currentUser.user.id === group.owner" class="alert-warning" @click="deleteGroup"> Delete group </b-button>
+            <b-button v-if="currentUser.user.id === group.owner" class="alert-info" @click="showEditGroup"> Edit group </b-button>
+            <EditGroup v-if="groupFlag" v-on:edit-group="editGroup"></EditGroup>
+          </div>
         </div>
       </div>
-    <div class="col-12 col-md-6">
-    <b-button v-if="currentUser.user.id === group.owner" class="alert-warning" @click="deleteGroup"> Delete group </b-button>
-    <b-button v-if="currentUser.user.id === group.owner" class="alert-info" @click="showEditGroup"> Edit group </b-button>
-      <EditGroup v-if="groupFlag" v-on:edit-group="editGroup"></EditGroup>
-    </div>
-    </div>
-    <div class="col-12">
-      <div class="reviews">
-        <h3> Reviews </h3>
-        <div v-for="review in reviews" v-bind:key="review._id" class="media">
-          <ReviewItem v-bind:review="review" v-bind:id="review._id" v-on:del-review="deleteReview"/>
-        </div>
-        <div class="col-12">
-          <AddReview v-on:add-review="addReview"/>
+      <div class="col-12">
+        <div class="reviews">
+          <h3> Reviews </h3>
+          <div v-for="review in reviews" v-bind:key="review._id" class="media">
+            <ReviewItem v-bind:review="review" v-bind:id="review._id" v-on:del-review="deleteReview"/>
+          </div>
+          <div class="col-12">
+            <AddReview v-on:add-review="addReview"/>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 </template>
 
@@ -48,7 +51,8 @@ export default {
   data() {
     return {
       group: '',
-      reviews: []
+      reviews: [],
+      members: []
     }
   },
   props: {
@@ -117,9 +121,6 @@ export default {
           this.getReviews()
         })
     },
-    hideEditReview() {
-      this.showEditModal = false
-    },
     editReview(id) {
       Api.patch('reviews/' + id, {
         subject: this.subject, content: this.content, rating: this.rating
@@ -131,6 +132,23 @@ export default {
       } else {
         this.groupFlag = false
       }
+    },
+    joinGroup() {
+      const newMember = this.currentUser.user.id
+      Api.get('/groups/' + this.$route.params.id)
+        .then(response => {
+          this.members = response.data.regMembers
+          this.members.push(newMember)
+        })
+        .then(() => {
+          console.log(this.members)
+          const regMembers = this.members
+          Api.patch('/groups/' + this.$route.params.id, {
+            regMembers
+          })
+        })
+    },
+    checkGroupMember(member) {
     }
   }
 }
@@ -142,20 +160,21 @@ export default {
 }
 .description{
   text-align: left;
-  padding-top: 100px;
+  padding-top: 50px;
   border-radius: inherit;
   border-color: #721c24;
   word-wrap: break-word;
   padding-bottom: 200px;
 }
-
+.Edit{
+  padding-top: 50px;
+}
 .background{
   background: #fffcbe;
 }
-.container{
-  width: 80%;
-}
+
 .reviews{
+  margin-top: 50px;
   background: #7abaff;
   border: 1px #000000 solid;
 }
@@ -166,6 +185,7 @@ export default {
   border-color: #1b1e21;
   color: #e5f4f7;
 }
+
 .alert-info{
   float: right;
   margin: 20px;

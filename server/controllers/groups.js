@@ -55,6 +55,7 @@ const updateGroupById = (req, res, next) => {
         group.startDate = req.body.startDate;
         group.endDate = req.body.endDate;
         group.thumbnail = req.body.thumbnail;
+        group.regMembers = req.body.regMembers;
         group.save();
         res.json(group);
     });
@@ -77,6 +78,7 @@ const patchGroupById = (req, res, next) => {
         group.endDate = (req.body.endDate || group.endDate);
         group.thumbnail = (req.body.thumbnail || group.thumbnail);
         group.description = (req.body.description || group.description);
+        group.regMembers = (req.body.regMembers || group.regMembers);
         group.save();
         res.json(group);
     });

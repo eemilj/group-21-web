@@ -76,7 +76,6 @@ export default {
 .content{
   margin-top: 10px;
   width: 80%;
-
 }
 .btn{
   margin-top: 10px;
