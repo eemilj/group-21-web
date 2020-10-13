@@ -1,7 +1,9 @@
 <template>
   <div>
+    <div class="globalMargin">
     <b-jumbotron header="Hobby Hub!" lead="Welcome to Hobby Hub!">
     </b-jumbotron>
+  </div>
   </div>
 </template>
 

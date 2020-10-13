@@ -1,5 +1,6 @@
 <template>
-  <div class='groupItem'  @click="goToGroup">
+  <div class="globalMargin">
+      <div class='groupItem'  @click="goToGroup">
     <div class="groupItemFormat">
       <h4>{{group.name}}</h4>
       <div class="description">
@@ -9,6 +10,7 @@
         {{group.endDate}}
       </div>
     </div>
+  </div>
   </div>
 </template>
 

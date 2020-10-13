@@ -1,5 +1,6 @@
 <template>
   <div class="background">
+    <div class="globalMargin">
     <div class="container">
       <div class="header overflow-hidden"> {{group.name}} </div>
       <div class="row">
@@ -30,6 +31,7 @@
           </div>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </template>

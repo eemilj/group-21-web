@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <div class="globalMargin">
     <header class="jumbotron">
       <h2>
         Welcome <strong>{{currentUser.user.username}}</strong>!
@@ -72,6 +73,7 @@
       :class="successful ? 'alert-success' : 'alert-danger'"
     >{{message}}
     </div>
+  </div>
   </div>
   </div>
 </template>

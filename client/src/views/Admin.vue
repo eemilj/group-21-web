@@ -9,7 +9,7 @@
           </div>
         </div>
       </div>
-      <h2 class="marginActivities" id="titleBackground" > Activities</h2>
+      <h2 class="marginActivities"  > Activities</h2>
       <AddActivity v-on:add-activity="addActivity"/>
       <button @click="deleteActivities">Delete All Activities</button>
 
@@ -18,11 +18,11 @@
                        v-on:update-activityType="updateActivityType"
       />
 
-      <h2 class="margin" id="titleBackground"> Groups</h2>
+      <h2 class="margin" > Groups</h2>
 
       <Groups v-bind:groups="groups" v-on:del-group="deleteOneGroup" />
 
-      <h2 class="margin" id="titleBackground">Users</h2>
+      <h2 class="margin" >Users</h2>
 
       <Users
              v-on:update-user="updateUser"
@@ -216,7 +216,7 @@ export default {
           console.log(error)
         })
         .then(() => {
-          this.showActivities()
+          this.showGroups()
         })
     },
     deleteOneUser(id) {
@@ -228,7 +228,7 @@ export default {
           console.log(error)
         })
         .then(() => {
-          this.showActivities()
+          this.showUsers()
         })
     }
   }
@@ -260,13 +260,10 @@ export default {
   z-index: 1000;
 }
 
-#titleBackground {
-  background-color: lightgrey;
-  padding: 10px;
-}
-
 h2{
   font-family: Candara;
+  background-color: lightgrey;
+  padding: 10px;
 }
 button{
   margin-top: 40px;

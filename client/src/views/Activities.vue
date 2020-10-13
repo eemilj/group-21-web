@@ -1,4 +1,5 @@
 <template>
+  <div class="globalMargin">
   <b-container>
     <div >
       <div class="header"><em>Activities</em> </div>
@@ -6,6 +7,7 @@
       <ActivitiesForClient v-bind:activities2="activities3" v-on:get-activity="getActivityID" /><ActivitiesForClient/>
     </div>
   </b-container>
+  </div>
 </template>
 
 <script>

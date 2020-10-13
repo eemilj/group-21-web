@@ -1,5 +1,6 @@
 <template>
   <div class="groupAdd">
+    <div class="globalMargin">
     <h3>Create Group</h3>
     <form @submit="addGroup" class="groupBox">
       <input type="text" v-model="name" name="name" placeholder="Name" class="name">
@@ -10,6 +11,7 @@
       <br>
       <input type="submit" value="Submit" class="btn"/>
     </form>
+  </div>
   </div>
 </template>
 

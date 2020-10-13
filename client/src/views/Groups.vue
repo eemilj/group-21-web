@@ -1,6 +1,7 @@
 <template>
   <div class="background">
-  <div class="container">
+    <div class="globalMargin">
+        <div class="container">
     <header class="grpHeader">Groups</header>
     <div class="row">
       <div class="col-12 col-md-6">
@@ -17,6 +18,7 @@
       </div>
     </div>
   </div>
+    </div>
   </div>
 </template>
 
