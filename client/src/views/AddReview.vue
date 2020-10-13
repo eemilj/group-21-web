@@ -64,8 +64,7 @@ export default {
 <style scoped>
 .reviewStyle{
   padding: 20px;
-  min-width: fit-content;
-  background: #D4EDDA;
+  background: navajowhite;
 }
 .reviewBox{
   min-width: fit-content;

@@ -54,7 +54,7 @@ export default {
 <style scoped>
 .groupAdd{
   padding: 10px;
-  background: #D4EDDA;
+  background: #9fcdff;
   border: 1px #1d2124 solid;
   min-width: fit-content;
 }
