@@ -3,16 +3,12 @@
         <div class="background">
     <div class="globalMargin">
     <header class="header">
-      <h2>
+      <h1>
         Welcome <strong>{{currentUser.user.username}}</strong>!
-      </h2>
+      </h1>
     </header>
     <div class="col-md-12">
         <h3>User Information</h3>
-        <p>
-          <strong align="left">Id:</strong>
-          {{currentUser.user.id}}
-        </p>
         <p>
           <strong>Registration date:</strong>
           {{currentUser.user.registrationDate}}

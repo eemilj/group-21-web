@@ -11,6 +11,8 @@
       <b>{{"Registration Date :"}}</b>
       {{user.registrationDate}}
       <br>
+      <b>{{"ID :"}}</b>
+      {{user._id}}
     </div>
 
     <button @click="$emit('del-user', user._id )" class="del">x</button>
