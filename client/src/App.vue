@@ -62,6 +62,8 @@
 </template>
 
 <script>
+import { Api } from '@/Api'
+
 export default {
   computed: {
     currentUser() {
@@ -79,6 +81,20 @@ export default {
     logOut() {
       this.$store.dispatch('auth/logout')
       this.$router.push('/login')
+    }
+  },
+  beforeUpdate() {
+    if (this.$store.state.auth.user !== null) {
+      Api.get('http://localhost:3000/api/users/' + this.$store.state.auth.user.user.id).then(response => {
+        if (response.status === 200) {
+          return response.data
+        }
+      }).catch(error => {
+        if (error.response.status === 404) {
+          this.$store.dispatch('auth/logout')
+          return error.response.data
+        }
+      })
     }
   }
 }
