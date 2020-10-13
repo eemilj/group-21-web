@@ -2,11 +2,12 @@
   <div class="background">
     <div class="globalMargin">
         <div class="container">
-    <header class="grpHeader">Groups</header>
-    <div class="row">
+          <div class="header"><em>Groups</em> </div>
+
+          <div class="row">
       <div class="col-12 col-md-6">
         <div class="groups">
-          <div v-for="group in groups" v-bind:key="group._id" class="media overflow-hidden">
+          <div v-for="group in groups" v-bind:key="group._id" >
             <GroupItem v-bind:group="group"/>
           </div>
         </div>
@@ -88,5 +89,12 @@ export default {
   background: #fffcbe
 }
 .media{
+}
+
+.header{
+  font-size: 50px;
+  grid-column: 1/5;
+  margin: 50px;
+  text-align: center;
 }
 </style>

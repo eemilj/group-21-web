@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-12 col-md-12" col-xs-3>
           <div class="fixed" >
-            <h1 class="marginAll"> Admin Page</h1>
+            <div class="header"><em>Admin Page</em> </div>
             <UpdateActivity  v-on:update-activityName="createNewActivityName"/>
           </div>
         </div>
@@ -247,10 +247,7 @@ export default {
 .marginActivities{
   margin-top: 270px;
 }
-.marginAll{
-  margin: 50px;
-  padding-top: 30px;
-}
+
 .fixed{
   top: 10px;
   position: fixed;
@@ -261,7 +258,7 @@ export default {
 }
 
 h2{
-  font-family: Candara;
+  font-family: "Arial Nova";
   background-color: lightgrey;
   padding: 10px;
 }
@@ -285,4 +282,12 @@ button{
 .background {
   background: lightgrey;
 }
+.header{
+  font-size: 50px;
+  margin: 50px;
+  text-align: center;
+  padding-top: 30px;
+
+}
+
 </style>

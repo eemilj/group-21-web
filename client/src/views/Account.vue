@@ -1,7 +1,8 @@
 <template>
-  <div class="container">
+      <div class="container">
+        <div class="background">
     <div class="globalMargin">
-    <header class="jumbotron">
+    <header class="header">
       <h2>
         Welcome <strong>{{currentUser.user.username}}</strong>!
       </h2>
@@ -76,6 +77,7 @@
   </div>
   </div>
   </div>
+  </div>
 </template>
 
 <script>
@@ -128,3 +130,17 @@ export default {
   }
 }
 </script>
+<style>
+
+.background{
+  background: #fffcbe;
+}
+.header{
+  font-size: 50px;
+  margin: 50px;
+  text-align: center;
+  padding-top: 30px;
+
+}
+
+</style>
