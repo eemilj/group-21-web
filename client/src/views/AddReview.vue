@@ -65,10 +65,11 @@ export default {
 .reviewStyle{
   padding: 20px;
   min-width: fit-content;
-  background: #7abaff;
+  background: #D4EDDA;
 }
 .reviewBox{
   min-width: fit-content;
+  margin-bottom: 3%;
 }
 .subject{
   width: 80%;

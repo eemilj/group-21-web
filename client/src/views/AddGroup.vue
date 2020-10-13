@@ -56,8 +56,8 @@ export default {
 <style scoped>
 .groupAdd{
   padding: 10px;
-  background: #7abaff;
-  border: 1px #1d2124 solid;
+  background: #D4EDDA;
+  border: 1px #aacfb2 solid;
   min-width: fit-content;
 }
 .groupBox{
@@ -66,7 +66,7 @@ export default {
 .name, .location, .description{
   margin-bottom: 10px;
   max-width: inherit;
-  min-width: 80%
+  min-width: 100%
 }
 
 .btn{

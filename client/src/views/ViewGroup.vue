@@ -203,19 +203,19 @@ export default {
   border-radius: inherit;
   border-color: #721c24;
   word-wrap: break-word;
-  padding-bottom: 200px;
+  padding-bottom: 10%;
 }
 .Edit{
-  padding-top: 50px;
+  padding-top: 1%;
 }
 .background{
   background: #fffcbe;
 }
 
 .reviews{
-  margin-top: 50px;
-  background: #7abaff;
-  border: 1px #000000 solid;
+  margin-top: 1%;
+  background: #D4EDDA;
+  border: 1px #74a26e solid;
 }
 .alert-warning{
   float: right;

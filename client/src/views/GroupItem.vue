@@ -32,20 +32,22 @@ export default {
 .groupItem {
   background: white;
   padding: 30px;
-  border: 1px #000000 solid;
+  border: 1px #9f815e solid;
   align-content: baseline;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  min-width: 100%
+  margin-top: 3%;
+  margin-bottom: 3%;
+  min-width: 100%;
+  color: darkred;
 }
 
 .groupItemFormat {
-  text-align: left;
-  float: left;
+  text-align: center;
 }
 .groupItem{
-  background: #b3ff93
+  background-color: wheat;
+  background-blend-mode: color-dodge;
 }
+
 .groupItem:hover{
   background: #7abaff;
   cursor: pointer;

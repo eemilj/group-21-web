@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div >
+  <div class="background">
+    <div>
       <div class="row">
         <div class="col-12 col-md-12" col-xs-3>
           <div class="fixed" >
@@ -242,10 +242,10 @@ export default {
   background-color: #f2b4ba;
 }
 .margin{
-  margin-top: 50px;
+  margin-top: 1%;
 }
 .marginActivities{
-  margin-top: 250px;
+  margin-top: 270px;
 }
 .marginAll{
   margin: 50px;
@@ -274,11 +274,15 @@ button{
   border: none;
 }
 button{
-  margin-top: 40px;
+  margin-top: 2%;
   font-family: "Adobe Fan Heiti Std B";
   font-size: 1em;
   background-color: red;
   color: white;
   border: none;
+  margin-bottom: 2%;
+}
+.background {
+  background: lightgrey;
 }
 </style>

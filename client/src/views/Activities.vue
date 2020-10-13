@@ -1,4 +1,5 @@
 <template>
+  <div class="background">
   <div class="globalMargin">
   <b-container>
     <div >
@@ -8,8 +9,8 @@
     </div>
   </b-container>
   </div>
+  </div>
 </template>
-
 <script>
 import ActivitiesForClient from '../../Components/ActivitiesForClient'
 import { Api } from '@/Api'
@@ -68,6 +69,9 @@ export default {
   grid-column: 1/5;
   margin: 50px;
   text-align: center;
+}
+.background{
+  background: #fffcbe;
 }
 
 </style>

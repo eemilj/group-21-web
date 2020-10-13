@@ -11,7 +11,7 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-5">
+      <div class="col-12 col-md-6">
         <div class="addGroup">
         <AddGroup v-on:add-group="addGroup"/>
         </div>
@@ -80,7 +80,7 @@ export default {
   background: #fffcbe;
 }
 .addGroup{
-  margin-left: 10%;
+  margin: 10%;
 }
 .grpHeader{
   font-size: 40px;
