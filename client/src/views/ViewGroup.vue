@@ -6,6 +6,8 @@
       <div class="row">
         <div class="col-12 col-md-6">
           <div class="description">
+            <h3 class="location"><u>Date: </u></h3>
+            <h4> Start date: {{dateNice(group.startDate)}}<br> End date: {{dateNice(group.endDate)}}</h4>
             <h3 class="location"><u>Location: </u></h3>
             <h4> {{group.location}}</h4>
             <br>
@@ -46,8 +48,7 @@ import { Api } from '@/Api'
 import AddReview from '@/views/AddReview'
 import ReviewItem from '@/views/ReviewItem'
 import EditGroup from '@/views/EditGroup'
-// import EditReview from '@/views/EditReview'
-
+import dateFormat from 'dateformat'
 export default {
   name: 'ViewGroup',
   components: {
@@ -83,6 +84,9 @@ export default {
     }
   },
   methods: {
+    dateNice(date) {
+      return dateFormat(date, 'dddd, mmmm dS, yyyy')
+    },
     showGroup() {
       Api.get('/groups/' + this.$route.params.id)
         .then(response => {

@@ -1,15 +1,12 @@
 <template>
   <div class="groupAdd">
     <div class="globalMargin">
-          <br>
-    <br>
-    <br>
-    <h3>Edit Group</h3>
+    <h3 class="text">Edit Group</h3>
     <form @submit="editGroup" class="groupBox">
       <input type="text" v-model="name" name="name" placeholder="Name" class="name">
-      <br>
       <input type="text" v-model="location" name="location" placeholder="Location" class="location">
-      <br>
+      <datepicker :bootstrap-styling=true v-model="startDate" placeholder="Start date" class="date"></datepicker>
+      <datepicker :bootstrap-styling=true v-model="endDate" placeholder="End date" class="date"></datepicker>
       <textarea rows="4" v-model="description" name="description" placeholder="Write description" class="description"/>
       <br>
       <input type="submit" value="Submit" class="btn"/>
@@ -19,15 +16,20 @@
 </template>
 
 <script>
-
+import Datepicker from 'vuejs-datepicker'
 export default {
   name: 'EditGroup',
   data() {
     return {
       name: '',
       location: '',
-      description: ''
+      description: '',
+      startDate: '',
+      endDate: ''
     }
+  },
+  components: {
+    Datepicker
   },
   computed: {
     currentUser() {
@@ -40,12 +42,16 @@ export default {
       const editedGroup = {
         name: this.name,
         location: this.location,
-        description: this.description
+        description: this.description,
+        startDate: this.startDate,
+        endDate: this.endDate
       }
       this.$emit('edit-group', editedGroup)
       this.name = ''
       this.location = ''
       this.description = ''
+      this.startDate = ''
+      this.endDate = ''
     }
   }
 }
@@ -61,12 +67,13 @@ export default {
 .groupBox{
   min-width: fit-content;
 }
-.name, .location, .description{
+.name, .location, .description, .date{
   margin-bottom: 10px;
-  max-width: inherit;
-  min-width: 80%
+  min-width: 100%;
 }
-
+.text{
+  margin-top: 20%;
+}
 .btn{
   background: #ffffff;
   border: 1px #ccc dotted;

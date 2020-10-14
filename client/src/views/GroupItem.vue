@@ -6,8 +6,7 @@
       <div class="description">
         {{group.location}}
         <br>
-        {{group.startDate}}
-        {{group.endDate}}
+        Start date: {{dateNice(group.startDate)}}<br> End date: {{dateNice(group.endDate)}}
       </div>
     </div>
   </div>
@@ -16,10 +15,15 @@
 
 <script>
 
+import dateFormat from 'dateformat'
+
 export default {
   name: 'GroupItem',
   props: ['group'],
   methods: {
+    dateNice(date) {
+      return dateFormat(date, 'dddd, mmmm dS, yyyy')
+    },
     goToGroup() {
       this.$router.push('/groups/' + this.group._id)
     }

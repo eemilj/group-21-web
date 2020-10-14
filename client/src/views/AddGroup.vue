@@ -1,14 +1,13 @@
 <template>
-  <div class="groupAdd">
+  <div class="container">
     <div class="globalMargin">
     <h3>Create Group</h3>
     <form @submit="addGroup" class="groupBox">
       <input type="text" v-model="name" name="name" placeholder="Name" class="name">
-      <br>
       <input type="text" v-model="location" name="location" placeholder="Location" class="location">
-      <br>
+      <datepicker :bootstrap-styling=true v-model="startDate" placeholder="Start date" class="date"></datepicker>
+      <datepicker :bootstrap-styling=true v-model="endDate" placeholder="End date" class="date"></datepicker>
       <textarea rows="4" v-model="description" name="description" placeholder="Write description" class="description"/>
-      <br>
       <input type="submit" value="Submit" class="btn"/>
     </form>
   </div>
@@ -16,6 +15,7 @@
 </template>
 
 <script>
+import Datepicker from 'vuejs-datepicker'
 
 export default {
   name: 'AddGroup',
@@ -24,8 +24,13 @@ export default {
       id: '',
       name: '',
       location: '',
-      description: ''
+      description: '',
+      startDate: '',
+      endDate: ''
     }
+  },
+  components: {
+    Datepicker
   },
   computed: {
     currentUser() {
@@ -40,7 +45,9 @@ export default {
         name: this.name,
         location: this.location,
         description: this.description,
-        owner: this.currentUser.user.id
+        owner: this.currentUser.user.id,
+        startDate: this.startDate,
+        endDate: this.endDate
       }
       this.$emit('add-group', newGroup)
       this.id = ''
@@ -48,13 +55,15 @@ export default {
       this.location = ''
       this.description = ''
       this.owner = ''
+      this.startDate = ''
+      this.endDate = ''
     }
   }
 }
 </script>
 
 <style scoped>
-.groupAdd{
+.container{
   padding: 10px;
   background: #D4EDDA;
   border: 1px #aacfb2 solid;
@@ -63,7 +72,7 @@ export default {
 .groupBox{
   min-width: fit-content;
 }
-.name, .location, .description{
+.name, .location, .description, .date{
   margin-bottom: 10px;
   max-width: inherit;
   min-width: 100%
@@ -72,5 +81,8 @@ export default {
 .btn{
   background: #ffffff;
   border: 1px #ccc dotted;
+}
+#datepicker {
+  padding: 10px;
 }
 </style>
