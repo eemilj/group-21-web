@@ -50,7 +50,7 @@ input[type="submit"]{
   background-color: #9fcdff;
 }
 .submit {
-  background-color: lightgrey;
+  background-color: #e9e7e7;
 }
 
 </style>

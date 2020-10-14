@@ -1,15 +1,15 @@
 <template>
-  <div>
-    <div >
+  <div class="background">
+    <div>
       <div class="row">
         <div class="col-12 col-md-12" col-xs-3>
           <div class="fixed" >
-            <h1 class="marginAll"> Admin Page</h1>
+            <div class="header"><em>Admin Page</em> </div>
             <UpdateActivity  v-on:update-activityName="createNewActivityName"/>
           </div>
         </div>
       </div>
-      <h2 class="marginActivities" id="titleBackground" > Activities</h2>
+      <h2 class="marginActivities"  > Activities</h2>
       <AddActivity v-on:add-activity="addActivity"/>
       <button @click="deleteActivities">Delete All Activities</button>
 
@@ -18,11 +18,11 @@
                        v-on:update-activityType="updateActivityType"
       />
 
-      <h2 class="margin" id="titleBackground"> Groups</h2>
+      <h2 class="margin" > Groups</h2>
 
       <Groups v-bind:groups="groups" v-on:del-group="deleteOneGroup" />
 
-      <h2 class="margin" id="titleBackground">Users</h2>
+      <h2 class="margin" >Users</h2>
 
       <Users
              v-on:update-user="updateUser"
@@ -216,7 +216,7 @@ export default {
           console.log(error)
         })
         .then(() => {
-          this.showActivities()
+          this.showGroups()
         })
     },
     deleteOneUser(id) {
@@ -228,7 +228,7 @@ export default {
           console.log(error)
         })
         .then(() => {
-          this.showActivities()
+          this.showUsers()
         })
     }
   }
@@ -242,15 +242,12 @@ export default {
   background-color: #f2b4ba;
 }
 .margin{
-  margin-top: 50px;
+  margin-top: 1%;
 }
 .marginActivities{
-  margin-top: 250px;
+  margin-top: 270px;
 }
-.marginAll{
-  margin: 50px;
-  padding-top: 30px;
-}
+
 .fixed{
   top: 10px;
   position: fixed;
@@ -260,28 +257,37 @@ export default {
   z-index: 1000;
 }
 
-#titleBackground {
+h2{
+  font-family: "Arial Nova";
   background-color: lightgrey;
   padding: 10px;
 }
+button{
+  margin-top: 40px;
+  font-family: "Adobe Fan Heiti Std B";
+  font-size: 1em;
+  background-color: red;
+  color: white;
+  border: none;
+}
+button{
+  margin-top: 2%;
+  font-family: "Adobe Fan Heiti Std B";
+  font-size: 1em;
+  background-color: red;
+  color: white;
+  border: none;
+  margin-bottom: 2%;
+}
+.background {
+  background: lightgrey;
+}
+.header{
+  font-size: 50px;
+  margin: 50px;
+  text-align: center;
+  padding-top: 30px;
 
-h2{
-  font-family: Candara;
 }
-button{
-  margin-top: 40px;
-  font-family: "Adobe Fan Heiti Std B";
-  font-size: 1em;
-  background-color: red;
-  color: white;
-  border: none;
-}
-button{
-  margin-top: 40px;
-  font-family: "Adobe Fan Heiti Std B";
-  font-size: 1em;
-  background-color: red;
-  color: white;
-  border: none;
-}
+
 </style>

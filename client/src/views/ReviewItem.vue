@@ -28,7 +28,7 @@ export default {
 <style scoped>
 .container-fluid{
   padding: 20px;
-  border-bottom: 1px #000000 double;
+  border-bottom: 1px #6a9876 double;
   text-align: left;
 }
 .m-md-2{

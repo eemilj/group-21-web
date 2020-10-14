@@ -1,5 +1,6 @@
 <template>
   <div class="col-md-12">
+    <div class="globalMargin">
     <div class="card card-container">
       <img
         id="profile-img"
@@ -76,6 +77,7 @@
         Already a member? <a href="/login">Sign in!</a>
       </div>
     </div>
+  </div>
   </div>
 </template>
 

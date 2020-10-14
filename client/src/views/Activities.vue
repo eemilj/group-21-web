@@ -1,4 +1,6 @@
 <template>
+  <div class="background">
+  <div class="globalMargin">
   <b-container>
     <div >
       <div class="header"><em>Activities</em> </div>
@@ -6,8 +8,9 @@
       <ActivitiesForClient v-bind:activities2="activities3" v-on:get-activity="getActivityID" /><ActivitiesForClient/>
     </div>
   </b-container>
+  </div>
+  </div>
 </template>
-
 <script>
 import ActivitiesForClient from '../../Components/ActivitiesForClient'
 import { Api } from '@/Api'
@@ -66,6 +69,9 @@ export default {
   grid-column: 1/5;
   margin: 50px;
   text-align: center;
+}
+.background{
+  background: #fffcbe;
 }
 
 </style>

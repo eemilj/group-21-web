@@ -64,11 +64,11 @@ export default {
 <style scoped>
 .reviewStyle{
   padding: 20px;
-  min-width: fit-content;
-  background: #7abaff;
+  background: navajowhite;
 }
 .reviewBox{
   min-width: fit-content;
+  margin-bottom: 3%;
 }
 .subject{
   width: 80%;

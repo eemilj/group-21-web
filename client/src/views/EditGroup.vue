@@ -1,6 +1,7 @@
 <template>
   <div class="groupAdd">
-    <br>
+    <div class="globalMargin">
+          <br>
     <br>
     <br>
     <h3>Edit Group</h3>
@@ -13,6 +14,7 @@
       <br>
       <input type="submit" value="Submit" class="btn"/>
     </form>
+  </div>
   </div>
 </template>
 
@@ -52,7 +54,7 @@ export default {
 <style scoped>
 .groupAdd{
   padding: 10px;
-  background: #7abaff;
+  background: #9fcdff;
   border: 1px #1d2124 solid;
   min-width: fit-content;
 }

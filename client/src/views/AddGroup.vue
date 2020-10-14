@@ -1,5 +1,6 @@
 <template>
   <div class="groupAdd">
+    <div class="globalMargin">
     <h3>Create Group</h3>
     <form @submit="addGroup" class="groupBox">
       <input type="text" v-model="name" name="name" placeholder="Name" class="name">
@@ -10,6 +11,7 @@
       <br>
       <input type="submit" value="Submit" class="btn"/>
     </form>
+  </div>
   </div>
 </template>
 
@@ -54,8 +56,8 @@ export default {
 <style scoped>
 .groupAdd{
   padding: 10px;
-  background: #7abaff;
-  border: 1px #1d2124 solid;
+  background: #D4EDDA;
+  border: 1px #aacfb2 solid;
   min-width: fit-content;
 }
 .groupBox{
@@ -64,7 +66,7 @@ export default {
 .name, .location, .description{
   margin-bottom: 10px;
   max-width: inherit;
-  min-width: 80%
+  min-width: 100%
 }
 
 .btn{

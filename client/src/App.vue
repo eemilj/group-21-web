@@ -1,5 +1,5 @@
 <template>
-
+<div id="noMansLand">
   <div id="app">
 
     <b-navbar toggleable="lg" type="light" variant="warning" fixed="top">
@@ -58,7 +58,7 @@
     <!-- Render the content of the current page view -->
     <router-view/>
   </div>
-
+</div>
 </template>
 
 <script>
@@ -91,6 +91,14 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+.globalMargin {
+  margin-top: 50px;
+}
+#noMansLand {
+  width: auto;
+  height: 1500px;
+  background-color: #fffcbe;
 }
 
 </style>

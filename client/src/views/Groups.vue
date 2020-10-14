@@ -1,22 +1,25 @@
 <template>
   <div class="background">
-  <div class="container">
-    <header class="grpHeader">Groups</header>
-    <div class="row">
+    <div class="globalMargin">
+        <div class="container">
+          <div class="header"><em>Groups</em> </div>
+
+          <div class="row">
       <div class="col-12 col-md-6">
         <div class="groups">
-          <div v-for="group in groups" v-bind:key="group._id" class="media overflow-hidden">
+          <div v-for="group in groups" v-bind:key="group._id" >
             <GroupItem v-bind:group="group"/>
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-5">
+      <div class="col-12 col-md-6">
         <div class="addGroup">
         <AddGroup v-on:add-group="addGroup"/>
         </div>
       </div>
     </div>
   </div>
+    </div>
   </div>
 </template>
 
@@ -78,7 +81,7 @@ export default {
   background: #fffcbe;
 }
 .addGroup{
-  margin-left: 10%;
+  margin: 10%;
 }
 .grpHeader{
   font-size: 40px;
@@ -86,5 +89,12 @@ export default {
   background: #fffcbe
 }
 .media{
+}
+
+.header{
+  font-size: 50px;
+  grid-column: 1/5;
+  margin: 50px;
+  text-align: center;
 }
 </style>
