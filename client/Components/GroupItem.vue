@@ -27,9 +27,9 @@ export default {
 
 <style scoped>
 .group-item {
-  background: #fffdd6;
+  background: #f5deb3;
   padding: 8%;
-  border-bottom: 1px #ccc dotted;
+  border-bottom: 1px #585858 solid;
   align-content: baseline;
 }
 
