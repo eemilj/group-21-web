@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
       <b-button v-if="review.author === currentUser.user.id" @click="$emit('del-review', review._id)" class="m-md-2">Delete</b-button>
-    <h3> {{review.subject}}</h3>
+    <h3> {{review.subject}}<div class="Stars" :style="rating"></div></h3>
     <div class="content">
       <h6> {{review.content}}</h6>
     </div>
@@ -20,6 +20,9 @@ export default {
   computed: {
     currentUser() {
       return this.$store.state.auth.user
+    },
+    rating() {
+      return '--rating: ' + this.review.rating + ';'
     }
   }
 }
@@ -41,4 +44,17 @@ export default {
   word-wrap: break-word;
 }
 
+.Stars {
+  --percent: calc(var(--rating) / 5 * 100%);
+  display: inline-block;
+  font-size: 100%;
+  margin-left: 2%;
+}
+.Stars::before {
+  content: '★★★★★';
+  letter-spacing: 3px;
+  background: linear-gradient(90deg,  #fc0 var(--percent), #fff var(--percent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 </style>
