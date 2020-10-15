@@ -28,9 +28,11 @@ export default {
 <style scoped>
 .group-item {
   background: #f5deb3;
-  padding: 8%;
+  padding-top: 40px;
+  padding-bottom: 40px;
   border-bottom: 1px #585858 solid;
   align-content: baseline;
+  padding-left: 2%;
 }
 
 .del {
@@ -41,6 +43,7 @@ export default {
   border-radius: 50%;
   cursor: pointer;
   float: right;
+  margin-right: 2%;
 }
 
 .formatActivity {

@@ -40,7 +40,6 @@ export default {
   methods: {
     addReview(e) {
       e.preventDefault()
-      console.log(this.currentUser.user.id)
       const newReview = {
         id: this.id,
         reviewee: this.$route.params.id,

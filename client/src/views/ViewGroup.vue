@@ -59,14 +59,12 @@ export default {
   },
   data() {
     return {
-      group: '',
+      group: [],
       reviews: [],
       members: [],
-      groupMemberFlag: Boolean
+      groupMemberFlag: Boolean,
+      groupFlag: Boolean
     }
-  },
-  props: {
-    groupFlag: Boolean
   },
   computed: {
     currentUser() {

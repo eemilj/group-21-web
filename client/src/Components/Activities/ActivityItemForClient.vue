@@ -6,7 +6,7 @@
       <div class = "contentType"> <b>{{activity.activity_type}}</b></div>
 
       <div class = "title"> <b> Activity Name</b></div>
-      <div class = "contentName"> <b>{{activity.name}}</b></div>
+      <div class = "contentName overflow-auto"> <b>{{activity.name}}</b></div>
       <div id="enterBar">
         <button @click="$emit('get-activity', activity._id )"  class="enter">Enter</button>
       </div>

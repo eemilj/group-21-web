@@ -2,20 +2,21 @@
   <div class='activity-item' >
     <div class="row">
       <div class="col-6 col-md-6">
-        <div class="formatActivity">
+        <div class="overflow-auto">
           <br>
           <b>{{"Activity Name :"}}</b>
-          {{activity.name}}
+          <div class="overflow-auto">{{activity.name}}</div>
           <br>
           <b>{{"Activity Type :"}}</b>
-          {{activity.activity_type}}
+          <div class="overflow-auto">{{activity.activity_type}}</div>
         </div>
       </div>
-      <div class="col-6 col-md-6">
+      <div class="col-4 col-md-4">
         <button @click="$emit('update-activityName' , activity._id )" class="update"> Update Name</button>
         <button @click="$emit('update-activityType', activity._id )" class="update"> Update Type</button>
+      </div>
+      <div class="col-2 col-md-2">
         <button @click="$emit('del-activity', activity._id, activity.name, activity.activity_type )" class="del">x</button>
-
       </div>
     </div>
   </div>
@@ -34,7 +35,7 @@ export default {
 <style scoped>
 .activity-item {
   background: white;
-  padding: 80px;
+  padding: 40px;
   border-bottom: 1px #ccc dotted;
   align-content: baseline;
 }

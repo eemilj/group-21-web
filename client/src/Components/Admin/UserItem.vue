@@ -1,24 +1,27 @@
 <template>
   <div class='activity-item' >
-
-    <div class="formatActivity">
-      <b>{{"User Username :"}}</b>
-      {{user.username}}
-      <br>
-      <b>{{"Admin Status :"}}</b>
-      {{user.admin}}
-      <br>
-      <b>{{"Registration Date :"}}</b>
-      {{user.registrationDate}}
-      <br>
-      <b>{{"ID :"}}</b>
-      {{user._id}}
+    <div class="row">
+      <div class="col-6 col-md-6">
+        <div class="overflow-auto">
+          <b>{{"User Username :"}}</b>
+          <div class="overflow-auto">{{user.username}}</div>
+          <br>
+          <b>{{"Admin Status :"}}</b>
+          <div class="overflow-auto">{{user.admin}}</div>
+          <br>
+          <b>{{"Registration Date :"}}</b>
+          <div class="overflow-auto">{{user.registrationDate.slice(0,10)}}</div>
+          <br>
+          <b>{{"ID :"}}</b>
+          <div class="overflow-auto">{{user._id}}</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-6">
+        <button @click="$emit('del-user', user._id )" class="del">x</button>
+        <button @click="$emit('update-user', user._id )" class="update">Update Username</button>
+        <button @click="$emit('update-admin', user._id )" class="update">Update Admin Status</button>
+      </div>
     </div>
-
-    <button @click="$emit('del-user', user._id )" class="del">x</button>
-    <button @click="$emit('update-user', user._id )" class="update">Update Username</button>
-    <button @click="$emit('update-admin', user._id )" class="update">Update Admin Status</button>
-
   </div>
 </template>
 
@@ -34,7 +37,7 @@ export default {
 <style scoped>
 .activity-item {
   background: white;
-  padding: 80px;
+  padding: 40px;
   border-bottom: 1px #ccc dotted;
   align-content: baseline;
 }
@@ -56,7 +59,6 @@ export default {
   padding: 5px 13px;
   border-radius: 0%;
   margin: 5px;
-  text-align: right;
 }
 .formatActivity {
   text-align: left;

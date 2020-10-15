@@ -4,7 +4,7 @@
     <div class="globalMargin">
     <header class="header">
       <h1>
-        Welcome <strong>{{currentUser.user.username}}</strong>!
+        Welcome <strong id="user">{{currentUser.user.username}}</strong>!
       </h1>
     </header>
 
@@ -19,7 +19,7 @@
               <strong>Admin role:</strong>
               {{currentUser.user.admin}}
             </p>
-            <h3>Created groups:</h3>
+            <h2>Created groups:</h2>
             <Groups v-bind:groups="groups" v-on:del-group="deleteGroup"/>
           </div>
           <div class="col-md-6">
@@ -166,6 +166,11 @@ export default {
 .background{
   background: #fffcbe;
 }
+
+h2 {
+  font-family: "Arial Nova";
+}
+
 .header{
   font-size: 50px;
   margin: 50px;
@@ -173,4 +178,9 @@ export default {
   padding-top: 30px;
 
 }
+
+#user{
+  color: #0072ec;
+}
+
 </style>
