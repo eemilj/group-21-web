@@ -12,7 +12,7 @@
   </div>
 </template>
 <script>
-import ActivitiesForClient from '../../Components/ActivitiesForClient'
+import ActivitiesForClient from '../Components/Activities/ActivitiesForClient'
 import { Api } from '@/Api'
 
 export default {

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import EditReview from '@/views/EditReview'
+import EditReview from '@/Components/Reviews/EditReview'
 
 export default {
   name: 'ReviewItem',

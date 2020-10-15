@@ -35,11 +35,11 @@
 
 <script>
 import { Api } from '@/Api'
-import ActivitiesAdmin from '../../Components/ActivitiesAdmin'
-import AddActivity from '../../Components/AddActivity'
-import UpdateActivity from '../../Components/UpdateActivity'
-import Groups from '../../Components/Groups'
-import Users from '../../Components/Users'
+import ActivitiesAdmin from '../Components/Admin/ActivitiesAdmin'
+import AddActivity from '../Components/Admin/AddActivity'
+import UpdateActivity from '../Components/Admin/UpdateActivity'
+import Groups from '../Components/Admin/Groups'
+import Users from '../Components/Admin/Users'
 
 export default {
   name: 'admin',

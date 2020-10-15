@@ -24,9 +24,9 @@
 </template>
 
 <script>
-import GroupItem from './GroupItem'
+import GroupItem from '../Components/Groups/GroupItem'
 import { Api } from '@/Api'
-import AddGroup from '@/views/AddGroup'
+import AddGroup from '@/Components/Groups/AddGroup'
 
 export default {
   name: 'Groups',

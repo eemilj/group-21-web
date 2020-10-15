@@ -45,9 +45,9 @@
 
 <script>
 import { Api } from '@/Api'
-import AddReview from '@/views/AddReview'
-import ReviewItem from '@/views/ReviewItem'
-import EditGroup from '@/views/EditGroup'
+import AddReview from '@/Components/Reviews/AddReview'
+import ReviewItem from '@/Components/Reviews/ReviewItem'
+import EditGroup from '@/Components/Groups/EditGroup'
 import dateFormat from 'dateformat'
 export default {
   name: 'ViewGroup',

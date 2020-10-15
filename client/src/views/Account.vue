@@ -84,7 +84,7 @@
 
 <script>
 import { Api } from '@/Api'
-import Groups from '../../Components/Groups'
+import Groups from '../Components/Admin/Groups'
 
 export default {
   name: 'Account',

@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import ReviewItem from '@/views/ReviewItem'
+import ReviewItem from '@/Components/Reviews/ReviewItem'
 
 export default {
   name: 'EditReview',
