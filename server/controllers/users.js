@@ -1,34 +1,38 @@
 var User = require('../models/users');
 var Review = require('../models/reviews');
 var Group = require('../models/groups');
+var bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const createUser = (req, res) => {
-    var user = new User({
-        username: req.body.username,
-        password: req.body.password,
-        admin: (req.body.admin || false),
-        registrationDate: Date.now()
-    });
-    user.save()
-        .then(result => {
-            console.log(result);
-            res.status(201).json({
-                message: 'You have successfully registered!',
-                createdUser : result
-            });
-        })
-        .catch(err => {
-            console.log(err);
-            if (err.code === 11000 || err.code === 11001) {
-                res.status(409).json({
-                    message: 'This user already exists.'
-                })
-            } else {
-                res.status(500).json({
-                    error: err
-                });
-            }
+    bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
+        var user = new User({
+            username: req.body.username,
+            password: hash,
+            admin: (req.body.admin || false),
+            registrationDate: Date.now()
         });
+        user.save()
+            .then(result => {
+                console.log(result);
+                res.status(201).json({
+                    message: 'You have successfully registered!',
+                    createdUser : result
+                });
+            })
+            .catch(err => {
+                console.log(err);
+                if (err.code === 11000 || err.code === 11001) {
+                    res.status(409).json({
+                        message: 'This user already exists.'
+                    })
+                } else {
+                    res.status(500).json({
+                        error: err
+                    });
+                }
+            });
+    });
 };
 
 const authenticateUser = (req, res) => {
@@ -39,18 +43,20 @@ const authenticateUser = (req, res) => {
         if (user === null ) {
             return res.status(404).json({ message: 'User not found.' });
         }
-        if (reqPassword === user.password) {
-            res.status(200).json({
-                user: {
-                    id: user._id,
-                    username: user.username,
-                    admin: user.admin,
-                    registrationDate: user.registrationDate
-                }
-            });
-        } else {
-            res.status(401).json({ message: 'Wrong credentials. Try again.'});
-        }
+        bcrypt.compare(reqPassword, user.password, function (err, result) {
+            if (result === true) {
+                res.status(200).json({
+                    user: {
+                        id: user._id,
+                        username: user.username,
+                        admin: user.admin,
+                        registrationDate: user.registrationDate
+                    }
+                });
+            } else {
+                res.status(401).json({ message: 'Wrong credentials. Try again.'});
+            }
+        })
     }).catch(error => {
         res.status(500).json({ error: error});
     });
