@@ -4,8 +4,8 @@
     <button @click="$emit('del-group', group._id, group.name )" class="del">x</button>
 
     <div class="formatActivity">
-      <b>{{"Group Name :"}}</b>
-      {{group.name}}
+      <b>{{"Group name: "}}</b>
+      <a :href="groupLink">{{group.name}}</a>
     </div>
 
   </div>
@@ -15,15 +15,20 @@
 
 export default {
   name: 'GroupItem',
-  props: ['group']
+  props: ['group'],
+  computed: {
+    groupLink() {
+      return '/groups/' + this.group._id
+    }
+  }
 }
 
 </script>
 
 <style scoped>
 .group-item {
-  background: white;
-  padding: 80px;
+  background: #fffdd6;
+  padding: 8%;
   border-bottom: 1px #ccc dotted;
   align-content: baseline;
 }

@@ -125,7 +125,20 @@ const deleteAllGroups = (req, res, next) => {
 
 };
 
-
+const searchOwnerGroups = (req, res, next) => {
+    const ownerId = req.params.id;
+    Group.find({ owner: ownerId}, function(error, groups) {
+        if (error) {
+            return next(error);
+        }
+        if (groups == null) {
+            return res.status(404).json(
+                {"message": "Groups not found."}
+            );
+        }
+        res.json(groups);
+    });
+}
 
 module.exports = {
     createGroup,
@@ -134,5 +147,6 @@ module.exports = {
     updateGroupById,
     patchGroupById,
     deleteGroupById,
-    deleteAllGroups
+    deleteAllGroups,
+    searchOwnerGroups
 };
