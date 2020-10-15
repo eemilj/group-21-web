@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "445d13d2-82eb-4448-9c93-8b725cf2edb6",
-		"name": "server",
+		"_postman_id": "09599939-7fd1-4383-877d-5453e94bce52",
+		"name": "server Copy 4",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -11,7 +11,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e388db63-08b5-45e5-8edf-1d5c9259bdc4",
+						"id": "b079ee45-5ffc-4e6c-b153-d60bf6c5253d",
 						"exec": [
 							"var json = pm.response.json();",
 							"postman.setEnvironmentVariable(\"user_id\", json._id);",
@@ -75,7 +75,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "2e9e42fb-5885-485d-a580-34950e5c66e5",
+						"id": "4d797f52-fcdf-481a-8f08-33d5047b8acc",
 						"exec": [
 							"var json = pm.response.json();",
 							"postman.setEnvironmentVariable(\"user_id\", json.createdUser._id);",
@@ -134,7 +134,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "6c9b6499-7395-4d07-a149-cc4430e50bd0",
+						"id": "3d6d4e77-c836-45cf-af14-5e5e08864668",
 						"exec": [
 							"pm.test('status code 409 when user exists', function(){",
 							"    pm.response.to.have.status(409);",
@@ -177,7 +177,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "69cb31ca-4b80-4314-86ea-bbb86a77f48e",
+						"id": "31676945-4f49-4155-866d-3fb6d1507872",
 						"exec": [
 							"pm.test('status code 409 when user exists', function(){",
 							"    pm.response.to.have.status(409);",
@@ -220,7 +220,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "53ab766c-921f-4bfd-b989-b5ef24a27573",
+						"id": "701d7bd9-1a4b-43de-9295-d821c32b7726",
 						"exec": [
 							"var json = pm.response.json();",
 							"postman.setEnvironmentVariable(\"user_id\", json._id);",
@@ -279,7 +279,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "4ed19f2e-1c41-4597-a614-e52b1e25619b",
+						"id": "84340e93-665a-45a8-a01f-d22a9507cdce",
 						"exec": [
 							"pm.test('correct status code when users do exist and GET them successfully', function(){",
 							"    pm.response.to.have.status(200);",
@@ -311,7 +311,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "fc45b923-2047-4b90-af06-1c4bd0d83b22",
+						"id": "85bdf3f5-6e20-44b4-97c3-8f3d02881d29",
 						"exec": [
 							"pm.test('status code 404 when a user with the specified ID not found', function(){",
 							"    pm.response.to.have.status(404);",
@@ -352,7 +352,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "6754d6cf-6f2a-41ed-817e-4c314053755f",
+						"id": "247249c3-9315-435f-afde-c5115c8a63f3",
 						"exec": [
 							"pm.test('status code 500 when when trying to delete a user without a proper ID', function(){",
 							"    pm.response.to.have.status(500);",
@@ -385,7 +385,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "3d7db65b-315f-4859-918e-02c5c361eaca",
+						"id": "de468e85-9660-4453-b744-277d1d5ee1b7",
 						"exec": [
 							"pm.test('correct status code when user does exist and PUT successfully', function(){",
 							"    pm.response.to.have.status(200);",
@@ -433,7 +433,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "ba8604bf-e717-40fb-ad50-07b66d0368a4",
+						"id": "55db5a88-6c67-436f-8988-5f531bdc81bc",
 						"exec": [
 							"pm.test('status code 404 when user does not exist', function(){",
 							"    pm.response.to.have.status(404);",
@@ -476,7 +476,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d2d2bb31-20a0-4048-a6c9-76975417e34a",
+						"id": "4cb98918-b138-4dd1-9f8a-97167612647c",
 						"exec": [
 							"pm.test('status code 500 when user has invalid ID', function(){",
 							"    pm.response.to.have.status(500);",
@@ -519,7 +519,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "7d8ccea3-be0c-4613-a056-3a0a09dce13c",
+						"id": "4f0edf87-15ab-4145-9564-8240fcdab849",
 						"exec": [
 							"pm.test('correct status code when user does exist and PUT successfully', function(){",
 							"    pm.response.to.have.status(200);",
@@ -565,7 +565,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d1c74974-f732-4367-b2e6-22f0f995fede",
+						"id": "e665c232-422f-49b6-85f0-de7241dc954a",
 						"exec": [
 							"pm.test('status code 404 when user does not exist', function(){",
 							"    pm.response.to.have.status(404);",
@@ -608,7 +608,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "9ecd040a-90fc-4ca2-8de5-65fc1e324d52",
+						"id": "60e3e6b4-02dd-4ab3-b911-d2e9f6eb4bd0",
 						"exec": [
 							"pm.test('status code 500 when user id is invalid', function(){",
 							"    pm.response.to.have.status(500);",
@@ -651,7 +651,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "0bd81067-8138-4bb8-bb98-a39565fd0e84",
+						"id": "2553b306-3e2b-467c-a878-2d52accd8be6",
 						"exec": [
 							"pm.test('correct status code when user does exist and DELETE them successfully', function(){",
 							"    pm.response.to.have.status(200);",
@@ -689,7 +689,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "8da65e5a-3cff-41e5-b994-880dde95aa69",
+						"id": "fe5ca7c6-e6f2-4b8c-b5de-a7bd51653d92",
 						"exec": [
 							"pm.test('correct status code', function(){",
 							"    pm.response.to.have.status(200);",
@@ -727,7 +727,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "233c1b46-e1a7-429d-a871-4ddac83d1ea3",
+						"id": "8799a04b-9b1d-4fd2-bd68-16d3b5180ee1",
 						"exec": [
 							"var json = pm.response.json();",
 							"postman.setEnvironmentVariable(\"group_id\", json.createdGroup._id);",
@@ -752,7 +752,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"name\": \"Group\",\n    \"location\": \"Stockholm\",\n    \"activity\": \"5f63d49e36d3a338113801aa\",\n    \"startDate\": \"2020-09-20T12:00:00.000Z\",\n    \"endDate\": \"2020-09-25T12:00:00.000Z\"}",
+					"raw": "{\"name\": \"Group\",\n    \"location\": \"Stockholm\",\n    \"activity\": \"5f63d49e36d3a338113801aa\",\n    \"startDate\": \"2020-09-20T12:00:00.000Z\",\n    \"endDate\": \"2020-09-25T12:00:00.000Z\",\n    \"owner\": \"5f86bc212f4b1c64a11e952b\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -778,7 +778,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d7e4e6c3-f7ea-4a0c-a8f6-7747912987e8",
+						"id": "665ca163-9910-420c-acaf-b316a6175124",
 						"exec": [
 							"var json = pm.response.json();",
 							"postman.setEnvironmentVariable(\"group_id\", json.createdGroup._id);",
@@ -803,7 +803,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"name\": \"Group1\",\n    \"location\": \"Gothenburg\",\n    \"activity\": \"5f63d49e36d3a338113801a2\",\n    \"startDate\": \"2020-09-20T12:00:00.000Z\",\n    \"endDate\": \"2020-09-25T12:00:00.000Z\"}",
+					"raw": "{\"name\": \"Group1\",\n    \"location\": \"Gothenburg\",\n    \"activity\": \"5f63d49e36d3a338113801a2\",\n    \"startDate\": \"2020-09-20T12:00:00.000Z\",\n    \"endDate\": \"2020-09-25T12:00:00.000Z\",\n    \"owner\": \"5f86bc212f4b1c64a11e952b\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -829,7 +829,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b7d3f0dd-925d-46a3-89f6-2b1385ea3dca",
+						"id": "085456ac-acfb-4fd6-b477-9351bb18d760",
 						"exec": [
 							"pm.test('status code 500 when group exists', function(){",
 							"    pm.response.to.have.status(500);",
@@ -845,7 +845,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"name\": \"Group1\",\n    \"location\": \"Gothenburg\",\n    \"activity\": \"5f63d49e36d3a338113801aa\",\n    \"startDate\": \"2020-09-20T12:00:00.000Z\",\n    \"endDate\": \"2020-09-25T12:00:00.000Z\"}",
+					"raw": "{\"name\": \"Group1\",\n    \"location\": \"Gothenburg\",\n    \"activity\": \"5f63d49e36d3a338113801aa\",\n    \"startDate\": \"2020-09-20T12:00:00.000Z\",\n    \"endDate\": \"2020-09-25T12:00:00.000Z\",\n    \"owner\": \"5f86bc212f4b1c64a11e952b\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -871,7 +871,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "1277c612-9774-4d4e-9a53-3ee6871f6679",
+						"id": "402fc8ea-b7d1-416d-b4ef-ab93957b8c86",
 						"exec": [
 							"pm.test('correct status code when users do exist and GET them successfully', function(){",
 							"    pm.response.to.have.status(200);",
@@ -903,7 +903,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "bb3b8741-efa4-41bb-9112-cb06c703b2b2",
+						"id": "9b004371-6449-4c45-b99b-6651214e2b63",
 						"exec": [
 							"pm.test('correct status code when user does exist and GET them successfully', function(){",
 							"    pm.response.to.have.status(200);",
@@ -946,7 +946,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "3cf118ef-8286-47db-870e-15fc44105d84",
+						"id": "2609d9d2-04fc-4a4a-bd2f-2e47491af567",
 						"exec": [
 							"pm.test('status code 404 when a group with the specified ID not found', function(){",
 							"    pm.response.to.have.status(404);",
@@ -980,7 +980,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "0e44e3b0-7b06-43bd-b000-906de9c99e43",
+						"id": "30fb5876-6bf0-4065-842e-b10fd330b8b9",
 						"exec": [
 							"pm.test('correct status code when group does not exist and PUT successfully', function(){",
 							"    pm.response.to.have.status(200);",
@@ -1030,7 +1030,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "f55f28d4-5caf-419e-94da-2708e635605b",
+						"id": "c7a26292-6e1e-4953-a91a-7667fe222657",
 						"exec": [
 							"pm.test('status code 404 when group does not exist', function(){",
 							"    pm.response.to.have.status(404);",
@@ -1073,7 +1073,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "df625706-f402-4fde-9b91-219b6ea3cba5",
+						"id": "8f71d13e-b66a-47d5-8992-b62a573a7b9a",
 						"exec": [
 							"pm.test('status code 500 when group has invalid ID', function(){",
 							"    pm.response.to.have.status(500);",
@@ -1116,7 +1116,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "004ccde7-25b2-47e9-b065-57ee3fb21b49",
+						"id": "bdd033b7-b856-49e0-8416-9e8ec2704afc",
 						"exec": [
 							"pm.test('correct status code when group does exist and PUT successfully', function(){",
 							"    pm.response.to.have.status(200);",
@@ -1162,7 +1162,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d583f91d-89b8-4c3a-8500-28d3a9408ae2",
+						"id": "aaf2d514-94f8-4998-844e-ee92d2dd8356",
 						"exec": [
 							"pm.test('status code 404 when group does not exist', function(){",
 							"    pm.response.to.have.status(404);",
@@ -1205,7 +1205,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "8e7b4b86-8e88-471a-a270-1529185a5d02",
+						"id": "eab5668b-f260-40d7-b35d-ae1c0cd8f412",
 						"exec": [
 							"pm.test('status code 500 when group id is invalid', function(){",
 							"    pm.response.to.have.status(500);",
@@ -1248,7 +1248,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "ad47582f-ccc7-4827-87dc-f8c2aca0a031",
+						"id": "dc1a7c35-36c7-49b1-9b0d-e118af813d27",
 						"exec": [
 							"pm.test('correct status code when user does exist and GET them successfully', function(){",
 							"    pm.response.to.have.status(200);",
@@ -1291,7 +1291,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "03837899-425f-4f56-9dba-7603edffbbf3",
+						"id": "0b0eef99-dc92-433c-9261-d02fb78565f4",
 						"exec": [
 							"pm.test('status code 500 when when trying to delete a group that does not exist', function(){",
 							"    pm.response.to.have.status(404);",
@@ -1324,7 +1324,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "176388c9-5851-4750-9386-1d455be287d8",
+						"id": "74903bed-b687-4e81-af33-a16da6c58306",
 						"exec": [
 							"pm.test('status code 500 when when trying to delete a user without a proper ID', function(){",
 							"    pm.response.to.have.status(500);",
@@ -1357,7 +1357,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "22206b30-14fe-469c-8030-c50d332aa508",
+						"id": "8d0f6f8c-6f65-4c0d-91f6-dff1c8e01f58",
 						"exec": [
 							"pm.test('correct status code', function(){",
 							"    pm.response.to.have.status(200);",
@@ -1395,7 +1395,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "42de2dc6-516b-4c87-9bba-aa2bd1c204b0",
+						"id": "c8be0b9e-c3fd-4d31-b4c5-43293be01b1e",
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
 							"postman.setEnvironmentVariable(\"review_id\", jsonData._id);\r",
@@ -1460,7 +1460,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "66494fb7-b4cc-427e-9688-96c2e4b5723b",
+						"id": "68f55995-30c5-4c62-ac62-342942ddc858",
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
 							"\r",
@@ -1527,7 +1527,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "1f8e981a-eb8d-46f7-bc20-f5baa5c40391",
+						"id": "cb66e451-7f19-44b9-8460-e98fba6eb77b",
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
 							"\r",
@@ -1587,7 +1587,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "032b5376-d08a-411d-8619-31ab00d1077b",
+						"id": "30045349-09bb-499a-9c62-08c2b3626a68",
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
 							"\r",
@@ -1647,7 +1647,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "14ca5174-00d4-4fa1-a69f-629e2fb39052",
+						"id": "7c7f397d-818c-4598-8253-58e5ea693023",
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
 							"\r",
@@ -1707,7 +1707,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "2f6bf256-a3ad-4a38-be8f-ffaeb0ab6355",
+						"id": "ba8732b8-8655-44b4-9bd1-0d22d7bf3021",
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
 							"\r",
@@ -1769,7 +1769,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b2e1f901-58f2-44fa-a039-57d2f115e772",
+						"id": "2530927f-50bb-4af8-8b35-7f652a22d8ef",
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
 							"\r",
@@ -1825,7 +1825,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "8be1e6fb-2ca0-4f92-ac82-4d4446714e57",
+						"id": "be99010f-8f32-4a80-a9d1-04347ce9bacd",
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
 							"\r",
@@ -1882,7 +1882,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "8fd657b0-f45d-44a1-8909-4115f73e29ba",
+						"id": "b35665bc-cdfe-4ce5-8aa5-62e3673912a3",
 						"exec": [
 							""
 						],
@@ -1934,7 +1934,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "0e00154b-ca58-4565-b841-a6c20b26c8bf",
+						"id": "21c02548-8917-4a4a-86ed-0f5b4a86e583",
 						"exec": [
 							"pm.test(\"Review deleted\", function(){\r",
 							"    pm.response.to.have.status(200)\r",
@@ -1988,7 +1988,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "83677c64-a7ab-4434-9937-c9dd70a04a82",
+						"id": "d11f654c-9e64-4dcb-991e-0874a43f4e46",
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
 							"\r",
@@ -2048,7 +2048,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a677bcbe-1a52-49b2-8e7e-3aeef2cd5397",
+						"id": "4ca078b6-b003-4f8f-9662-c65ecc1d8070",
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
 							"\r",
@@ -2111,7 +2111,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "1714c31e-db88-4d80-b7ea-08902c053bc8",
+						"id": "e48bcfee-846a-4db7-938f-275fd7277104",
 						"exec": [
 							"pm.test(\"Invalid ID to delete\", function(){\r",
 							"    pm.response.to.have.status(404)\r",
@@ -2165,7 +2165,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "545cbec8-0840-4edc-b8cb-30c4e6b40809",
+						"id": "1435a35f-a6dd-4746-98eb-835cecd2006f",
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
 							"postman.setEnvironmentVariable(\"activity_id\", jsonData.createdActivity._id);\r",
@@ -2219,7 +2219,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "f16c6986-f142-44bb-83f9-856260112916",
+						"id": "710a833c-f1b4-4714-b090-79e9cb1b97c2",
 						"exec": [
 							"pm.test(\"Correct status code\", function(){\r",
 							"    pm.response.to.have.status(200);\r",
@@ -2258,7 +2258,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "f7fc6c6b-3f5e-4fd5-aa0d-daf811c0afd5",
+						"id": "320fec24-9220-4e3c-b135-d18a39271e8a",
 						"exec": [
 							"pm.test(\"Correct status code\", function(){\r",
 							"    pm.response.to.have.status(200);\r",
@@ -2308,7 +2308,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "8dfc9f38-f168-4d70-a3df-651596097425",
+						"id": "75afa3bc-99e3-4026-915f-b376d3013235",
 						"exec": [
 							"pm.test(\"Correct status code\", function(){\r",
 							"    pm.response.to.have.status(404);\r",
@@ -2349,7 +2349,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d6bf5e74-ae9c-4515-a9c0-9dd54933f721",
+						"id": "603679cc-4374-405c-8a65-e0d6a066d3c9",
 						"exec": [
 							"pm.test(\"Correct activity response\", function(){\r",
 							"    var jsonData = pm.response.json();\r",
@@ -2389,7 +2389,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a4e2042f-ffc9-4197-9183-80cc9758b3ab",
+						"id": "ae062cfe-fc6b-4e98-91cf-306597edb836",
 						"exec": [
 							"pm.test(\"correct status code when the activity existss \", function(){\r",
 							"    pm.response.to.have.status(200);\r",
@@ -2448,7 +2448,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d885a08a-7919-4a63-b715-c3a9e10b86de",
+						"id": "a80f444d-8d62-4f76-8a76-48dd287e38f5",
 						"exec": [
 							"pm.test(\"correct status when we patch\", function(){\r",
 							"    pm.response.to.have.status(200);\r",
@@ -2506,7 +2506,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "3b0e6f45-5793-4a45-9713-df44cba9aa17",
+						"id": "dd3ac163-0a82-42a7-b48d-1d4a74388c6b",
 						"exec": [
 							"pm.test(\"Correct status code\", function(){\r",
 							"    pm.response.to.have.status(200);\r",
@@ -2547,7 +2547,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "2f50c268-6e00-490f-8de3-267b483421ba",
+						"id": "2cb1af87-0504-4c8e-bbf9-93265d278fd1",
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
 							"postman.setEnvironmentVariable(\"activity_id\", jsonData.createdActivity._id);\r",
@@ -2607,7 +2607,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b6fc5f40-e135-4cdb-b846-76d391dfbf8d",
+						"id": "e759ba7f-cbc7-4fac-b66e-243c544f161e",
 						"exec": [
 							"pm.test(\"Correct status code\", function(){\r",
 							"    pm.response.to.have.status(200);\r",
@@ -2648,7 +2648,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "91b42469-131d-486b-949c-633a287f1910",
+						"id": "20706498-142e-4fa7-afeb-3aa7638ce51d",
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
 							"postman.setEnvironmentVariable(\"rel_activity_id\", jsonData.createdActivity._id);\r",
@@ -2696,7 +2696,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "0351619b-5d14-4262-8ff3-0edc054dddbf",
+						"id": "c9d5d5e2-5504-4d5c-926d-8005be5c6f9d",
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
 							"postman.setEnvironmentVariable(\"rel_group_id\", jsonData.createdGroup._id);\r",
@@ -2723,7 +2723,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"name\": \"New Group Relationship\",\n    \"location\": \"Gothenburg\",\n    \"startDate\": \"2020-09-20T12:00:00.000Z\",\n    \"endDate\": \"2020-09-25T12:00:00.000Z\"}"
+					"raw": "{\"name\": \"New Group Relationship\",\n    \"location\": \"Gothenburg\",\n    \"startDate\": \"2020-09-20T12:00:00.000Z\",\n    \"endDate\": \"2020-09-25T12:00:00.000Z\",\n    \"owner\": \"5f86bc212f4b1c64a11e952b\"}"
 				},
 				"url": {
 					"raw": "{{host}}/api/activities/{{rel_activity_id}}/groups",
@@ -2746,7 +2746,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "377f7e52-a7b1-42c5-b618-5cfa41356c55",
+						"id": "8b6375d6-fb75-40a9-85f3-37ae9895b770",
 						"exec": [
 							"pm.test(\"GET all groups in specific activity\", function(){\r",
 							"    pm.response.to.have.status(200);\r",
@@ -2798,7 +2798,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d5b4d0e8-98fe-4151-a8e4-cb1e61e629e6",
+						"id": "829e48a6-be9a-4d69-b161-5b331cce281b",
 						"exec": [
 							"pm.test(\"GET one group in specific activity\", function(){\r",
 							"    pm.response.to.have.status(200);\r",
@@ -2851,7 +2851,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "68e339b8-3f80-49f7-b5eb-0052fa1fa1c4",
+						"id": "e470a89e-5c14-4de3-ab64-af5dea7f7ca8",
 						"exec": [
 							"pm.test(\"Group deleted\", function(){\r",
 							"    pm.response.to.have.status(200);\r",
@@ -2900,7 +2900,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "48ffbe90-6702-4ba0-9ae1-132ad490d102",
+				"id": "0d6fd9a8-1409-4302-8cde-97584ccf34dd",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -2910,7 +2910,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "05a59c29-70bb-4855-86e2-da0b084323bd",
+				"id": "05a3c8c8-05f8-4710-9182-ca3a6e8de273",
 				"type": "text/javascript",
 				"exec": [
 					""
