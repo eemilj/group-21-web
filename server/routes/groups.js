@@ -10,5 +10,6 @@ router.put('/:id', groupController.updateGroupById);
 router.patch('/:id', groupController.patchGroupById);
 router.delete('/:id', groupController.deleteGroupById);
 router.delete('/', groupController.deleteAllGroups);
+router.get('/owner/:id', groupController.searchOwnerGroups);
 
 module.exports = router;
