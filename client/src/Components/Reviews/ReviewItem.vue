@@ -9,14 +9,10 @@
 </template>
 
 <script>
-import EditReview from '@/Components/Reviews/EditReview'
 
 export default {
   name: 'ReviewItem',
   props: ['review'],
-  components: [
-    EditReview
-  ],
   computed: {
     currentUser() {
       return this.$store.state.auth.user
