@@ -5,8 +5,8 @@
     <form @submit="addGroup" class="groupBox">
       <input type="text" v-model="name" name="name" placeholder="Name" class="name">
       <input type="text" v-model="location" name="location" placeholder="Location" class="location">
-      <datepicker :bootstrap-styling=true v-model="startDate" placeholder="Start date" class="date"></datepicker>
-      <datepicker :bootstrap-styling=true v-model="endDate" placeholder="End date" class="date"></datepicker>
+      <datepicker :bootstrap-styling=true :disabledDates="disabledDates" v-model="startDate" placeholder="Start date" class="date"></datepicker>
+      <datepicker :bootstrap-styling=true :disabledDates="disabledDates" v-model="endDate" placeholder="End date" class="date"></datepicker>
       <textarea rows="4" v-model="description" name="description" placeholder="Write description" class="description"/>
       <input type="submit" value="Submit" class="btn"/>
     </form>
@@ -26,7 +26,10 @@ export default {
       location: '',
       description: '',
       startDate: '',
-      endDate: ''
+      endDate: '',
+      disabledDates: {
+        to: new Date(Date.now() - 8640000)
+      }
     }
   },
   components: {
