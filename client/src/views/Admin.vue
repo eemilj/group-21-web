@@ -165,7 +165,10 @@ export default {
       Api.patch(`/users/${id}`, {
         admin: type
       })
-        .catch(err => console.log(err))
+        .catch(err => {
+          alert('Value must be either true of false for admin permissions')
+          console.log(err)
+        })
         .then(() => {
           this.showUsers()
         })
