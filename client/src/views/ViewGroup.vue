@@ -153,7 +153,6 @@ export default {
           this.members.push(newMember)
         })
         .then(() => {
-          console.log(this.members)
           const regMembers = this.members
           Api.patch('/groups/' + this.$route.params.id, {
             regMembers
@@ -171,7 +170,6 @@ export default {
           this.members.splice(newMember)
         })
         .then(() => {
-          console.log(this.members)
           const regMembers = this.members
           Api.patch('/groups/' + this.$route.params.id, {
             regMembers

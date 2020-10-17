@@ -5,7 +5,7 @@
     <div >
       <div class="header"><em>Activities</em> </div>
 
-      <ActivitiesForClient v-bind:activities2="activities3" v-on:get-activity="getActivityID" /><ActivitiesForClient/>
+      <ActivitiesForClient v-bind:activities2="activities3" v-bind:id="activities3.id" v-on:get-activity="getActivityID" /><ActivitiesForClient/>
     </div>
   </b-container>
   </div>
@@ -39,16 +39,7 @@ export default {
         })
     },
     getActivityID(id) {
-      Api.get(`/activities/${id}`)
-        .then(response => {
-          this.result = this.result.filter(activity => activity.id === id,
-            this.$router.push('/activities/' + id + '/groups/'),
-            console.log(this.result)
-          )
-            .catch(error => {
-              console.log(error)
-            })
-        })
+      this.$router.push('/activities/' + id + '/groups/')
     }
   }
 }

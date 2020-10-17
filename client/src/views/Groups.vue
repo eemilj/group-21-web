@@ -57,7 +57,6 @@ export default {
       Api.get('/activities/' + this.$route.params.id + '/groups')
         .then(response => {
           this.groups = response.data
-          console.log(response.data)
         })
     },
     addGroup(newGroup) {
@@ -69,7 +68,6 @@ export default {
           console.log(error)
         })
         .then(() => {
-          console.log(startDate + ' ' + endDate)
           this.getGroups()
         })
     }
