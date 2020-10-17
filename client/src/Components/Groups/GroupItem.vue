@@ -2,9 +2,9 @@
   <div class="globalMargin">
       <div class='groupItem'  @click="goToGroup">
     <div class="groupItemFormat">
-      <h4>{{group.name}}</h4>
+      <div class="overflow-auto"><h4>{{group.name}}</h4></div>
       <div class="description">
-        {{group.location}}
+        <div class="overflow-auto">{{group.location}}</div>
         <br>
         Start date: {{dateNice(group.startDate)}}<br> End date: {{dateNice(group.endDate)}}
       </div>

@@ -1,12 +1,12 @@
 <template>
-      <div class="container">
-        <div class="background">
-    <div class="globalMargin">
-    <header class="header">
-      <h1>
-        Welcome <strong id="user">{{currentUser.user.username}}</strong>!
-      </h1>
-    </header>
+  <div class="background">
+    <div class="container">
+      <div class="globalMargin">
+        <header class="header">
+          <h1>
+            Welcome <strong id="user">{{currentUser.user.username}}</strong>!
+          </h1>
+        </header>
 
         <div class="row">
           <div class="col-md-6">
@@ -77,8 +77,8 @@
           </div>
         </div>
 
-  </div>
-  </div>
+      </div>
+    </div>
   </div>
 </template>
 

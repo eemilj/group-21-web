@@ -94,11 +94,13 @@ const updateUserById = (req, res, next) => {
             return res.status(404).json(
                 {"message": "User not found."});
         }
-        user.username = req.body.username;
-        user.password = req.body.password;
-        user.admin = req.body.admin;
-        user.save();
-        res.json(user);
+        bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
+            user.username = req.body.username;
+            user.password = hash;
+            user.admin = req.body.admin;
+            user.save();
+            res.json(user);
+        });
     });
 };
 
@@ -112,16 +114,18 @@ const patchUserById = (req, res, next) => {
             return res.status(404).json(
                 {"message": "User not found."});
         }
-        user.username = (req.body.username || user.username);
-        user.password = (req.body.password || user.password);
+        bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
+            user.username = (req.body.username || user.username);
+            user.password = (hash || user.password);
 
-        // In case the admin permissions weren't changed by the patch request the following
-        // if statement surpasses the validation error occurring due to the undefined value
-        if (req.body.admin !== undefined){
-            user.admin = (String(req.body.admin) || user.admin);
-        }
-        user.save();
-        res.json(user);
+            // In case the admin permissions weren't changed by the patch request the following
+            // if statement surpasses the validation error occurring due to the undefined value
+            if (req.body.admin !== undefined) {
+                user.admin = (String(req.body.admin) || user.admin);
+            }
+            user.save();
+            res.json(user);
+        });
     });
 };
 

@@ -109,7 +109,7 @@ const patchActivityById = (req, res, next) => {
                 {'message': 'Review not found'});
         }
         activities.name =(req.body.name || activities.name);
-        activities.activity_type = (req.body.rating || activities.activity_type);
+        activities.activity_type = (req.body.activity_type || activities.activity_type);
 
 
         activities.save();

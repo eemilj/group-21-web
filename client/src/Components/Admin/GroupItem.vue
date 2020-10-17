@@ -3,9 +3,9 @@
 
     <button @click="$emit('del-group', group._id, group.name )" class="del">x</button>
 
-    <div class="formatActivity">
+    <div class="overflow-auto">
       <b>{{"Group name: "}}</b>
-      <a :href="groupLink">{{group.name}}</a>
+      <div class="overflow-auto"><a :href="groupLink">{{group.name}}</a></div>
     </div>
 
   </div>
@@ -46,9 +46,8 @@ export default {
   margin-right: 2%;
 }
 
-.formatActivity {
+.overflow-auto {
   text-align: left;
-  float: left;
 }
 
 </style>

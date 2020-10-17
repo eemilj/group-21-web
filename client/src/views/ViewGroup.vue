@@ -113,6 +113,7 @@ export default {
         })
         .then(() => {
           this.getReviews()
+          location.reload()
         })
     },
     editGroup(editedGroup) {
@@ -157,8 +158,6 @@ export default {
           Api.patch('/groups/' + this.$route.params.id, {
             regMembers
           })
-        })
-        .then(() => {
           location.reload()
         })
     },
@@ -174,8 +173,6 @@ export default {
           Api.patch('/groups/' + this.$route.params.id, {
             regMembers
           })
-        })
-        .then(() => {
           location.reload()
         })
     },
