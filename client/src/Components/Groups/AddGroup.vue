@@ -40,6 +40,10 @@ export default {
   methods: {
     addGroup(e) {
       e.preventDefault()
+      if (this.name === '' || this.location === '' || this.description === '' || this.startDate === '' || this.endDate === '') {
+        alert('Fields can not be empty')
+        return
+      }
       const newGroup = {
         id: this.id,
         name: this.name,
