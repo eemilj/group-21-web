@@ -65,7 +65,9 @@ export default {
         name, activity, location, description, owner, startDate, endDate
       })
         .catch(error => {
-          console.log(error)
+          if (error.response.status === 409) {
+            alert('This Group already exists. Please try using a different name.')
+          }
         })
         .then(() => {
           this.getGroups()

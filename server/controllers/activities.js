@@ -150,9 +150,15 @@ const createActivityGroup = (req, res) => {
             })
             .catch(err => {
                 console.log(err);
-                res.status(500).json({
-                    error: err
-                });
+                if (err.code === 11000 || err.code === 11001) {
+                    res.status(409).json({
+                        message: 'This group already exists.'
+                    })
+                } else {
+                    res.status(500).json({
+                        error: err
+                    });
+                }
             });
     });
 
