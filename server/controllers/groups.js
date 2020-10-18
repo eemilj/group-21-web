@@ -1,5 +1,7 @@
 var Group = require('../models/groups');
 var Review = require('../models/reviews');
+var User = require('../models/users');
+var Promise = require('promise');
 
 const createGroup = (req, res) => {
     const group = new Group(req.body);
@@ -146,6 +148,46 @@ const searchOwnerGroups = (req, res, next) => {
     });
 }
 
+const getGroupMembers = (req, res, next) => {
+    Group.findById(req.params.id, function(err, group) {
+        if (err) {
+            return next(err);
+        }
+        if (group == null) {
+            return res.status(404).json(
+                {"message": "Group not found."}
+            );
+        }
+        var promises = [];
+        var listOfMembers = [];
+        group.regMembers.forEach(function(memberId){
+            let userPromise = User.findById(memberId, function(err, user) {
+                if (err) {
+                    return next(err);
+                }
+                if (user == null) {
+                    return res.status(404).json(
+                        {"message": "Group members not found."}
+                    );
+                }
+
+                listOfMembers.push(user.username);
+                return true
+            });
+            promises.push(userPromise);
+        });
+
+        Promise.all(promises).then(function(result){
+            console.log(listOfMembers);
+            res.json(listOfMembers);
+
+        }).catch(function(err){
+            console.log(err)
+        });
+
+    });
+}
+
 module.exports = {
     createGroup,
     getAllGroups,
@@ -154,5 +196,6 @@ module.exports = {
     patchGroupById,
     deleteGroupById,
     deleteAllGroups,
-    searchOwnerGroups
+    searchOwnerGroups,
+    getGroupMembers
 };
