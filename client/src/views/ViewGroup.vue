@@ -175,7 +175,7 @@ export default {
       Api.get('/groups/' + this.$route.params.id)
         .then(response => {
           this.members = response.data.regMembers
-          this.members.splice(newMember)
+          this.members.splice(this.members.indexOf(newMember), 1)
         })
         .then(() => {
           const regMembers = this.members
