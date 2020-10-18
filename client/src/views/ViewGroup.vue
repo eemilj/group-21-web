@@ -6,13 +6,20 @@
       <div class="row">
         <div class="col-12 col-md-6">
           <div class="description">
-            <h3 class="location"><u>Date: </u></h3>
+            <h3 class="location"><u>Schedule: </u></h3>
             <h4> Start date: {{dateNice(group.startDate)}}<br> End date: {{dateNice(group.endDate)}}</h4>
             <h3 class="location"><u>Location: </u></h3>
             <h4> {{group.location}}</h4>
-            <br>
             <h3 class="location"><u>Description:</u></h3>
             <h4>{{group.description}}</h4>
+            <h3 class="location"><u>Registered members (<strong>{{memberNames.length}}</strong>): </u></h3>
+            <h4>
+              <ul id="listOfMemberNames">
+                <li v-for="memberNames in memberNames" :key="memberNames">
+                  {{memberNames}}
+                </li>
+              </ul>
+            </h4>
           </div>
         </div>
         <div class="col-12 col-md-6">
@@ -63,7 +70,8 @@ export default {
       reviews: [],
       members: [],
       groupMemberFlag: Boolean,
-      groupFlag: Boolean
+      groupFlag: Boolean,
+      memberNames: []
     }
   },
   computed: {
@@ -79,6 +87,7 @@ export default {
       this.getReviews()
       this.groupFlag = false
       this.checkGroupMember()
+      this.getListOfMemberNames()
     }
   },
   methods: {
@@ -189,6 +198,12 @@ export default {
             }
           }
           this.groupMemberFlag = true
+        })
+    },
+    getListOfMemberNames() {
+      Api.get('/groups/members/' + this.$route.params.id)
+        .then(response => {
+          this.memberNames = response.data
         })
     }
   }

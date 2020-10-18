@@ -178,7 +178,6 @@ const getGroupMembers = (req, res, next) => {
         });
 
         Promise.all(promises).then(function(result){
-            console.log(listOfMembers);
             res.json(listOfMembers);
 
         }).catch(function(err){
