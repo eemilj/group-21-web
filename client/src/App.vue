@@ -1,9 +1,8 @@
 <template>
 <div id="noMansLand">
   <div id="app">
-
     <b-navbar toggleable="lg" type="light" variant="warning" fixed="top">
-      <b-navbar-brand href="#">Hobby Hub</b-navbar-brand>
+      <b-navbar-brand href="/"><i class="fab fa-hubspot"></i> Hobby Hub</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -57,6 +56,33 @@
     </b-navbar>
     <!-- Render the content of the current page view -->
     <router-view/>
+    <!-- Footer -->
+    <footer class="footer bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 h-100 text-center my-auto">
+            <ul class="list-inline mb-2">
+              <li class="list-inline-item">
+                <a href="/">Home</a>
+              </li>
+              <li class="list-inline-item">&sdot;</li>
+              <li class="list-inline-item">
+                <a href="/activities">Activities</a>
+              </li>
+              <li class="list-inline-item">&sdot;</li>
+              <li class="list-inline-item">
+                <a href="/login">Login</a>
+              </li>
+              <li class="list-inline-item">&sdot;</li>
+              <li class="list-inline-item">
+                <a href="/register">Register</a>
+              </li>
+            </ul>
+            <p class="text-muted small mb-4 mb-lg-0">&copy; Hobby Hub 2020. Created with <i class="fas fa-heart"></i> by Eemil, Ramzi &amp; Chrys! </p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </div>
 </div>
 </template>
@@ -113,8 +139,18 @@ export default {
 }
 #noMansLand {
   width: auto;
-  height: 1500px;
+  height: 100%;
   background-color: #fffcbe;
 }
 
+.img-responsive {
+  height: auto;
+  width: auto;
+  max-height: 50px;
+  max-width: 250px;
+}
+
+.text-muted {
+  padding-bottom: 1%;
+}
 </style>

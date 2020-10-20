@@ -147,5 +147,6 @@ label {
 .background{
   background: #fffcbe;
   padding-top: 10%;
+  min-height: 900px;
 }
 </style>
