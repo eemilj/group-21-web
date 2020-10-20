@@ -49,7 +49,7 @@ const getActivityById = (req, res, next) => {
         if (err) { return next(err); }
         if (activities == null) {
             return res.status(404).json(
-                {'message': 'User not found'}
+                {'message': 'Activity not found'}
             );
         }
         res.json(activities);
@@ -64,7 +64,7 @@ const deleteActivityById = (req, res, next) => {
             return next(err);
         }
         if (activity === null) {
-            return res.status(404).json({ message: 'user not found' });
+            return res.status(404).json({ message: 'Activity not found' });
         }
 
         Group.find({ activity : id}, function(error, groups) {
