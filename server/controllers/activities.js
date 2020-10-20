@@ -1,5 +1,6 @@
 const Activity = require('../models/Activity');
 const Group = require('../models/groups');
+const Review = require('../models/reviews');
 
 // create a new document
 const addActivity = (req, res) =>{
@@ -65,6 +66,40 @@ const deleteActivityById = (req, res, next) => {
         if (activity === null) {
             return res.status(404).json({ message: 'user not found' });
         }
+
+        Group.find({ activity : id}, function(error, groups) {
+            if (error) {
+                return next(error);
+            }
+            if (groups == null) {
+                return res.status(404).json(
+                    {"message": "Groups not found."});
+            }
+            groups.forEach(function(group) {
+                let groupId = group._id
+                Review.deleteMany({ reviewee : groupId}, function(error, reviews) {
+                    if (error) {
+                        return next(error);
+                    }
+                    if (reviews == null) {
+                        return res.status(404).json(
+                            {"message": "Review not found."});
+                    }
+                });
+            });
+
+            Group.deleteMany({ activity : id}, function(err, group) {
+                if (err) {
+                    return next(err);
+                }
+                if (group == null) {
+                    return res.status(404).json(
+                        {"message": "Group not found."});
+                }
+            });
+
+        });
+
         res.status(200).json();
     });
 };

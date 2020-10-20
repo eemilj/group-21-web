@@ -3,7 +3,7 @@
     <div class="globalMargin">
     <b-jumbotron class="jumbotron jumbotron-fluid bg-dark">
       <div class="jumbotron-background">
-        <img src="../assets/jumbotron_image_2.jpg" class="blur">
+        <img src="../assets/jumbotron_image.jpg" class="blur">
       </div>
       <div class="container text-white">
         <div class="header">Hobby Hub!</div>
