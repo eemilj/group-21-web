@@ -33,12 +33,9 @@ export default {
   },
   methods: {
     getOwner() {
-      console.log(this.review.author)
       Api.get('/users/' + this.review.author)
         .then(response => {
           this.reviewOwner = response.data.username
-          console.log(this.reviewOwner)
-          console.log(response.data.username)
         })
     }
   }
