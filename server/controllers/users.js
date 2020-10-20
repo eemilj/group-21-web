@@ -164,6 +164,23 @@ const deleteUserById = (req, res, next) => {
             }
         });
 
+        Group.find({ regMembers: id }, function(error, groups) {
+            if (error) {
+                return next(error);
+            }
+            if (groups == null) {
+                return res.status(404).json(
+                    {"message": "Group not found."});
+            }
+            groups.forEach(function(groups) {
+                Group.findById(groups.id, function (err, group){
+                    group.regMembers.splice(groups.regMembers.indexOf(id),1)
+                    group.save()
+                })
+            })
+
+        });
+
         res.json(user);
     });
 };
