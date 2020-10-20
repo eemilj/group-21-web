@@ -20,7 +20,7 @@ const activityControllers = require('./routes/activities');
 
 
 // Variables
-var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/ss';
+var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/HobbyDB';
 var port = process.env.PORT || 3000;
 
 // Connect to MongoDB
