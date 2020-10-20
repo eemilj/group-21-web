@@ -1,14 +1,16 @@
 <template>
   <div class="container-fluid">
       <b-button v-if="review.author === currentUser.user.id" @click="$emit('del-review', review._id)" class="m-md-2">Delete</b-button>
-    <h3> {{review.subject}}<div class="Stars" :style="rating"></div></h3>
+    <h3>{{reviewOwner}} - {{review.subject}}<div class="Stars" :style="rating"></div></h3>
     <div class="content">
-      <h6> {{review.content}}</h6>
+      <h6>{{review.content}}</h6>
     </div>
   </div>
 </template>
 
 <script>
+
+import { Api } from '@/Api'
 
 export default {
   name: 'ReviewItem',
@@ -19,6 +21,25 @@ export default {
     },
     rating() {
       return '--rating: ' + this.review.rating + ';'
+    }
+  },
+  mounted() {
+    this.getOwner()
+  },
+  data() {
+    return {
+      reviewOwner: ''
+    }
+  },
+  methods: {
+    getOwner() {
+      console.log(this.review.author)
+      Api.get('/users/' + this.review.author)
+        .then(response => {
+          this.reviewOwner = response.data.username
+          console.log(this.reviewOwner)
+          console.log(response.data.username)
+        })
     }
   }
 }

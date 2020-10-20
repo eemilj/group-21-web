@@ -6,6 +6,8 @@
       <div class="row">
         <div class="col-12 col-md-6">
           <div class="description">
+            <h3 class="location"><u>Owner: </u></h3>
+            <h4> {{groupOwner}}</h4>
             <h3 class="location"><u>Schedule: </u></h3>
             <h4> Start date: {{dateNice(group.startDate)}}<br> End date: {{dateNice(group.endDate)}}</h4>
             <h3 class="location"><u>Location: </u></h3>
@@ -71,7 +73,9 @@ export default {
       members: [],
       groupMemberFlag: Boolean,
       groupFlag: Boolean,
-      memberNames: []
+      memberNames: [],
+      groupOwner: '',
+      grpOwner: ''
     }
   },
   computed: {
@@ -88,9 +92,22 @@ export default {
       this.groupFlag = false
       this.checkGroupMember()
       this.getListOfMemberNames()
+      this.getOwner()
     }
   },
   methods: {
+    getOwner() {
+      Api.get('/groups/' + this.$route.params.id)
+        .then(response => {
+          this.grpOwner = response.data.owner
+        })
+        .then(() => {
+          Api.get('/users/' + this.grpOwner)
+            .then(response => {
+              this.groupOwner = response.data.username
+            })
+        })
+    },
     dateNice(date) {
       return dateFormat(date, 'dddd, mmmm dS, yyyy')
     },
