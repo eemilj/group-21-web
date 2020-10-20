@@ -84,4 +84,4 @@ The web application acts as a hub that connects people who are interested in joi
 
 ## Teaser (MS3)
 
-![Teaser](./images/teaser.png)
+![Teaser](./images/teaser.PNG)
