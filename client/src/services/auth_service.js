@@ -1,10 +1,10 @@
-import axios from 'axios'
+import { Api } from '@/Api'
 
-const API_URL = 'http://localhost:3000/api/users/'
+const API_URL = '/users/'
 
 class AuthService {
   login(user) {
-    return axios
+    return Api
       .post(API_URL + 'login', {
         username: user.username,
         password: user.password
@@ -23,7 +23,7 @@ class AuthService {
   }
 
   register(user) {
-    return axios.post(API_URL, {
+    return Api.post(API_URL, {
       username: user.username,
       password: user.password
     })

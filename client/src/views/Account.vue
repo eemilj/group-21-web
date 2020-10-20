@@ -111,7 +111,7 @@ export default {
       this.submitted = true
       this.$validator.validate().then(isValid => {
         if (isValid) {
-          Api.patch('http://localhost:3000/api/users/' + this.$store.state.auth.user.user.id, {
+          Api.patch('/users/' + this.$store.state.auth.user.user.id, {
             password: this.newPassword
           }).then(
             (response) => {

@@ -111,7 +111,7 @@ export default {
   },
   beforeUpdate() {
     if (this.$store.state.auth.user !== null) {
-      Api.get('http://localhost:3000/api/users/' + this.$store.state.auth.user.user.id).then(response => {
+      Api.get('/users/' + this.$store.state.auth.user.user.id).then(response => {
         if (response.status === 200) {
           return response.data
         }
