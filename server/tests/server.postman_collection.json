@@ -852,8 +852,8 @@
 					"script": {
 						"id": "380b2eff-5553-475b-9871-b63fb259a84f",
 						"exec": [
-							"pm.test('status code 500 when group exists', function(){",
-							"    pm.response.to.have.status(500);",
+							"pm.test('status code 409 when group exists', function(){",
+							"    pm.response.to.have.status(409);",
 							"",
 							"})"
 						],

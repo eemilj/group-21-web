@@ -165,6 +165,7 @@ export default {
 
 .background{
   background: #fffcbe;
+  min-height: 900px;
 }
 
 h2 {

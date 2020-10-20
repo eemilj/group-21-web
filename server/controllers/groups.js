@@ -1,5 +1,7 @@
 var Group = require('../models/groups');
 var Review = require('../models/reviews');
+var User = require('../models/users');
+var Promise = require('promise');
 
 const createGroup = (req, res) => {
     const group = new Group(req.body);
@@ -14,9 +16,15 @@ const createGroup = (req, res) => {
         })
         .catch(err => {
             console.log(err);
-            res.status(500).json({
-                error: err
-            });
+            if (err.code === 11000 || err.code === 11001) {
+                res.status(409).json({
+                    message: 'This user already exists.'
+                })
+            } else {
+                res.status(500).json({
+                    error: err
+                });
+            }
         });
 };
 
@@ -140,6 +148,45 @@ const searchOwnerGroups = (req, res, next) => {
     });
 }
 
+const getGroupMembers = (req, res, next) => {
+    Group.findById(req.params.id, function(err, group) {
+        if (err) {
+            return next(err);
+        }
+        if (group == null) {
+            return res.status(404).json(
+                {"message": "Group not found."}
+            );
+        }
+        var promises = [];
+        var listOfMembers = [];
+        group.regMembers.forEach(function(memberId){
+            let userPromise = User.findById(memberId, function(err, user) {
+                if (err) {
+                    return next(err);
+                }
+                if (user == null) {
+                    return res.status(404).json(
+                        {"message": "Group members not found."}
+                    );
+                }
+
+                listOfMembers.push(user.username);
+                return true
+            });
+            promises.push(userPromise);
+        });
+
+        Promise.all(promises).then(function(result){
+            res.json(listOfMembers);
+
+        }).catch(function(err){
+            console.log(err)
+        });
+
+    });
+}
+
 module.exports = {
     createGroup,
     getAllGroups,
@@ -148,5 +195,6 @@ module.exports = {
     patchGroupById,
     deleteGroupById,
     deleteAllGroups,
-    searchOwnerGroups
+    searchOwnerGroups,
+    getGroupMembers
 };

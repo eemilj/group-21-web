@@ -10,8 +10,7 @@ var activitySchema = new Schema({
 
     activity_type: {
         type: String,
-        required: true,
-        unique: false
+        required: true
     }
     /*,
 

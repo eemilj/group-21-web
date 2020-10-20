@@ -120,10 +120,12 @@ const patchUserById = (req, res, next) => {
 
             // In case the admin permissions weren't changed by the patch request the following
             // if statement surpasses the validation error occurring due to the undefined value
-            if (req.body.admin === 'true' || req.body.admin === 'false') {
-                user.admin = (String(req.body.admin) || user.admin);
-            } else {
-                return res.status(500).json(user);
+            if (req.body.admin !== undefined) {
+                if (req.body.admin === 'true' || req.body.admin === 'false') {
+                    user.admin = (String(req.body.admin) || user.admin);
+                } else {
+                    return res.status(500).json(user);
+                }
             }
             user.save();
             res.status(200).json(user);
@@ -160,6 +162,23 @@ const deleteUserById = (req, res, next) => {
                 return res.status(404).json(
                     {"message": "Group not found."});
             }
+        });
+
+        Group.find({ regMembers: id }, function(error, groups) {
+            if (error) {
+                return next(error);
+            }
+            if (groups == null) {
+                return res.status(404).json(
+                    {"message": "Group not found."});
+            }
+            groups.forEach(function(groups) {
+                Group.findById(groups.id, function (err, group){
+                    group.regMembers.splice(groups.regMembers.indexOf(id),1)
+                    group.save()
+                })
+            })
+
         });
 
         res.json(user);
